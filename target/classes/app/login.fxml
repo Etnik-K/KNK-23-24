@@ -46,7 +46,7 @@
       </Text>
       <ImageView fitHeight="87.0" fitWidth="115.0" layoutX="408.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="app/Images/University_of_Prishtina_logo.png" />
+            <Image url="@../images/University_of_Prishtina_logo.png" />
          </image>
       </ImageView>
    </children>
