@@ -12,6 +12,9 @@ public class Navigator {
     public final static String LOGIN_PAGE = "login.fxml";
     public final static String HOME_PAGE = "home.fxml";
     public final static String CREATE_ACCOUNT_PAGE = "create_user_form.fxml";
+    public final static String ADMIN_DASHBOARD="admin_dashboard.fxml";
+    public final static String STUDENT_PAGE="student.fxml";
+
 
     public static void navigate(Stage stage, String page){
         FXMLLoader loader = new FXMLLoader(

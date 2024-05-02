@@ -28,7 +28,7 @@ public class UserRepository {
             pst.execute();
             pst.close();
             conn.close();
-            System.out.println("U egzekutu query me sukses");
+            System.out.println("U ekzekutu query me sukses");
             return true;
         }catch (Exception e){
             System.out.println("An error occurred: " + e.getMessage());
