@@ -38,6 +38,11 @@ public class SignUpController {
 
     @FXML
     private void handleCancel(ActionEvent ae){
+        this.pwdConfirmPassword.clear();
+        this.txtEmail.clear();
+        this.txtFirstName.clear();
+        this.txtLastName.clear();
+        this.pwdPassword.clear();
 
     }
 }

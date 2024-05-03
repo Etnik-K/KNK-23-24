@@ -36,7 +36,8 @@ public class LoginController {
 
     @FXML
     private void handleCancelClick(ActionEvent ae){
-
+            this.txtEmail.clear();
+            this.pwdPassword.clear();
     }
 
 

@@ -31,7 +31,13 @@ public class CreateUserController {
     }
 
     @FXML
-    private void handleClear(ActionEvent ae){
+    private void handleCancel(ActionEvent ae){
+        this.txtFirstName.clear();
+        this.txtFirstName.clear();
+        this.txtLastName.clear();
+        this.txtEmail.clear();
+        this.pwdPassword.clear();
+        this.pwdConfirmPassword.clear();
 
     }
 
