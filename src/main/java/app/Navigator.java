@@ -14,6 +14,7 @@ public class Navigator {
     public final static String CREATE_ACCOUNT_PAGE = "create_user_form.fxml";
     public final static String ADMIN_DASHBOARD="admin_dashboard.fxml";
     public final static String STUDENT_PAGE="student.fxml";
+    public final static String PROFESSOR_PAGE="professor.fxml";
 
 
     public static void navigate(Stage stage, String page){
