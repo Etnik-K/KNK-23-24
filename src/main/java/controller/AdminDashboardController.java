@@ -1,10 +1,22 @@
 package controller;
 
+import app.Navigator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.VBox;
+import service.DBConnector;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class AdminDashboardController {
 
+    @FXML
+    private VBox resultContainer;
 
     @FXML
     private void handleAdd(ActionEvent ae){
@@ -26,25 +38,29 @@ public class AdminDashboardController {
     @FXML
     private void handleView(ActionEvent ae){
 
-    }
-    @FXML
-    private void handleThursday(ActionEvent ae){
 
-    }
-    @FXML
-    private void handleWednesday(ActionEvent ae){
-
-    }
-    @FXML
-    private void handleTuesday(ActionEvent ae) {
     }
     @FXML
     private void handleMonday(ActionEvent ae){
-
+        Navigator.displayResults(Navigator.MONDAY, resultContainer);
     }
     @FXML
-    private void handleFriday(ActionEvent ae){
+    private void handleTuesday(ActionEvent ae) {
+        Navigator.displayResults(Navigator.TUEDAY, resultContainer);
+    }
+    @FXML
+    private void handleWednesday(ActionEvent ae){
+        Navigator.displayResults(Navigator.WEDNESDAY, resultContainer);
+    }
 
+    @FXML
+    private void handleThursday(ActionEvent ae){
+        Navigator.displayResults(Navigator.THURSDAY, resultContainer);
+    }
+
+    @FXML
+    private void handleFriday(ActionEvent ae){
+        Navigator.displayResults(Navigator.FRIDAY, resultContainer);
     }
 
     @FXML
@@ -64,19 +80,5 @@ public class AdminDashboardController {
     private void handleEAR(ActionEvent ae){
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

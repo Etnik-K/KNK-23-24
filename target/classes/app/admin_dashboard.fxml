@@ -9,6 +9,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -59,7 +60,10 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </ToggleButton>
-      <ScrollPane fx:id="approveRequest" layoutX="85.0" layoutY="105.0" prefHeight="396.0" prefWidth="714.0" />
+      <ScrollPane fx:id="approveRequest" layoutX="83.0" layoutY="104.0" prefHeight="396.0" prefWidth="714.0">
+         <content>
+            <VBox fx:id="resultContainer" prefHeight="393.0" prefWidth="713.0" />
+         </content></ScrollPane>
       <DatePicker layoutX="616.0" layoutY="69.0" prefHeight="28.0" prefWidth="175.0" />
    </children>
 </AnchorPane>
