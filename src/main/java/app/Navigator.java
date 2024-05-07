@@ -17,6 +17,8 @@ public class Navigator {
     public final static String ADMIN_DASHBOARD="admin_dashboard.fxml";
     public final static String STUDENT_PAGE="student.fxml";
     public final static String PROFESSOR_PAGE="professor.fxml";
+    public final static String ADMIN_ADD = "/app/admin_add.fxml";
+    ;
 
     public final static String MONDAY = "Query per diten e Hane";
     public final static String TUEDAY = "Query per diten e Marte";
