@@ -21,28 +21,42 @@ public class SignUpController {
     private PasswordField pwdConfirmPassword;
 
     @FXML
-    private void handleSignUp(ActionEvent ae){
-        UserDto userSignUpData = new UserDto(
-                this.txtFirstName.getText(),
-                this.txtLastName.getText(),
-                this.txtEmail.getText(),
-                this.pwdPassword.getText(),
-                this.pwdConfirmPassword.getText()
-        );
-        System.out.println("Kemi mrri ne kete hap");
+    private void handleSignUp(ActionEvent ae) {
+
+        String firstName = txtFirstName.getText();
+        String lastName = txtLastName.getText();
+        String email = txtEmail.getText();
+        String password = pwdPassword.getText();
+        String confirmPassword = pwdConfirmPassword.getText();
+
+        if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+            System.out.println("Please fill in all the fields.");
+            return;
+        }
+
+
+        if (!password.equals(confirmPassword)) {
+            System.out.println("Password and confirm password do not match.");
+            return;
+        }
+
+
+        UserDto userSignUpData = new UserDto(firstName, lastName, email, password, confirmPassword);
+
+
         boolean response = UserService.signUp(userSignUpData);
         System.out.println("Response: " + response);
+
 
         Navigator.navigate(ae, Navigator.LOGIN_PAGE);
     }
 
     @FXML
-    private void handleCancel(ActionEvent ae){
-        this.pwdConfirmPassword.clear();
-        this.txtEmail.clear();
-        this.txtFirstName.clear();
-        this.txtLastName.clear();
-        this.pwdPassword.clear();
-
+    private void handleCancel(ActionEvent ae) {
+        txtFirstName.clear();
+        txtLastName.clear();
+        txtEmail.clear();
+        pwdPassword.clear();
+        pwdConfirmPassword.clear();
     }
 }
