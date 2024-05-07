@@ -17,6 +17,8 @@ public class CreateUserController {
     private PasswordField pwdPassword;
     @FXML
     private PasswordField pwdConfirmPassword;
+    @FXML
+    private String selectedRole;
 
     @FXML
     private void handleCreate(ActionEvent ae){
@@ -24,8 +26,9 @@ public class CreateUserController {
                 this.txtFirstName.getText(),
                 this.txtLastName.getText(),
                 this.txtEmail.getText(),
-                this.pwdPassword.getText(),
-                this.pwdConfirmPassword.getText()
+                this.pwdPassword.getText(   ),
+                this.pwdConfirmPassword.getText(),
+                this.selectedRole
         );
        // boolean userCreated = UserService.createUser(user);
     }

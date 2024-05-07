@@ -37,6 +37,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -82,8 +83,8 @@
       <Text layoutX="360.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" />
       <Text layoutX="338.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" />
       <Text layoutX="300.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confim Password:" />
-      <Button layoutX="402.0" layoutY="315.0" mnemonicParsing="false" onAction="#handleSignUp" text="Signup" />
-      <Button layoutX="500.0" layoutY="315.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
+      <Button layoutX="402.0" layoutY="341.0" mnemonicParsing="false" onAction="#handleSignUp" text="Signup" />
+      <Button layoutX="500.0" layoutY="341.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
       <Text layoutX="27.0" layoutY="230.0" lineSpacing="4.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dear student or profesor, soon enough your new account will get confirmed by the administrating staff!" wrappingWidth="149.60000000000014">
          <font>
             <Font name="Microsoft Sans Serif" size="12.0" />
@@ -99,5 +100,12 @@
             <Font size="21.0" />
          </font>
       </Text>
+       <SplitMenuButton fx:id="splitMenuButton" layoutX="402.0" layoutY="310.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Zgjedh statusin...">
+           <items>
+               <MenuItem text="Student" onAction="#handleStudentClick" />
+               <MenuItem text="Professor" onAction="#handleProfessorClick" />
+           </items>
+       </SplitMenuButton>
+
    </children>
 </AnchorPane>

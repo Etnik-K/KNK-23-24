@@ -6,13 +6,15 @@ public class CreateUserDto {
     private String email;
     private String salt;
     private String passwordHash;
+    private String selectedRole;
 
-    public CreateUserDto(String firstName, String lastName, String email, String salt, String passwordHash) {
+    public CreateUserDto(String firstName, String lastName, String email, String salt, String passwordHash, String selectedRole) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.salt = salt;
         this.passwordHash = passwordHash;
+        this.selectedRole= selectedRole;
     }
 
     public String getFirstName() {
@@ -34,4 +36,5 @@ public class CreateUserDto {
     public String getPasswordHash() {
         return passwordHash;
     }
+    public String getSelectedRole() {return selectedRole; }
 }

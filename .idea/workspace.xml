@@ -4,14 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="48056ede-ba49-4b85-90a7-1bf3cdf33a5f" name="Changes" comment="Add ProffesrFXML">
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
+    <list default="true" id="48056ede-ba49-4b85-90a7-1bf3cdf33a5f" name="Changes" comment="SignUpController changes">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DBforKNK.sql" beforeDir="false" afterPath="$PROJECT_DIR$/DBforKNK.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/CreateUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/CreateUserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/SignUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/SignUpController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/DatabaseUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/DatabaseUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/DBConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/DBConnector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/database/DatabaseUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/database/DatabaseUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/service/DBConnector.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/service/DBConnector.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/database/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/dto/CreateUserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/dto/CreateUserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/dto/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/app/create_user_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/app/create_user_form.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/create_user_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/create_user_form.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controller/CreateUserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/CreateUserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controller/SignUpController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/SignUpController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/database/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/database/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/dto/CreateUserDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/dto/CreateUserDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/dto/UserDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/dto/UserDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/service/UserService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +43,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "adea-gerguri"
+  }
+}]]></component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/Etnik-K/KNK-23-24.git",
@@ -59,12 +79,21 @@
     "git-widget-placeholder": "main",
     "jdk.selected.JAVA_MODULE": "openjdk-21",
     "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
@@ -74,7 +103,7 @@
       <recent name="C:\Users\Adea\IdeaProjects\KNK-23-24\src\main\resources\images" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.Main" />
       <module name="KNK-23-24" />
@@ -88,6 +117,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="DBforKNK.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
+      <script-file value="$PROJECT_DIR$/DBforKNK.sql" />
+      <script-mode>FILE</script-mode>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Database Script.DBforKNK.sql" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -105,7 +144,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1714577431719</updated>
-      <workItem from="1715104922744" duration="296000" />
+      <workItem from="1715104922744" duration="5086000" />
     </task>
     <task id="LOCAL-00001" summary="Add Login">
       <option name="closed" value="true" />
@@ -147,7 +186,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714724680060</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="SignUpController changes">
+      <option name="closed" value="true" />
+      <created>1715105284862</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1715105284862</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -159,6 +206,7 @@
     <MESSAGE value="fixed something" />
     <MESSAGE value="fxmls + controllers for all level users" />
     <MESSAGE value="Add ProffesrFXML" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add ProffesrFXML" />
+    <MESSAGE value="SignUpController changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="SignUpController changes" />
   </component>
 </project>

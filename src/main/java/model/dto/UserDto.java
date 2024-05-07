@@ -6,13 +6,15 @@ public class UserDto {
     private String email;
     private String password;
     private String confirmPassword;
+    private String selectedRole;
 
-    public UserDto(String firstName, String lastName, String email, String password, String confirmPassword) {
+    public UserDto(String firstName, String lastName, String email, String password, String confirmPassword, String selectedRole) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.confirmPassword = confirmPassword;
+        this.selectedRole = selectedRole;
     }
 
     public String getFirstName() {
@@ -33,5 +35,9 @@ public class UserDto {
 
     public String getConfirmPassword() {
         return confirmPassword;
+    }
+
+    public String getSelectedRole() {
+        return selectedRole;
     }
 }

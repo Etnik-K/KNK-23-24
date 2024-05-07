@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) throws SQLException {
         String url = "jdbc:mysql://localhost:3306/knk2024";
         String user = "root";
-        String password = "etnik";
+        String password = "080893";
         Connection connection = DriverManager.getConnection(
                 url, user, password
         );
@@ -27,9 +27,9 @@ public class Main {
         //ResultSet result = statement.executeQuery(sql);
 
 
-        System.out.println(UserService.signUp(new UserDto(
-                "Etnik", "Kelmendi", "etnikkelmendi20@gmail.com", "123", "123")));
-        //System.out.println(UserRepository.create(new CreateUserDto("Etnik", "Kelmendi", "etnikkelmendi20@gmail.com", "111", "111")));
+//        System.out.println(UserService.signUp(new UserDto(
+//                "Etnik", "Kelmendi", "etnikkelmendi20@gmail.com", "123", "123")));
+//        //System.out.println(UserRepository.create(new CreateUserDto("Etnik", "Kelmendi", "etnikkelmendi20@gmail.com", "111", "111")));
 
 
         //Leximi me Kod:

@@ -14,8 +14,8 @@ public class UserRepository {
     public static boolean create(CreateUserDto userData){
         Connection conn = DBConnector.getConnection();
         String query = """
-                INSERT INTO USERS (firstName, lastName, email, salt, passwordHash)
-                VALUE (?, ?, ?, ?, ?)
+                INSERT INTO users (firstName, lastName, email, salt, passwordHash, user_type)
+                VALUE (?, ?, ?, ?, ?, ?)
                 """;
         //String query = "INSERT INTO USER VALUE (?, ?, ?, ?, ?)";
         try{
@@ -25,6 +25,7 @@ public class UserRepository {
             pst.setString(3, userData.getEmail());
             pst.setString(4, userData.getSalt());
             pst.setString(5, userData.getPasswordHash());
+            pst.setString(6, userData.getSelectedRole());
             pst.execute();
             pst.close();
             conn.close();
@@ -40,7 +41,7 @@ public class UserRepository {
 
 
     public static User getByEmail(String email){
-        String query = "SELECT * FROM USER WHERE email = ? LIMIT 1";
+        String query = "SELECT * FROM users WHERE email = ? LIMIT 1";
         Connection connection = DBConnector.getConnection();
         try{
             PreparedStatement pst = connection.prepareStatement(query);
@@ -63,8 +64,9 @@ public class UserRepository {
             String email = result.getString("email");
             String salt = result.getString("salt");
             String passwordHash = result.getString("passwordHash");
+            String selectedRole = result.getString("selectedRole");
             return new User(
-                    id, firstName, lastName, email, salt, passwordHash
+                    id, firstName, lastName, email, salt, passwordHash, selectedRole
             );
         }catch (Exception e){
             return null;
