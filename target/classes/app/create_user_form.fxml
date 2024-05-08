@@ -73,12 +73,12 @@
             <Image url="@../images/University_of_Prishtina_logo.png" />
          </image>
       </ImageView>
-      <TextField fx:id="txtFirstName" layoutX="402.0" layoutY="141.0" promptText="Type your first name" />
+      <TextField fx:id="txtFirstName" layoutX="402.0" layoutY="143.0" promptText="Type your first name" />
       <TextField fx:id="txtLastName" layoutX="402.0" layoutY="176.0" promptText="Type your last name" />
-      <TextField fx:id="txtEmail" layoutX="402.0" layoutY="212.0" promptText="Type your email" />
+       <TextField fx:id="txtEmail" layoutX="402.0" layoutY="212.0" promptText="Type your email" />
       <PasswordField fx:id="pwdPassword" layoutX="402.0" layoutY="246.0" promptText="Type your password" />
       <PasswordField fx:id="pwdConfirmPassword" layoutX="402.0" layoutY="281.0" promptText="Repeat your password" />
-      <Text layoutX="338.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First name:" />
+      <Text layoutX="337.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First name:" />
       <Text layoutX="338.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name:" />
       <Text layoutX="360.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" />
       <Text layoutX="338.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" />
@@ -95,15 +95,15 @@
             <Font name="Microsoft Sans Serif" size="12.0" />
          </font>
       </Text>
-      <Text layoutX="437.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIGN UP">
+      <Text layoutX="437.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIGN UP">
          <font>
             <Font size="21.0" />
          </font>
       </Text>
-       <SplitMenuButton fx:id="splitMenuButton" layoutX="402.0" layoutY="310.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Zgjedh statusin...">
+       <SplitMenuButton fx:id="splitMenuButton" layoutX="401.0" layoutY="109.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" style="-fx-color: #EFDAD6;" text="Zgjedh statusin...">
            <items>
-               <MenuItem text="Student" onAction="#handleStudentClick" />
-               <MenuItem text="Professor" onAction="#handleProfessorClick" />
+               <MenuItem onAction="#handleStudentClick" text="Student" />
+               <MenuItem onAction="#handleProfessorClick" text="Professor" />
            </items>
        </SplitMenuButton>
 

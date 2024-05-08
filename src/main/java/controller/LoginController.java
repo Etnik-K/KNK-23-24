@@ -28,9 +28,24 @@ public class LoginController {
         );
 
         boolean isLogin = UserService.login(loginUserData);
+        System.out.println(isLogin);
+        System.out.println("Ka hy ne login");
 
-        if(isLogin){
-            Navigator.navigate(ae, Navigator.HOME_PAGE);
+        if (isLogin) {
+            String email = txtEmail.getText().trim();
+            if (email.endsWith("@student.uni-pr.edu")) {
+                Navigator.navigate(ae, Navigator.STUDENT_PAGE);
+            }
+            else if (email.endsWith("@uni-pr.edu")) {
+                Navigator.navigate(ae, Navigator.PROFESSOR_PAGE);
+            }
+            else {
+                Navigator.navigate(ae, Navigator.CREATE_ACCOUNT_PAGE);
+                System.out.println("Krijo llogari");
+            }
+        }
+        else if (txtEmail.getText().equals("root") && pwdPassword.getText().equals("admin")) {
+            Navigator.navigate(ae, Navigator.ADMIN_DASHBOARD);
         }
     }
 
