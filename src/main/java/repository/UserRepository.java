@@ -8,6 +8,7 @@ import service.DBConnector;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class UserRepository {
 
@@ -40,9 +41,11 @@ public class UserRepository {
     }
 
 
+
     public static User getByEmail(String email){
         String query = "SELECT * FROM users WHERE email = ? LIMIT 1";
         Connection connection = DBConnector.getConnection();
+
         try{
             PreparedStatement pst = connection.prepareStatement(query);
             pst.setString(1, email);
@@ -55,6 +58,52 @@ public class UserRepository {
             return null;
         }
     }
+
+
+
+//    public static boolean emailExists(String email){
+//        String q = "SELECT * FROM users WHERE email = ? LIMIT 1";
+//        Connection connection = DBConnector.getConnection();
+//        boolean exists = false;
+//        ResultSet result = null;
+//        PreparedStatement pst=null;
+//        try{
+//            pst = connection.prepareStatement(q);
+//            pst.setString(1, email);
+//            result = pst.executeQuery();
+//            if(result.next()){
+//                int count = result.getInt(1);
+//                exists = count>0;
+//            }
+//        }catch(SQLException sqle){
+//            sqle.printStackTrace();
+//        }
+//        finally {
+//            try {
+//                if (result != null) result.close();
+//                if (pst != null) pst.close();
+//                if (connection != null) connection.close();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        return exists;
+//    }
+//public static boolean emailExists(String email){
+//    String query = "SELECT COUNT(*) FROM users WHERE email = ?";
+//    try(Connection connection = DBConnector.getConnection();
+//        PreparedStatement pst = connection.prepareStatement(query)) {
+//        pst.setString(1, email);
+//        ResultSet result = pst.executeQuery();
+//        if(result.next()){
+//            int count = result.getInt(1);
+//            return count > 0;
+//        }
+//    }catch (SQLException e){
+//        e.printStackTrace();
+//    }
+//    return false;
+//}
 
     private static User getFromResultSet(ResultSet result){
         try{

@@ -1,13 +1,17 @@
 package controller;
 
 import app.Navigator;
+import database.DatabaseUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
 import model.dto.UserDto;
+import service.DBConnector;
 import service.UserService;
+
+import java.sql.*;
 
 public class SignUpController {
     @FXML
@@ -22,14 +26,14 @@ public class SignUpController {
     private PasswordField pwdConfirmPassword;
     @FXML
     private SplitMenuButton splitMenuButton;
-
+    @FXML
     private String selectedRole;
 
     @FXML
     private void handleSignUp(ActionEvent ae) {
         String firstName = txtFirstName.getText();
         String lastName = txtLastName.getText();
-        String email = txtEmail.getText();
+        String email = generateEmail(firstName, lastName);
         String password = pwdPassword.getText();
         String confirmPassword = pwdConfirmPassword.getText();
 
@@ -48,15 +52,43 @@ public class SignUpController {
             return;
         }
 
-        // Create UserDto object with selected role
+
         UserDto userSignUpData = new UserDto(firstName, lastName, email, password, confirmPassword, selectedRole);
 
-        // Perform sign up
+
         boolean response = UserService.signUp(userSignUpData);
         System.out.println("Response: " + response);
 
-        // Navigate
+
         Navigator.navigate(ae, Navigator.LOGIN_PAGE);
+    }
+
+    @FXML
+    private void initialize() {
+        txtFirstName.textProperty().addListener((observable, oldValue, newValue) -> updateGeneratedEmail());
+        txtLastName.textProperty().addListener((observable, oldValue, newValue) -> updateGeneratedEmail());
+    }
+
+    private void updateGeneratedEmail() {
+        String firstName = txtFirstName.getText();
+        String lastName = txtLastName.getText();
+
+        if (!firstName.isEmpty() && !lastName.isEmpty()) {
+            String generatedEmail = generateEmail(firstName, lastName);
+            txtEmail.setText(generatedEmail);
+        } else {
+            txtEmail.clear();
+        }
+    }
+
+    private String generateEmail(String firstName, String lastName) {
+        String email;
+        if (selectedRole.equals("Student")) {
+            email = firstName + "." + lastName + "@student.uni-pr.edu";
+        } else {
+            email = firstName + "." + lastName + "@uni.pr.edu";
+        }
+        return email;
     }
 
 
@@ -87,4 +119,6 @@ public class SignUpController {
     private void updateSplitMenuButtonText() {
         splitMenuButton.setText(selectedRole);
     }
+
+
 }
