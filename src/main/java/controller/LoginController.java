@@ -36,12 +36,8 @@ public class LoginController {
             if (email.endsWith("@student.uni-pr.edu")) {
                 Navigator.navigate(ae, Navigator.STUDENT_PAGE);
             }
-            else if (email.endsWith("@uni-pr.edu")) {
-                Navigator.navigate(ae, Navigator.PROFESSOR_PAGE);
-            }
             else {
-                Navigator.navigate(ae, Navigator.CREATE_ACCOUNT_PAGE);
-                System.out.println("Krijo llogari");
+                Navigator.navigate(ae, Navigator.PROFESSOR_PAGE);
             }
         }
         else if (txtEmail.getText().equals("root") && pwdPassword.getText().equals("admin")) {

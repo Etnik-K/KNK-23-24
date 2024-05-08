@@ -82,10 +82,10 @@ public class SignUpController {
     }
 
     private String generateEmail(String firstName, String lastName) {
-        String email;
+        String email = "";
         if (selectedRole.equals("Student")) {
             email = firstName + "." + lastName + "@student.uni-pr.edu";
-        } else {
+        } else if(selectedRole.equals("Professor")){
             email = firstName + "." + lastName + "@uni.pr.edu";
         }
         return email;
