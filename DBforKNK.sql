@@ -32,3 +32,13 @@ create table schedules (
                            CONSTRAINT fk_professor FOREIGN KEY (professor_id) REFERENCES users(id)
 );
 -- profesori table, lenda table edhe salla table
+
+create trigger insert_into_profesor
+    after insert on users
+    for each row
+begin
+    if new.user_type = 'professor' then
+        insert into profesor (firstName, lastName, faculty_id, isApproved)
+        values (new.firstName, new.lastName, new.faculty_id, new.is_approved);
+    end if;
+end;
