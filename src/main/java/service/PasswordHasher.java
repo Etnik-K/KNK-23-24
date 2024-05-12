@@ -20,7 +20,6 @@ public class PasswordHasher {
     public static String generateSaltedHash(String password, String salt) {
         byte[] hash = hashWithSalt(password, salt);
 
-        // Combine salt and hash into a single string
         StringBuilder sb = new StringBuilder(SALT_LENGTH + HASH_LENGTH);
 
         byte [] saltBytes = salt.getBytes();

@@ -51,19 +51,19 @@ public class Navigator {
     public static void displayResults(String query, Pane resultContainer) {
 
         //Keta e fusim ne funksion masi ti bojm tabelat me orare
-       /* try (Connection connection = DBConnector.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query);
-             ResultSet resultSet = statement.executeQuery()) {
+       // try (Connection connection = DBConnector.getConnection();
+//             PreparedStatement statement = connection.prepareStatement(query);
+//             ResultSet resultSet = statement.executeQuery()) {
+//
+//            resultContainer.getChildren().clear();
+//            while (resultSet.next()) {
+//                String resultText = resultSet.getString("PROVE PROVE"); // Replace column_name
+//                resultContainer.getChildren().add(new Label(resultText));
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
 
-            resultContainer.getChildren().clear();
-            while (resultSet.next()) {
-                String resultText = resultSet.getString("PROVE PROVE"); // Replace column_name
-                resultContainer.getChildren().add(new Label(resultText));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-*/
         resultContainer.getChildren().clear();
         resultContainer.getChildren().add(new Label(query));
     }

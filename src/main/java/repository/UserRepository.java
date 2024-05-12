@@ -7,6 +7,7 @@ import service.DBConnector;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLOutput;
 
 public class UserRepository {
 
@@ -27,7 +28,7 @@ public class UserRepository {
             pst.setString(6, userData.getSelectedRole());
             pst.execute();
             pst.close();
-            conn.close();
+//            conn.close();
             System.out.println("U ekzekutu query me sukses");
             return true;
         }catch (Exception e){
@@ -44,18 +45,22 @@ public class UserRepository {
         String query = "SELECT * FROM users WHERE email = ? LIMIT 1";
         Connection connection = DBConnector.getConnection();
 
+
         try{
             PreparedStatement pst = connection.prepareStatement(query);
             pst.setString(1, email);
             ResultSet result = pst.executeQuery();
+            System.out.println("ESHTE NTRY");
 
             if(result.next()){
+                System.out.println("ESHTE N'IF");
                 return getFromResultSet(result);
 
             }
             return null;
         }catch (Exception e){
             System.out.println("ERRORRRRR------------");
+            e.printStackTrace();
             return null;
         }
     }
@@ -74,7 +79,7 @@ public class UserRepository {
                     id, firstName, lastName, email, salt, passwordHash, selectedRole
             );
         }catch (Exception e){
-            System.out.println(e);
+            System.out.println("-------------------");
             return null;
         }
     }

@@ -86,7 +86,7 @@ public class SignUpController {
         if (selectedRole.equals("Student")) {
             email = firstName + "." + lastName + "@student.uni-pr.edu";
         } else if(selectedRole.equals("Professor")){
-            email = firstName + "." + lastName + "@uni.pr.edu";
+            email = firstName + "." + lastName + "@uni-pr.edu";
         }
         return email;
     }

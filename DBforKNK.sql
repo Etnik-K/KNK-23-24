@@ -8,7 +8,7 @@ create table faculties (
     faculty_id INT AUTO_INCREMENT PRIMARY KEY,
     faculty_name VARCHAR(100) NOT NULL
 );
-drop table users;
+-- drop table users;
 create table users (
 	id integer primary key auto_increment,
     firstName nvarchar(30),
@@ -35,7 +35,7 @@ CREATE TABLE lenda (
     has_lab BOOLEAN
 );
 
-
+delimiter //
 create trigger insert_into_profesor
     after insert on users
     for each row
@@ -45,6 +45,8 @@ begin
         values (new.firstName, new.lastName, new.faculty_id, new.is_approved);
     end if;
 end;
+//
+delimiter ;
 
 
 CREATE TABLE salla (
@@ -52,10 +54,9 @@ CREATE TABLE salla (
     salla_name VARCHAR(100),
     capacity INT
 );
-
+drop table Class;
 CREATE TABLE Class (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    class_name VARCHAR(100),
     profesor_id INT,
     lenda_id INT,
     salla_id INT,
@@ -72,5 +73,5 @@ CREATE TABLE TimeSlot (
     start_time TIME,
     end_time TIME
 );
- -- profesori table, lenda table edhe salla table
+
 

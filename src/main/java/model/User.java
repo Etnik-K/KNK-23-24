@@ -7,6 +7,7 @@ public class User {
     private String email;
     private String salt;
     private String passwordHash;
+    private boolean selectedRole;
 
     public User(int id, String firstName, String lastName, String email, String salt, String passwordHash, String selectedRole) {
         this.id = id;
@@ -15,6 +16,7 @@ public class User {
         this.email = email;
         this.salt = salt;
         this.passwordHash = passwordHash;
+        this.selectedRole = Boolean.parseBoolean(selectedRole);
     }
 
     public int getId() {
@@ -40,4 +42,5 @@ public class User {
     public String getPasswordHash() {
         return passwordHash;
     }
+    public boolean isSelectedRole() {return selectedRole;}
 }

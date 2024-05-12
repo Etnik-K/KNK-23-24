@@ -5,7 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="48056ede-ba49-4b85-90a7-1bf3cdf33a5f" name="Changes" comment="fixed something">
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/Class.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/Fakulteti.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/Lenda.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/Profesor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/Salla.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/TimeSlot.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/repository/FakultetiRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/repository/LendaRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/repository/ProfesorRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/repository/SallaRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/repository/TimeSlotRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/FakultetiService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/LendaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/ProfesorService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/SallaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/TimeSlotService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/app/timeTableAdmin.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DBforKNK.sql" beforeDir="false" afterPath="$PROJECT_DIR$/DBforKNK.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/Navigator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Navigator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/SignUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/SignUpController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/PasswordHasher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/PasswordHasher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/repository/UserRepository.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,6 +152,10 @@
       <workItem from="1715189941444" duration="431000" />
       <workItem from="1715190387720" duration="28000" />
       <workItem from="1715259661040" duration="1254000" />
+      <workItem from="1715366623080" duration="12588000" />
+      <workItem from="1715429575666" duration="10813000" />
+      <workItem from="1715517629434" duration="8000" />
+      <workItem from="1715535202492" duration="192000" />
     </task>
     <task id="LOCAL-00001" summary="Add Login">
       <option name="closed" value="true" />
@@ -224,7 +253,23 @@
       <option name="project" value="LOCAL" />
       <updated>1715190406545</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="trigger to add professor">
+      <option name="closed" value="true" />
+      <created>1715366688381</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1715366688381</updated>
+    </task>
+    <task id="LOCAL-00014" summary="fixed something">
+      <option name="closed" value="true" />
+      <created>1715366834271</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1715366834271</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -239,6 +284,7 @@
     <MESSAGE value="save user_type" />
     <MESSAGE value="generate student/professor email" />
     <MESSAGE value="separated user levels for login" />
+    <MESSAGE value="trigger to add professor" />
     <MESSAGE value="fixed something" />
     <option name="LAST_COMMIT_MESSAGE" value="fixed something" />
   </component>
