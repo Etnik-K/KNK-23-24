@@ -4,7 +4,7 @@ use knk2024;
 drop table users;
 select * from users;
 
-create table faculties (
+create table fakulteti (
     faculty_id INT AUTO_INCREMENT PRIMARY KEY,
     faculty_name VARCHAR(100) NOT NULL
 );
@@ -73,5 +73,21 @@ CREATE TABLE TimeSlot (
     start_time TIME,
     end_time TIME
 );
-
+CREATE TABLE Orari(
+    id int primary key auto_increment,
+    fakulteti_id int,
+    profesori_id int,
+    lenda_id int,
+    salla_id int,
+    start_time time,
+    end_time time,
+    day_of_week nvarchar(15),
+    FOREIGN KEY (profesori_id) references profesor(id) on delete cascade ,
+    FOREIGN KEY (lenda_id) references lenda(id) on delete cascade ,
+    FOREIGN KEY (salla_id) references salla(id) on delete cascade ,
+    FOREIGN KEY (fakulteti_id) references fakulteti(id) on delete cascade ,
+    FOREIGN KEY (start_time) references TimeSlot(start_time) on delete cascade ,
+    FOREIGN KEY (end_time) references TimeSlot(end_time) on delete cascade ,
+    FOREIGN KEY (day_of_week) references TimeSlot(day_of_week) on delete cascade
+);
 
