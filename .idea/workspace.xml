@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="48056ede-ba49-4b85-90a7-1bf3cdf33a5f" name="Changes" comment="add classes + fix" />
+    <list default="true" id="48056ede-ba49-4b85-90a7-1bf3cdf33a5f" name="Changes" comment="add classes + fix">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DBforKNK.sql" beforeDir="false" afterPath="$PROJECT_DIR$/DBforKNK.sql" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,6 +60,7 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-21&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Adea/IdeaProjects/KNK-23-24&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -128,7 +132,16 @@
       <workItem from="1715366623080" duration="12588000" />
       <workItem from="1715429575666" duration="10813000" />
       <workItem from="1715517629434" duration="8000" />
-      <workItem from="1715535202492" duration="516000" />
+      <workItem from="1715535202492" duration="901000" />
+      <workItem from="1715537862703" duration="2156000" />
+      <workItem from="1715546185976" duration="385000" />
+      <workItem from="1715549345870" duration="71000" />
+      <workItem from="1715625898586" duration="629000" />
+      <workItem from="1715626864688" duration="1263000" />
+      <workItem from="1715629596980" duration="2000" />
+      <workItem from="1715629617998" duration="1325000" />
+      <workItem from="1715635803658" duration="314000" />
+      <workItem from="1715638707222" duration="232000" />
     </task>
     <task id="LOCAL-00001" summary="Add Login">
       <option name="closed" value="true" />
@@ -250,7 +263,23 @@
       <option name="project" value="LOCAL" />
       <updated>1715536004953</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="add classes + fix">
+      <option name="closed" value="true" />
+      <created>1715536061494</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1715536061494</updated>
+    </task>
+    <task id="LOCAL-00017" summary="add classes + fix">
+      <option name="closed" value="true" />
+      <created>1715536126794</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1715536126794</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
