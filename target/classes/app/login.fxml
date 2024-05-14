@@ -18,28 +18,28 @@
          <font>
             <Font name="Microsoft Sans Serif" size="12.0" />
          </font></PasswordField>
-      <Label layoutX="352.0" layoutY="185.0" text="Email:" />
-      <Label layoutX="331.0" layoutY="224.0" text="Password:" />
-      <Button layoutX="391.0" layoutY="257.0" mnemonicParsing="false" onAction="#handleLoginClick" style="-fx-background-color: #84160d;" text="Login" textFill="WHITE" />
-      <Button layoutX="489.0" layoutY="257.0" mnemonicParsing="false" onAction="#handleCancelClick" style="-fx-background-color: #84160d;" text="Cancel" textFill="WHITE" />
-      <Label layoutX="391.0" layoutY="292.0" onMouseClicked="#handleCreateAccountClick" text="Create Account" textAlignment="CENTER" textFill="#5b31b0" underline="true" />
-      <Text layoutX="421.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGIN">
+      <Label fx:id="lblEmail" layoutX="352.0" layoutY="185.0" text="\%lblEmail" />
+      <Label fx:id="lblPassword" layoutX="331.0" layoutY="224.0" text="\%lblPassword" />
+      <Button fx:id="btnlogin" layoutX="391.0" layoutY="257.0" mnemonicParsing="false" onAction="#handleLoginClick" style="-fx-background-color: #84160d;" text="\%btnlogin" textFill="WHITE" />
+      <Button fx:id="btncancel" layoutX="489.0" layoutY="257.0" mnemonicParsing="false" onAction="#handleCancelClick" style="-fx-background-color: #84160d;" text="\%btncancel" textFill="WHITE" />
+      <Label fx:id="lblCreateAccount" layoutX="391.0" layoutY="292.0" onMouseClicked="#handleCreateAccountClick" text="\%lblCreateAccount" textAlignment="CENTER" textFill="#5b31b0" underline="true" />
+      <Text fx:id="txtlogin" layoutX="421.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%txtLogin">
          <font>
             <Font size="23.0" />
          </font>
       </Text>
       <Circle fill="#ececec" layoutX="123.0" layoutY="149.0" radius="208.0" stroke="#84160d" strokeType="INSIDE" strokeWidth="6.0" />
-      <Text layoutX="22.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome!">
+      <Text fx:id="txtWelcome" layoutX="22.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%txtWelcome">
          <font>
             <Font name="Microsoft Sans Serif" size="52.0" />
          </font>
       </Text>
-      <Text fill="#84160d" layoutX="21.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="University of Prishtina">
+      <Text fx:id="txtUniofPr" fill="#84160d" layoutX="21.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%txtUniofPr">
          <font>
             <Font name="Microsoft Sans Serif" size="21.0" />
          </font>
       </Text>
-      <Text layoutX="22.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in to see the schedule this semester!">
+      <Text fx:id="txtLoginForInfo" layoutX="22.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%txtLoginForInfo">
          <font>
             <Font size="15.0" />
          </font>
@@ -47,6 +47,11 @@
       <ImageView fitHeight="87.0" fitWidth="115.0" layoutX="408.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/University_of_Prishtina_logo.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgLanguage" fitHeight="26.0" fitWidth="31.0" layoutX="541.0" layoutY="14.0" onMouseClicked="#handleLanguageClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/language.png" />
          </image>
       </ImageView>
    </children>

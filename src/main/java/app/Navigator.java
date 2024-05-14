@@ -9,9 +9,11 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class Navigator {
-    public final static String LOGIN_PAGE = "login.fxml";
+    public final static String LOGIN_PAGE = "/app/login.fxml";
     public final static String HOME_PAGE = "home.fxml";
     public final static String CREATE_ACCOUNT_PAGE = "create_user_form.fxml";
     public final static String ADMIN_DASHBOARD="admin_dashboard.fxml";
@@ -66,6 +68,35 @@ public class Navigator {
 
         resultContainer.getChildren().clear();
         resultContainer.getChildren().add(new Label(query));
+    }
+
+    public static void refreshCurrentPage(Node node, String form) {
+        if (node instanceof Pane) {
+            Pane pane = (Pane) node;
+            pane.getChildren().clear();
+            Pane formPane = loadPane(form);
+            pane.getChildren().add(formPane);
+        }
+    }
+
+    public static String changeLanguage(String language){
+        Locale locale = Locale.of("language");
+        Locale.setDefault(locale);
+        return language;
+    }
+    private static Pane loadPane(String form){
+
+        ResourceBundle bundle = ResourceBundle.getBundle(
+                "translations.content", Locale.getDefault()
+        );
+        FXMLLoader loader = new FXMLLoader(
+                Navigator.class.getResource(form), bundle
+        );
+        try {
+            return loader.load();
+        }catch (IOException ioe){
+            return null;
+        }
     }
 
 }
