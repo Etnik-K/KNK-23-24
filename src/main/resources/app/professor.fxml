@@ -31,11 +31,11 @@
             <Image url="@../images/search.png" />
          </image>
       </ImageView>
-      <Button layoutX="280.0" layoutY="65.0" mnemonicParsing="false" onAction="#handleTuesday" prefHeight="28.0" prefWidth="71.0" style="-fx-background-color: #E6B0B0;" text="Tuesday" />
-      <Button layoutX="363.0" layoutY="65.0" mnemonicParsing="false" onAction="#handleWednesday" prefHeight="28.0" prefWidth="82.0" style="-fx-background-color: #E6B0B0;" text="Wednesday" />
-      <Button layoutX="457.0" layoutY="64.0" mnemonicParsing="false" onAction="#handleThursday" prefHeight="28.0" prefWidth="71.0" style="-fx-background-color: #E6B0B0;" text="Thursday" />
-      <Button layoutX="538.0" layoutY="64.0" mnemonicParsing="false" onAction="#handleFriday" prefHeight="28.0" prefWidth="71.0" style="-fx-background-color: #E6B0B0;" text="Friday" />
-      <Button layoutX="200.0" layoutY="66.0" mnemonicParsing="false" onAction="#handleMonday" prefHeight="26.0" prefWidth="67.0" style="-fx-background-color: #E6B0B0;" text="Monday" />
+      <Button fx:id="btnTuesday" layoutX="280.0" layoutY="65.0" mnemonicParsing="false" onAction="#handleTuesday" prefHeight="28.0" prefWidth="71.0" style="-fx-background-color: #E6B0B0;" text="\%btnTuesday" />
+      <Button fx:id="btnWednesday" layoutX="363.0" layoutY="65.0" mnemonicParsing="false" onAction="#handleWednesday" prefHeight="28.0" prefWidth="82.0" style="-fx-background-color: #E6B0B0;" text="\%btnWednesday" />
+      <Button fx:id="btnThursday" layoutX="457.0" layoutY="64.0" mnemonicParsing="false" onAction="#handleThursday" prefHeight="28.0" prefWidth="71.0" style="-fx-background-color: #E6B0B0;" text="\%btnThursday" />
+      <Button fx:id="btnFriday" layoutX="538.0" layoutY="64.0" mnemonicParsing="false" onAction="#handleFriday" prefHeight="28.0" prefWidth="71.0" style="-fx-background-color: #E6B0B0;" text="\%btnFriday" />
+      <Button fx:id="btnMonday" layoutX="200.0" layoutY="66.0" mnemonicParsing="false" onAction="#handleMonday" prefHeight="26.0" prefWidth="67.0" style="-fx-background-color: #E6B0B0;" text="\%btnMonday" />
       <ToggleButton fx:id="toggleView" layoutX="14.0" layoutY="64.0" mnemonicParsing="false" onAction="#handleView" prefHeight="28.0" prefWidth="60.0" style="-fx-background-color: #84160d;" text="VIEW" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -46,5 +46,10 @@
             <VBox fx:id="resultContainer" prefHeight="402.0" prefWidth="790.0" />
          </children></Pane>
       <DatePicker layoutX="618.0" layoutY="66.0" prefHeight="26.0" prefWidth="165.0" />
+      <ImageView fx:id="imgLanguage" fitHeight="19.0" fitWidth="19.0" layoutX="710.0" layoutY="18.0" onMouseClicked="#handleLanguageClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/language.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

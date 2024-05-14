@@ -3,10 +3,48 @@ package controller;
 import app.Navigator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
-public class ProfessorController {
+import java.net.URL;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+public class ProfessorController implements Initializable {
+    @FXML
+    private Button btnview;
+
+    @FXML
+    private Button btnMonday;
+
+    @FXML
+    private Button btnTuesday;
+
+    @FXML
+    private Button btnWednesday;
+
+    @FXML
+    private Button btnThursday;
+
+    @FXML
+    private Button btnFriday;
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // Load the resource bundle
+        ResourceBundle bundle = ResourceBundle.getBundle("translations.content", new Locale(Navigator.changeLanguage("sq")));
+
+        // Set text for labels, buttons, text elements, etc.
+        // btnview.setText(bundle.getString("btnview"));
+        btnMonday.setText(bundle.getString("btnMonday"));
+        btnTuesday.setText(bundle.getString("btnTuesday"));
+        btnWednesday.setText(bundle.getString("btnWednesday"));
+        btnThursday.setText(bundle.getString("btnThursday"));
+        btnFriday.setText(bundle.getString("btnFriday"));
+    }
 
     @FXML
     private VBox resultContainer;
@@ -43,5 +81,31 @@ public class ProfessorController {
     @FXML
     private void handleView(ActionEvent ae){
 
+    }
+    @FXML
+    public void handleLanguageClick(MouseEvent mouseEvent) {
+        Locale newLocale;
+        if (Locale.getDefault().getLanguage().equals("en")) {
+            newLocale = new Locale("sq");
+        } else {
+            newLocale = new Locale("en", "US");
+        }
+
+        // Change the language
+        Navigator.changeLanguage(newLocale.toLanguageTag());
+        Locale.setDefault(newLocale);
+
+        // Update the text of all elements
+        updateText(newLocale);
+        System.out.println("Gjuha: " + newLocale.getLanguage());
+    }
+    private void updateText(Locale locale) {
+        ResourceBundle bundle = ResourceBundle.getBundle("translations.content", locale);
+        //btnview.setText(bundle.getString("btnview"));
+        btnMonday.setText(bundle.getString("btnMonday"));
+        btnTuesday.setText(bundle.getString("btnTuesday"));
+        btnWednesday.setText(bundle.getString("btnWednesday"));
+        btnThursday.setText(bundle.getString("btnThursday"));
+        btnFriday.setText(bundle.getString("btnFriday"));
     }
 }

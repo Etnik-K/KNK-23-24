@@ -78,34 +78,39 @@
        <TextField fx:id="txtEmail" layoutX="402.0" layoutY="212.0" promptText="Type your email" />
       <PasswordField fx:id="pwdPassword" layoutX="402.0" layoutY="246.0" promptText="Type your password" />
       <PasswordField fx:id="pwdConfirmPassword" layoutX="402.0" layoutY="281.0" promptText="Repeat your password" />
-      <Text layoutX="337.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First name:" />
-      <Text layoutX="338.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name:" />
-      <Text layoutX="360.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" />
-      <Text layoutX="338.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" />
-      <Text layoutX="300.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confim Password:" />
-      <Button layoutX="402.0" layoutY="341.0" mnemonicParsing="false" onAction="#handleSignUp" text="Signup" />
-      <Button layoutX="500.0" layoutY="341.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
-      <Text layoutX="27.0" layoutY="230.0" lineSpacing="4.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dear student or profesor, soon enough your new account will get confirmed by the administrating staff!" wrappingWidth="149.60000000000014">
+      <Text fx:id="txtFirstNameL" layoutX="337.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%txtFirstNameL" />
+      <Text fx:id="txtLastNameL" layoutX="338.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%txtLastNameL" />
+      <Text fx:id="txtEmailL" layoutX="360.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%txtEmailL" />
+      <Text fx:id="txtPasswordL" layoutX="338.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%txtPasswordL" />
+      <Text fx:id="txtConfirmPassword" layoutX="300.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%txtConfirmPassword" />
+      <Button fx:id="btnSignup" layoutX="402.0" layoutY="341.0" mnemonicParsing="false" onAction="#handleSignUp" text="\%btnSignup" />
+      <Button fx:id="btncancel" layoutX="500.0" layoutY="341.0" mnemonicParsing="false" onAction="#handleCancel" text="\%btncancel" />
+      <Text fx:id="txtSingUpMeInfo" layoutX="27.0" layoutY="230.0" lineSpacing="4.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%txtSingUpMeInfo" wrappingWidth="149.60000000000014">
          <font>
             <Font name="Microsoft Sans Serif" size="12.0" />
          </font>
       </Text>
-      <Text fill="#84160d" fontSmoothingType="LCD" layoutX="27.0" layoutY="321.0" lineSpacing="4.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thank you in advance!" wrappingWidth="149.60000000000014">
+      <Text fx:id="txtThankYou" fill="#84160d" fontSmoothingType="LCD" layoutX="27.0" layoutY="321.0" lineSpacing="4.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%txtThankYou" wrappingWidth="149.60000000000014">
          <font>
             <Font name="Microsoft Sans Serif" size="12.0" />
          </font>
       </Text>
-      <Text layoutX="437.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIGN UP">
+      <Text fx:id="txtSignUp" layoutX="437.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%txtSignUp">
          <font>
             <Font size="21.0" />
          </font>
       </Text>
-       <SplitMenuButton fx:id="splitMenuButton" layoutX="401.0" layoutY="109.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" style="-fx-color: #EFDAD6;" text="Zgjedh statusin...">
+       <SplitMenuButton fx:id="splitMenuButton" layoutX="401.0" layoutY="109.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" style="-fx-color: #EFDAD6;" text="Pick a role">
            <items>
                <MenuItem onAction="#handleStudentClick" text="Student" />
                <MenuItem onAction="#handleProfessorClick" text="Professor" />
            </items>
        </SplitMenuButton>
+      <ImageView fx:id="imgLanguage" fitHeight="17.0" fitWidth="23.0" layoutX="569.0" layoutY="38.0" onMouseClicked="#handleLanguageClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/language.png" />
+         </image>
+      </ImageView>
 
    </children>
 </AnchorPane>
