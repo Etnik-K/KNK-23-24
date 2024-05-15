@@ -1,21 +1,23 @@
 package controller;
 
 import app.Navigator;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.User;
 import service.DBConnector;
 
 import java.io.IOException;
@@ -46,6 +48,18 @@ public class AdminDashboardController implements Initializable {
 
     @FXML
     private Button btnFriday;
+    @FXML
+    private TableView<User> TableView;
+    @FXML
+    TableColumn<Object, Object> idColumn;
+    @FXML
+    TableColumn<Object, Object> firstNameColumn;
+    @FXML
+    TableColumn<Object, Object> lastNameColumn;
+    @FXML
+    TableColumn<Object, Object> emailColumn;
+    @FXML
+    TableColumn<Object, Object> userTypeColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -59,6 +73,39 @@ public class AdminDashboardController implements Initializable {
         btnWednesday.setText(bundle.getString("btnWednesday"));
         btnThursday.setText(bundle.getString("btnThursday"));
         btnFriday.setText(bundle.getString("btnFriday"));
+
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+
+        firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+
+        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+        userTypeColumn.setCellValueFactory(new PropertyValueFactory<>("userType"));
+    }
+
+    private void fetchDataFromDatabase() {
+        String query = "SELECT id, firstName, lastName, email, user_type FROM users WHERE is_approved = false";
+        try (Connection connection = DBConnector.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+            ObservableList<User> userList = FXCollections.observableArrayList();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String firstName = resultSet.getString("firstName");
+                String lastName = resultSet.getString("lastName");
+                String email = resultSet.getString("email");
+                String user_type = resultSet.getString("user_type");
+
+               // System.out.println("id: " + id + ", firstName: " + firstName + ", lastName: " + lastName + ", email: " + email + ", user_type: " + user_type);
+
+
+                userList.add(new User(id, firstName, lastName, email, null, null, user_type));
+            }
+            TableView.setItems(userList);
+           // System.out.println(userList);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -92,11 +139,10 @@ public class AdminDashboardController implements Initializable {
     private void handleEdit(ActionEvent ae){
 
     }
-    @FXML
-    private void handleView(ActionEvent ae){
-
-
-    }
+        @FXML
+        private void handleView(ActionEvent ae) {
+            fetchDataFromDatabase();
+        }
     @FXML
     private void handleMonday(ActionEvent ae){
         Navigator.displayResults(Navigator.MONDAY, resultContainer);

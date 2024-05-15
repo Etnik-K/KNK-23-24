@@ -4,6 +4,8 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
@@ -62,7 +64,18 @@
       </ToggleButton>
       <ScrollPane fx:id="approveRequest" layoutX="83.0" layoutY="104.0" prefHeight="396.0" prefWidth="714.0">
          <content>
-            <VBox fx:id="resultContainer" prefHeight="393.0" prefWidth="713.0" />
+            <VBox fx:id="resultContainer" prefHeight="393.0" prefWidth="713.0">
+               <children>
+                  <TableView fx:id="TableView" prefHeight="380.0" prefWidth="714.0">
+                    <columns>
+                      <TableColumn fx:id="idColumn" prefWidth="107.99998933076859" text="Id" />
+                      <TableColumn fx:id="firstNameColumn" prefWidth="127.20001220703125" text="First Name" />
+                        <TableColumn fx:id="lastNameColumn" prefWidth="127.19996643066406" text="Last Name" />
+                        <TableColumn fx:id="emailColumn" prefWidth="101.60006713867188" text="Email" />
+                        <TableColumn fx:id="userTypeColumn" prefWidth="139.199951171875" text="Selected role" />
+                    </columns>
+                  </TableView>
+               </children></VBox>
          </content></ScrollPane>
       <DatePicker layoutX="616.0" layoutY="69.0" prefHeight="28.0" prefWidth="175.0" />
       <ImageView fx:id="imgLanguage" fitHeight="19.0" fitWidth="19.0" layoutX="583.0" layoutY="18.0" onMouseClicked="#handleLanguageClick" pickOnBounds="true" preserveRatio="true">

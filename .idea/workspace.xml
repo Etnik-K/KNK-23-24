@@ -5,21 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="48056ede-ba49-4b85-90a7-1bf3cdf33a5f" name="Changes" comment="fix">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/AdminDashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AdminDashboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ProfessorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ProfessorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/SignUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/SignUpController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/StudentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/DatabaseUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/DatabaseUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/DBConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/DBConnector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/app/admin_dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/app/admin_dashboard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/app/create_user_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/app/create_user_form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/app/professor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/app/professor.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/app/student.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/app/student.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/translations/content_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/translations/content_en.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/translations/content_sq.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/translations/content_sq.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/app/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/app/admin_dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/admin_dashboard.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/controller/AdminDashboardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/AdminDashboardController.class" afterDir="false" />

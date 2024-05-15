@@ -7,6 +7,10 @@ module com.example.knk2324 {
     opens com.example.knk2324 to javafx.fxml;
     exports com.example.knk2324;
 
+    opens model to javafx.base;
+
+
     exports app;
     opens controller to javafx.fxml;
+
 }

@@ -8,15 +8,17 @@ public class User {
     private String salt;
     private String passwordHash;
     private boolean selectedRole;
+    private String userType; // Added userType property
 
-    public User(int id, String firstName, String lastName, String email, String salt, String passwordHash, String selectedRole) {
+    public User(int id, String firstName, String lastName, String email, String salt, String passwordHash, String userType) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.salt = salt;
         this.passwordHash = passwordHash;
-        this.selectedRole = Boolean.parseBoolean(selectedRole);
+        this.selectedRole = selectedRole;
+        this.userType = userType; // Initialize userType
     }
 
     public int getId() {
@@ -42,5 +44,16 @@ public class User {
     public String getPasswordHash() {
         return passwordHash;
     }
-    public boolean isSelectedRole() {return selectedRole;}
+
+    public boolean isSelectedRole() {
+        return selectedRole;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
 }
