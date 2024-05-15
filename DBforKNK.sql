@@ -91,4 +91,23 @@ CREATE TABLE Orari(
     FOREIGN KEY (day_of_week) references TimeSlot(day_of_week) on delete cascade
 );
 
+CREATE TABLE approved_users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    firstName NVARCHAR(30),
+    lastName NVARCHAR(50),
+    email NVARCHAR(300),
+    user_type ENUM('admin', 'professor', 'student') NOT NULL,
+    faculty_id INT,
+    is_approved BOOLEAN DEFAULT TRUE
+);
+
+CREATE TABLE denied_users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    firstName NVARCHAR(30),
+    lastName NVARCHAR(50),
+    email NVARCHAR(300),
+    user_type ENUM('admin', 'professor', 'student') NOT NULL,
+    faculty_id INT,
+    is_approved BOOLEAN DEFAULT FALSE
+);
 
