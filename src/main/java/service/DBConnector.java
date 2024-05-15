@@ -8,18 +8,18 @@ public class DBConnector {
     private static String URL = "jdbc:mysql://localhost:3306/knk2024";
     private static String USER = "root";
     private static String PASSWORD = "etnik";
-    private static Connection connection = null;
 
-    public static Connection getConnection(){
-        if(connection == null){
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL, USER, PASSWORD);
+    }
+
+    public static void closeConnection(Connection connection) {
+        if (connection != null) {
             try {
-                connection = DriverManager.getConnection(
-                        URL, USER, PASSWORD
-                );
+                connection.close();
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         }
-        return connection;
     }
 }

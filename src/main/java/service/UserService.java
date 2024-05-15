@@ -6,8 +6,10 @@ import model.dto.LoginUserDto;
 import model.dto.UserDto;
 import repository.UserRepository;
 
+import java.sql.SQLException;
+
 public class UserService {
-    public static boolean signUp(UserDto userData) {
+    public static boolean signUp(UserDto userData) throws SQLException {
         String password = userData.getPassword();
         String confirmPassword = userData.getConfirmPassword();
 
@@ -31,7 +33,7 @@ public class UserService {
     }
 
 
-    public static boolean login(LoginUserDto loginData) {
+    public static boolean login(LoginUserDto loginData) throws SQLException {
         User user = UserRepository.getByEmail(loginData.getEmail());
         if (user == null) {
             return false;

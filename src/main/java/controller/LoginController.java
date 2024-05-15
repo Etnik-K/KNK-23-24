@@ -16,6 +16,7 @@ import model.dto.LoginUserDto;
 import service.UserService;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -61,7 +62,7 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void handleLoginClick(ActionEvent ae){
+    private void handleLoginClick(ActionEvent ae) throws SQLException {
         LoginUserDto loginUserData = new LoginUserDto(
                 this.txtEmail.getText(),
                 this.pwdPassword.getText()

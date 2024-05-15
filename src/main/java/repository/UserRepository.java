@@ -7,10 +7,11 @@ import service.DBConnector;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class UserRepository {
 
-    public static boolean create(CreateUserDto userData) {
+    public static boolean create(CreateUserDto userData) throws SQLException {
         Connection conn = DBConnector.getConnection();
         String query = """
                 INSERT INTO users (firstName, lastName, email, salt, passwordHash, user_type)
@@ -36,7 +37,7 @@ public class UserRepository {
 
     }
 
-    public static User getByEmail(String email) {
+    public static User getByEmail(String email) throws SQLException {
         String query = "SELECT * FROM users WHERE email = ? LIMIT 1";
         Connection connection = DBConnector.getConnection();
 

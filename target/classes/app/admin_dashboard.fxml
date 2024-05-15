@@ -83,5 +83,7 @@
             <Image url="@../images/language.png" />
          </image>
       </ImageView>
+      <Button layoutX="15.0" layoutY="257.0" mnemonicParsing="false" onAction="#handleApprove" text="Approve" />
+      <Button layoutX="15.0" layoutY="302.0" mnemonicParsing="false" onAction="#handleDeny" text="Deny" />
    </children>
 </AnchorPane>

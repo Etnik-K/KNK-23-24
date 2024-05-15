@@ -80,7 +80,7 @@ public class SignUpController implements Initializable {
 
 
     @FXML
-    private void handleSignUp(ActionEvent ae) {
+    private void handleSignUp(ActionEvent ae) throws SQLException {
         String firstName = txtFirstName.getText();
         String lastName = txtLastName.getText();
         String email = generateEmail(firstName, lastName);
