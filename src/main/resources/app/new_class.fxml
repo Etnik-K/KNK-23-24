@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NewClassController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#84160d" height="53.0" stroke="#84160d" strokeType="INSIDE" width="600.0" />
+      <Label fx:id="lblEndTime" layoutX="35.0" layoutY="127.0" text="End Time" />
+      <Text fill="WHITE" layoutX="183.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Regjistroni nje ore te re">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblStartTime" layoutX="35.0" layoutY="89.0" text="Start time" />
+      <Label fx:id="lblStudentsNumber" layoutX="35.0" layoutY="173.0" text="Students number" />
+      <TextField fx:id="txtStudentsNumber" layoutX="141.0" layoutY="169.0" promptText="Numri i studentave" />
+      <Label layoutX="37.0" layoutY="219.0" text="Day of the Week" />
+      <SplitMenuButton fx:id="splitMenuButton" layoutX="141.0" layoutY="215.0" mnemonicParsing="false" text="Day">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#handleMondayClick" text="Monday" />
+          <MenuItem mnemonicParsing="false" onAction="#handleTuesdayClick" text="Tuesday" />
+            <MenuItem mnemonicParsing="false" onAction="#handleWednesdayClick" text="Wednesday" />
+            <MenuItem mnemonicParsing="false" onAction="#handleThursdayClick" text="Thursday" />
+            <MenuItem mnemonicParsing="false" onAction="#handleFridayClick" text="Friday" />
+            <MenuItem mnemonicParsing="false" onAction="#handleSaturdayClick" text="Saturday" />
+        </items>
+      </SplitMenuButton>
+      <Button fx:id="btnSave" layoutX="37.0" layoutY="276.0" mnemonicParsing="false" onAction="#handleSave" text="Save" />
+      <Button fx:id="btncancel" layoutX="132.0" layoutY="276.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
+      <TextField fx:id="txtEndTime" layoutX="141.0" layoutY="132.0" promptText="Koha e mbarimit" />
+      <TextField fx:id="txtStartTime" layoutX="141.0" layoutY="94.0" promptText="Koha e fillimit" />
+   </children>
+</AnchorPane>

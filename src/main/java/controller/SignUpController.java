@@ -35,7 +35,6 @@ public class SignUpController implements Initializable {
     private SplitMenuButton splitMenuButton;
     @FXML
     private String selectedRole;
-
     @FXML
     private Text txtSingUpMeInfo;
     @FXML

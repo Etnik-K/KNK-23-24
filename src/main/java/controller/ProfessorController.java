@@ -3,12 +3,14 @@ package controller;
 import app.Navigator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -107,5 +109,19 @@ public class ProfessorController implements Initializable {
         btnWednesday.setText(bundle.getString("btnWednesday"));
         btnThursday.setText(bundle.getString("btnThursday"));
         btnFriday.setText(bundle.getString("btnFriday"));
+    }
+
+    @FXML
+    public void handleAdd(MouseEvent mouseEvent) {
+        try {
+            // Load the first FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(Navigator.NEW_CLASS));
+            Pane firstPane = loader.load();
+
+            // Add the loaded content to the resultContainer VBox
+            resultContainer.getChildren().setAll(firstPane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

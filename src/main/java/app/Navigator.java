@@ -20,6 +20,7 @@ public class Navigator {
     public final static String STUDENT_PAGE="student.fxml";
     public final static String PROFESSOR_PAGE="professor.fxml";
     public final static String ADMIN_ADD = "/app/admin_add.fxml";
+    public final static String NEW_CLASS ="/app/new_class.fxml";
     ;
 
     public final static String MONDAY = "Query per diten e Hane";
