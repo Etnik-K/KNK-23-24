@@ -5,20 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="48056ede-ba49-4b85-90a7-1bf3cdf33a5f" name="Changes" comment="fix">
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/RoomReservationAlgorithm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/NewClassController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/app/new_class.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/Orari.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/dto/OrariRecordDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/Navigator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Navigator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/ProfessorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ProfessorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/SignUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/SignUpController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/app/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/app/login.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/app/professor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/app/professor.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/translations/content_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/translations/content_en.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/translations/content_sq.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/translations/content_sq.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/app/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/Navigator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/Navigator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/app/professor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/professor.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/controller/ProfessorController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/ProfessorController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/SignUpController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/SignUpController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -2,8 +2,11 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -43,7 +46,63 @@
       </ToggleButton>
       <Pane layoutX="1.0" layoutY="100.0" prefHeight="402.0" prefWidth="790.0" style="-fx-background-color: #a6a6a6;">
          <children>
-            <VBox fx:id="resultContainer" prefHeight="402.0" prefWidth="790.0" />
+            <VBox fx:id="resultContainer" prefHeight="402.0" prefWidth="790.0">
+               <children>
+                  <TableView fx:id="TableView" prefHeight="406.0" prefWidth="790.0">
+                     <columns>
+                        <TableColumn fx:id="colId" prefWidth="50" text="ID">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="id" />
+                           </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="colFakultetiId" prefWidth="100" text="Fakulteti ID">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="fakultetiId" />
+                           </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="colProfesoriId" prefWidth="100" text="Profesori ID">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="profesoriId" />
+                           </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="colLendaId" prefWidth="100" text="Lenda ID">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="lendaId" />
+                           </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="colSallaId" prefWidth="100" text="Salla ID">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="sallaId" />
+                           </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="colTimeSlotId" prefWidth="100" text="Time Slot ID">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="timeSlotId" />
+                           </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="colStartTime" prefWidth="67.99993896484375" text="Start Time">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="startTime" />
+                           </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="colEndTime" prefWidth="133.60003662109375" text="End Time">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="endTime" />
+                           </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn prefWidth="250.39990234375" text="Day of Week">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="dayOfWeek" />
+                           </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn prefWidth="100" text="Capacity">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="capacity" />
+                           </cellValueFactory>
+                        </TableColumn>
+                     </columns>
+                  </TableView>
+               </children></VBox>
          </children></Pane>
       <DatePicker layoutX="618.0" layoutY="66.0" prefHeight="26.0" prefWidth="165.0" />
       <ImageView fx:id="imgLanguage" fitHeight="19.0" fitWidth="19.0" layoutX="710.0" layoutY="18.0" onMouseClicked="#handleLanguageClick" pickOnBounds="true" preserveRatio="true">
