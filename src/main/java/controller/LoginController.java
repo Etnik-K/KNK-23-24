@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import model.User;
 import model.dto.LoginUserDto;
 import service.UserService;
 import app.SessionManager;
@@ -72,21 +73,23 @@ public class LoginController implements Initializable {
         if (isLogin) {
             String email = txtEmail.getText().trim();
 
-//            System.out.println("isSelectedRole(): " + SessionManager.getUser().isSelectedRole());
-//            SessionManager.getUser().print();
-            if (SessionManager.getUser().isSelectedRole()) {
-                Navigator.navigate(ae, Navigator.PROFESSOR_PAGE);
-                System.out.println("Logged in sikur Profesori: " + SessionManager.getUser().getFirstName() + " " + SessionManager.getUser().getFirstName());
-            } else {
-                Navigator.navigate(ae, Navigator.STUDENT_PAGE);
-                System.out.println("Logged in sikur Studenti: " + SessionManager.getUser().getFirstName() + " " + SessionManager.getUser().getFirstName());
+            User user = SessionManager.getUser();
+
+                if (user.getUserType().equals("professor")) {
+                    Navigator.navigate(ae, Navigator.PROFESSOR_PAGE);
+                    System.out.println("Logged in as Professor: " + user.getFirstName() + " " + user.getLastName());
+                } else if (user.getUserType().equals("student")) {
+                    Navigator.navigate(ae, Navigator.STUDENT_PAGE);
+                    System.out.println("Logged in as Student: " + user.getFirstName() + " " + user.getLastName());
+                }
+             else {
+                Navigator.navigate(ae, Navigator.ADMIN_DASHBOARD);
+                System.out.println("Logged in as Admin");
             }
         }
-        else if (txtEmail.getText().equals("root") && pwdPassword.getText().equals("admin")) {
-            Navigator.navigate(ae, Navigator.ADMIN_DASHBOARD);
-            System.out.println("Logged in sikur Admin");
-        }
     }
+
+
 
     @FXML
     private void handleCancelClick(ActionEvent ae){

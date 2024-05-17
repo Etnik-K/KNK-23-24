@@ -65,8 +65,9 @@ public class UserRepository {
             String salt = result.getString("salt");
             String passwordHash = result.getString("passwordHash");
             String userType = result.getString("user_type");
-            return new User(id, firstName, lastName, email, salt, passwordHash, userType);
-        } catch (Exception e) {
+            boolean approved = result.getBoolean("is_approved"); // Retrieve is_approved from the ResultSet
+            return new User(id, firstName, lastName, email, salt, passwordHash, userType, approved);
+        } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }

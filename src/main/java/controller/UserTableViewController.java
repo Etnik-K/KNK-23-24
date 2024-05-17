@@ -68,7 +68,7 @@ public class UserTableViewController implements Initializable {
                 String email = resultSet.getString("email");
                 String user_type = resultSet.getString("user_type");
 
-                userList.add(new User(id, firstName, lastName, email, null, null, user_type));
+                userList.add(new User(id, firstName, lastName, email, null, null, user_type, null));
             }
             TableView.setItems(userList);
         } catch (SQLException e) {

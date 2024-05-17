@@ -44,15 +44,22 @@ public class UserService {
             return false;
         }
 
+        // Check if the user is approved
+        if (!user.isApproved()) {
+            // User is not approved, return false
+            return false;
+        }
+
         String password = loginData.getPassword();
         String salt = user.getSalt();
         String passwordHash = user.getPasswordHash();
 
         if (PasswordHasher.compareSaltedHash(password, salt, passwordHash)) {
-            SessionManager.setUser(UserRepository.getByEmail(loginData.getEmail()));
+            SessionManager.setUser(user);
             return true;
         }
-        // ska nevoj per else qitu
+        // Invalid password, return false
         return false;
     }
+
 }

@@ -1,7 +1,6 @@
 package model;
 
 public class User {
-    // nese nuk e trashegon as ni klas klasen user, i kishim bo final qito
     private int id;
     private String firstName;
     private String lastName;
@@ -9,18 +8,26 @@ public class User {
     private String salt;
     private String passwordHash;
     private boolean selectedRole;
-    private String userType; // Added userType property
+    private String userType;
+    private boolean approved; // New field to store the approved status
 
-    // e kom shtu n konstruktor selected role se su kan
-    public User(int id, String firstName, String lastName, String email, String salt, String passwordHash, String userType) {
+    public User(int id, String firstName, String lastName, String email, String salt, String passwordHash, String userType, Boolean approved) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.salt = salt;
         this.passwordHash = passwordHash;
-        this.selectedRole = selectedRole;
-        this.userType = userType; // Initialize userType
+        this.userType = userType;
+        this.approved = approved != null ? approved : false; // Set default value to 'false' if 'approved' is null
+    }
+
+    public boolean isApproved() {
+        return approved;
+    }
+
+    public void setApproved(boolean approved) {
+        this.approved = approved;
     }
 
     public int getId() {
