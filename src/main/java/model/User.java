@@ -12,7 +12,7 @@ public class User {
     private String userType; // Added userType property
 
     // e kom shtu n konstruktor selected role se su kan
-    public User(int id, String firstName, String lastName, String email, String salt, String passwordHash, boolean selectedRole, String userType) {
+    public User(int id, String firstName, String lastName, String email, String salt, String passwordHash, String userType) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
