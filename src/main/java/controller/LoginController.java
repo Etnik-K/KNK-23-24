@@ -14,7 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import model.dto.LoginUserDto;
 import service.UserService;
-
+import app.SessionManager;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Locale;
@@ -69,20 +69,22 @@ public class LoginController implements Initializable {
         );
 
         boolean isLogin = UserService.login(loginUserData);
-        System.out.println(isLogin);
-        System.out.println("Ka hy ne login");
-
         if (isLogin) {
             String email = txtEmail.getText().trim();
-            if (email.endsWith("@student.uni-pr.edu")) {
-                Navigator.navigate(ae, Navigator.STUDENT_PAGE);
-            }
-            else {
+
+//            System.out.println("isSelectedRole(): " + SessionManager.getUser().isSelectedRole());
+//            SessionManager.getUser().print();
+            if (SessionManager.getUser().isSelectedRole()) {
                 Navigator.navigate(ae, Navigator.PROFESSOR_PAGE);
+                System.out.println("Logged in sikur Profesori: " + SessionManager.getUser().getFirstName() + " " + SessionManager.getUser().getFirstName());
+            } else {
+                Navigator.navigate(ae, Navigator.STUDENT_PAGE);
+                System.out.println("Logged in sikur Studenti: " + SessionManager.getUser().getFirstName() + " " + SessionManager.getUser().getFirstName());
             }
         }
         else if (txtEmail.getText().equals("root") && pwdPassword.getText().equals("admin")) {
             Navigator.navigate(ae, Navigator.ADMIN_DASHBOARD);
+            System.out.println("Logged in sikur Admin");
         }
     }
 

@@ -1,5 +1,6 @@
 package service;
 
+import app.SessionManager;
 import model.User;
 import model.dto.CreateUserDto;
 import model.dto.LoginUserDto;
@@ -13,9 +14,8 @@ public class UserService {
         String password = userData.getPassword();
         String confirmPassword = userData.getConfirmPassword();
 
-        if (!password.equals(confirmPassword)) {
+        if (!password.equals(confirmPassword))
             return false;
-        }
 
         String salt = PasswordHasher.generateSalt();
         String passwordHash = PasswordHasher.generateSaltedHash(password, salt);
@@ -29,7 +29,12 @@ public class UserService {
                 userData.getSelectedRole()
         );
 
-        return UserRepository.create(createUserData);
+        if (UserRepository.create(createUserData)) {
+            SessionManager.setUser(UserRepository.getByEmail(userData.getEmail()));
+            return true;
+        }
+        // ska nevoj per else
+        return false;
     }
 
 
@@ -43,6 +48,11 @@ public class UserService {
         String salt = user.getSalt();
         String passwordHash = user.getPasswordHash();
 
-        return PasswordHasher.compareSaltedHash(password, salt, passwordHash);
+        if (PasswordHasher.compareSaltedHash(password, salt, passwordHash)) {
+            SessionManager.setUser(UserRepository.getByEmail(loginData.getEmail()));
+            return true;
+        }
+        // ska nevoj per else qitu
+        return false;
     }
 }

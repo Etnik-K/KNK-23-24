@@ -1,6 +1,7 @@
 package model;
 
 public class User {
+    // nese nuk e trashegon as ni klas klasen user, i kishim bo final qito
     private int id;
     private String firstName;
     private String lastName;
@@ -10,7 +11,8 @@ public class User {
     private boolean selectedRole;
     private String userType; // Added userType property
 
-    public User(int id, String firstName, String lastName, String email, String salt, String passwordHash, String userType) {
+    // e kom shtu n konstruktor selected role se su kan
+    public User(int id, String firstName, String lastName, String email, String salt, String passwordHash, boolean selectedRole, String userType) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -55,5 +57,11 @@ public class User {
 
     public void setUserType(String userType) {
         this.userType = userType;
+    }
+
+    public void print(){
+        System.out.println("Emri: " + this.firstName + " " + this.lastName);
+        System.out.println("Email: " + this.email);
+        System.out.println("isSelectedRole(): " + this.isSelectedRole());
     }
 }
