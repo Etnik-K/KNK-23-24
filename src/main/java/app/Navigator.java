@@ -23,11 +23,12 @@ public class Navigator {
     public final static String NEW_CLASS ="/app/new_class.fxml";
     ;
 
-    public final static String MONDAY = "Query per diten e Hane";
-    public final static String TUEDAY = "Query per diten e Marte";
-    public final static String WEDNESDAY = "Query per diten e Merkure";
-    public final static String THURSDAY = "Query per diten e Enjte";
-    public final static String FRIDAY = "Query per diten e Premte";
+    public final static String ALL = "";
+    public final static String MONDAY = "WHERE day_of_week='Monday' ";
+    public final static String TUESDAY = "WHERE day_of_week='Tuesday' ";
+    public final static String WEDNESDAY = "WHERE day_of_week='Wednesday' ";
+    public final static String THURSDAY = "WHERE day_of_week='Thursday' ";
+    public final static String FRIDAY = "WHERE day_of_week='Friday' ";
 
 
     public static void navigate(Stage stage, String page){

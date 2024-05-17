@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="790.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OrariTableViewController">
+   <children>
+      <TableView fx:id="TableView" prefHeight="406.0" prefWidth="790.0">
+         <columns>
+            <TableColumn fx:id="colId" prefWidth="50" text="ID">
+               <cellValueFactory>
+                  <PropertyValueFactory property="id" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colFakultetiId" prefWidth="100" text="Fakulteti ID">
+               <cellValueFactory>
+                  <PropertyValueFactory property="fakultetiId" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colProfesoriId" prefWidth="100" text="Profesori ID">
+               <cellValueFactory>
+                  <PropertyValueFactory property="profesoriId" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colLendaId" prefWidth="44.00001525878906" text="Lenda ID">
+               <cellValueFactory>
+                  <PropertyValueFactory property="lendaId" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colSallaId" prefWidth="39.20001220703125" text="Salla ID">
+               <cellValueFactory>
+                  <PropertyValueFactory property="sallaId" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colTimeSlotId" prefWidth="96.0" text="Time Slot ID">
+               <cellValueFactory>
+                  <PropertyValueFactory property="timeSlotId" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colStartTime" text="Start Time">
+               <cellValueFactory>
+                  <PropertyValueFactory property="startTime" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colEndTime" minWidth="0.0" prefWidth="64.79998779296875" text="End Time">
+               <cellValueFactory>
+                  <PropertyValueFactory property="endTime" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colDayOfWeek" maxWidth="295.2000732421875" prefWidth="112.00006103515625" text="Day of Week">
+               <cellValueFactory>
+                  <PropertyValueFactory property="dayOfWeek" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colCapacity" prefWidth="103.19989013671875" text="Capacity">
+               <cellValueFactory>
+                  <PropertyValueFactory property="capacity" />
+               </cellValueFactory>
+            </TableColumn>
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

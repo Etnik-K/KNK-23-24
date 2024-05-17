@@ -48,69 +48,6 @@ public class AdminDashboardController implements Initializable {
 
     @FXML
     private Button btnFriday;
-    @FXML
-    private TableView<User> TableView;
-    @FXML
-    TableColumn<Object, Object> idColumn;
-    @FXML
-    TableColumn<Object, Object> firstNameColumn;
-    @FXML
-    TableColumn<Object, Object> lastNameColumn;
-    @FXML
-    TableColumn<Object, Object> emailColumn;
-    @FXML
-    TableColumn<Object, Object> userTypeColumn;
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // Load the resource bundle
-        ResourceBundle bundle = ResourceBundle.getBundle("translations.content", new Locale(Navigator.changeLanguage("sq")));
-
-        // Set text for labels, buttons, text elements, etc.
-       // btnview.setText(bundle.getString("btnview"));
-        btnMonday.setText(bundle.getString("btnMonday"));
-        btnTuesday.setText(bundle.getString("btnTuesday"));
-        btnWednesday.setText(bundle.getString("btnWednesday"));
-        btnThursday.setText(bundle.getString("btnThursday"));
-        btnFriday.setText(bundle.getString("btnFriday"));
-
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-
-        firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-
-        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
-        userTypeColumn.setCellValueFactory(new PropertyValueFactory<>("userType"));
-    }
-
-    private void fetchDataFromDatabase() {
-        String query = "SELECT id, firstName, lastName, email, user_type FROM users WHERE is_approved = false";
-        try (Connection connection = DBConnector.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query);
-             ResultSet resultSet = statement.executeQuery()) {
-            ObservableList<User> userList = FXCollections.observableArrayList();
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String firstName = resultSet.getString("firstName");
-                String lastName = resultSet.getString("lastName");
-                String email = resultSet.getString("email");
-                String user_type = resultSet.getString("user_type");
-
-               // System.out.println("id: " + id + ", firstName: " + firstName + ", lastName: " + lastName + ", email: " + email + ", user_type: " + user_type);
-
-
-                userList.add(new User(id, firstName, lastName, email, null, null, user_type));
-            }
-            TableView.setItems(userList);
-           // System.out.println(userList);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
-
 
     @FXML
     private VBox resultContainer;
@@ -118,70 +55,188 @@ public class AdminDashboardController implements Initializable {
     private double xOffset = 0;
     private double yOffset = 0;
 
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // Load the resource bundle
+        ResourceBundle bundle = ResourceBundle.getBundle("translations.content", new Locale(Navigator.changeLanguage("sq")));
+
+        // Set text for labels, buttons, text elements, etc.
+        btnMonday.setText(bundle.getString("btnMonday"));
+        btnTuesday.setText(bundle.getString("btnTuesday"));
+        btnWednesday.setText(bundle.getString("btnWednesday"));
+        btnThursday.setText(bundle.getString("btnThursday"));
+        btnFriday.setText(bundle.getString("btnFriday"));
+    }
+
     @FXML
     private void handleAdd(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(Navigator.ADMIN_ADD));
         Pane pane = loader.load();
         resultContainer.getChildren().clear();
         resultContainer.getChildren().add(pane);
-
     }
 
     @FXML
-    private void handleApproved(ActionEvent ae){
-
+    private void handleLogOut(ActionEvent ae) {
+        // Implement logout functionality
     }
+
     @FXML
-    private void handleLogOut(ActionEvent ae){
-
+    private void handleEdit(ActionEvent ae) {
+        // Implement edit functionality
     }
+
     @FXML
-    private void handleEdit(ActionEvent ae){
+    private void handleView(ActionEvent ae) {
+        try {
+            // Load UserTableView.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/user_table_view.fxml"));
+            System.out.println("KA MRRI QETU");
+            Parent userTable = loader.load();
 
-    }
-        @FXML
-        private void handleView(ActionEvent ae) {
-            fetchDataFromDatabase();
+            // Get the controller from the loader
+            UserTableViewController controller = loader.getController();
+
+            // Insert UserTableView into the pane
+            resultContainer.getChildren().clear();
+            resultContainer.getChildren().add(userTable);
+
+            // Fetch data from the database (if needed)
+            controller.fetchDataFromDatabase();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    @FXML
-    private void handleMonday(ActionEvent ae){
-        Navigator.displayResults(Navigator.MONDAY, resultContainer);
     }
+
+
+    @FXML
+    private void handleMonday(ActionEvent ae) {
+        try {
+            // Load UserTableView.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/orari_table_view.fxml"));
+            System.out.println("KA MRRI QETU");
+            Parent userTable = loader.load();
+
+            // Get the controller from the loader
+            OrariTableViewController controller = loader.getController();
+
+            // Insert UserTableView into the pane
+            resultContainer.getChildren().clear();
+            resultContainer.getChildren().add(userTable);
+
+            // Fetch data from the database (if needed)
+            controller.fetchDataFromDatabase(Navigator.MONDAY);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     private void handleTuesday(ActionEvent ae) {
-        Navigator.displayResults(Navigator.TUEDAY, resultContainer);
-    }
-    @FXML
-    private void handleWednesday(ActionEvent ae){
-        Navigator.displayResults(Navigator.WEDNESDAY, resultContainer);
-    }
+        try {
+            // Load UserTableView.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/orari_table_view.fxml"));
+            System.out.println("KA MRRI QETU");
+            Parent userTable = loader.load();
 
-    @FXML
-    private void handleThursday(ActionEvent ae){
-        Navigator.displayResults(Navigator.THURSDAY, resultContainer);
-    }
+            // Get the controller from the loader
+            OrariTableViewController controller = loader.getController();
 
-    @FXML
-    private void handleFriday(ActionEvent ae){
-        Navigator.displayResults(Navigator.FRIDAY, resultContainer);
-    }
+            // Insert UserTableView into the pane
+            resultContainer.getChildren().clear();
+            resultContainer.getChildren().add(userTable);
 
-    @FXML
-    private void handleSearch(ActionEvent ae){
-
-    }
-    @FXML
-    private void handleTIK(ActionEvent ae){
-
+            // Fetch data from the database (if needed)
+            controller.fetchDataFromDatabase(Navigator.TUESDAY);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
-    private void handleIKS(ActionEvent ae){
+    private void handleWednesday(ActionEvent ae) {
+        try {
+            // Load UserTableView.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/orari_table_view.fxml"));
+            System.out.println("KA MRRI QETU");
+            Parent userTable = loader.load();
 
+            // Get the controller from the loader
+            OrariTableViewController controller = loader.getController();
+
+            // Insert UserTableView into the pane
+            resultContainer.getChildren().clear();
+            resultContainer.getChildren().add(userTable);
+
+            // Fetch data from the database (if needed)
+            controller.fetchDataFromDatabase(Navigator.WEDNESDAY);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-    @FXML
-    private void handleEAR(ActionEvent ae){
 
+    @FXML
+    private void handleThursday(ActionEvent ae) {
+        try {
+            // Load UserTableView.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/orari_table_view.fxml"));
+            System.out.println("KA MRRI QETU");
+            Parent userTable = loader.load();
+
+            // Get the controller from the loader
+            OrariTableViewController controller = loader.getController();
+
+            // Insert UserTableView into the pane
+            resultContainer.getChildren().clear();
+            resultContainer.getChildren().add(userTable);
+
+            // Fetch data from the database (if needed)
+            controller.fetchDataFromDatabase(Navigator.THURSDAY);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleFriday(ActionEvent ae) {
+        try {
+            // Load UserTableView.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/orari_table_view.fxml"));
+            System.out.println("KA MRRI QETU");
+            Parent userTable = loader.load();
+
+            // Get the controller from the loader
+            OrariTableViewController controller = loader.getController();
+
+            // Insert UserTableView into the pane
+            resultContainer.getChildren().clear();
+            resultContainer.getChildren().add(userTable);
+
+            // Fetch data from the database (if needed)
+            controller.fetchDataFromDatabase(Navigator.FRIDAY);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleSearch(ActionEvent ae) {
+        // Implement search functionality
+    }
+
+    @FXML
+    private void handleTIK(ActionEvent ae) {
+        // Implement TIK functionality
+    }
+
+    @FXML
+    private void handleIKS(ActionEvent ae) {
+        // Implement IKS functionality
+    }
+
+    @FXML
+    private void handleEAR(ActionEvent ae) {
+        // Implement EAR functionality
     }
 
     @FXML
@@ -201,75 +256,23 @@ public class AdminDashboardController implements Initializable {
         updateText(newLocale);
         System.out.println("Gjuha: " + newLocale.getLanguage());
     }
+
     private void updateText(Locale locale) {
         ResourceBundle bundle = ResourceBundle.getBundle("translations.content", locale);
-        //btnview.setText(bundle.getString("btnview"));
         btnMonday.setText(bundle.getString("btnMonday"));
         btnTuesday.setText(bundle.getString("btnTuesday"));
         btnWednesday.setText(bundle.getString("btnWednesday"));
         btnThursday.setText(bundle.getString("btnThursday"));
         btnFriday.setText(bundle.getString("btnFriday"));
     }
-
-    @FXML
-    public void handleApprove(ActionEvent actionEvent) {
-        User selectedUser = TableView.getSelectionModel().getSelectedItem();
-        if (selectedUser != null) {
-            String queryDelete = "DELETE FROM users WHERE id = ?";
-            String queryInsert = "INSERT INTO approved_users (firstName, lastName, email, user_type, faculty_id, is_approved) " +
-                    "VALUES (?, ?, ?, ?, ?, ?)";
-            try (Connection connection = DBConnector.getConnection();
-                 PreparedStatement deleteStatement = connection.prepareStatement(queryDelete);
-                 PreparedStatement insertStatement = connection.prepareStatement(queryInsert)) {
-
-                // Set parameters for delete statement
-                deleteStatement.setInt(1, selectedUser.getId());
-                deleteStatement.executeUpdate();
-
-                // Set parameters for insert statement
-                insertStatement.setString(1, selectedUser.getFirstName());
-                insertStatement.setString(2, selectedUser.getLastName());
-                insertStatement.setString(3, selectedUser.getEmail());
-                insertStatement.setString(4, selectedUser.getUserType());
-                insertStatement.setInt(5, 758);
-                insertStatement.setBoolean(6, true);
-                insertStatement.executeUpdate();
-
-                TableView.getItems().remove(selectedUser);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+@FXML
+    public void handleApproved(MouseEvent mouseEvent) {
     }
 
-    @FXML
+    public void handleApprove(ActionEvent actionEvent) {
+    }
+
     public void handleDeny(ActionEvent actionEvent) {
-        User selectedUser = TableView.getSelectionModel().getSelectedItem();
-        if (selectedUser != null) {
-            String queryDelete = "DELETE FROM users WHERE id = ?";
-            String queryInsert = "INSERT INTO denied_users (firstName, lastName, email, user_type, faculty_id, is_approved) " +
-                    "VALUES (?, ?, ?, ?, ?, ?)";
-            try (Connection connection = DBConnector.getConnection();
-                 PreparedStatement deleteStatement = connection.prepareStatement(queryDelete);
-                 PreparedStatement insertStatement = connection.prepareStatement(queryInsert)) {
-
-                // Set parameters for delete statement
-                deleteStatement.setInt(1, selectedUser.getId());
-                deleteStatement.executeUpdate();
-
-                // Set parameters for insert statement
-                insertStatement.setString(1, selectedUser.getFirstName());
-                insertStatement.setString(2, selectedUser.getLastName());
-                insertStatement.setString(3, selectedUser.getEmail());
-                insertStatement.setString(4, selectedUser.getUserType());
-                insertStatement.setInt(5, 758);
-                insertStatement.setBoolean(6, false); // Set is_approved to false for denied user
-                insertStatement.executeUpdate();
-
-                TableView.getItems().remove(selectedUser);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+    }
 }
-}
+

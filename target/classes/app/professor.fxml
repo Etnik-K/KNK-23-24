@@ -90,12 +90,12 @@
                               <PropertyValueFactory property="endTime" />
                            </cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="250.39990234375" text="Day of Week">
+                        <TableColumn fx:id="colDayOfWeek" prefWidth="250.39990234375" text="Day of Week">
                            <cellValueFactory>
                               <PropertyValueFactory property="dayOfWeek" />
                            </cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="100" text="Capacity">
+                        <TableColumn fx:id="colCapacity" prefWidth="100" text="Capacity">
                            <cellValueFactory>
                               <PropertyValueFactory property="capacity" />
                            </cellValueFactory>
