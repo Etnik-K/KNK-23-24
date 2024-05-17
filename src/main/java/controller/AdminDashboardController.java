@@ -52,10 +52,14 @@ public class AdminDashboardController implements Initializable {
     @FXML
     private VBox resultContainer;
 
+    private UserTableViewController utvc;
+
+
     private double xOffset = 0;
     private double yOffset = 0;
 
     Navigator nav = new Navigator();
+    //UserTableViewController utvc = new UserTableViewController();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -68,6 +72,14 @@ public class AdminDashboardController implements Initializable {
         btnWednesday.setText(bundle.getString("btnWednesday"));
         btnThursday.setText(bundle.getString("btnThursday"));
         btnFriday.setText(bundle.getString("btnFriday"));
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/user_table_view.fxml"));
+            Parent userTableView = loader.load();
+            utvc = loader.getController(); // Get the controller instance
+            resultContainer.getChildren().add(userTableView);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -90,23 +102,10 @@ public class AdminDashboardController implements Initializable {
 
     @FXML
     private void handleView(ActionEvent ae) {
-        try {
-            // Load UserTableView.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/user_table_view.fxml"));
-            System.out.println("KA MRRI QETU");
-            Parent userTable = loader.load();
-
-            // Get the controller from the loader
-            UserTableViewController controller = loader.getController();
-
-            // Insert UserTableView into the pane
-            resultContainer.getChildren().clear();
-            resultContainer.getChildren().add(userTable);
-
+        // Check if the UserTableViewController is already initialized
+        if (utvc != null) {
             // Fetch data from the database (if needed)
-            controller.fetchDataFromDatabase();
-        } catch (IOException e) {
-            e.printStackTrace();
+            utvc.fetchDataFromDatabase();
         }
     }
 
@@ -186,10 +185,33 @@ public class AdminDashboardController implements Initializable {
     public void handleApproved(MouseEvent mouseEvent) {
     }
 
-    public void handleApprove(ActionEvent actionEvent) {
+   /* @FXML
+    public void handleApprove(ActionEvent actionEvent, TableView<User> tableView) {
+
     }
 
-    public void handleDeny(ActionEvent actionEvent) {
+
+
+    @FXML
+    public void handleDeny(ActionEvent actionEvent, TableView<User> tableView) {
+        // Get the selected user from the table view
+
+    }*/
+
+    @FXML
+    private void handleApprove(ActionEvent actionEvent) {
+        // Handle approval action using UserTableViewController
+        if (utvc != null) {
+            utvc.handleApprove(actionEvent);
+        }
+    }
+
+
+    @FXML
+    private void handleDeny(ActionEvent actionEvent) {
+        // Handle denial action using UserTableViewController
+        if (utvc != null) {
+            utvc.handleDeny(actionEvent);
+        }
     }
 }
-

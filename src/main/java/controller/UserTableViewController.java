@@ -38,6 +38,10 @@ public class UserTableViewController implements Initializable {
     @FXML
     private TableColumn<User, String> userTypeColumn;
 
+    public TableView<User> getTableView() {
+        return TableView;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Link TableColumn with User properties
@@ -46,10 +50,13 @@ public class UserTableViewController implements Initializable {
         lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         userTypeColumn.setCellValueFactory(new PropertyValueFactory<>("userType"));
+
+        // Fetch data from the database and populate the TableView
+        //fetchDataFromDatabase();
     }
 
     public void fetchDataFromDatabase() {
-        String query = "SELECT id, firstName, lastName, email, user_type FROM users WHERE is_approved = false";
+        String query = "SELECT id, firstName, lastName, email, user_type FROM users WHERE is_approved is null";
         try (Connection connection = DBConnector.getConnection();
              PreparedStatement statement = connection.prepareStatement(query);
              ResultSet resultSet = statement.executeQuery()) {
@@ -73,27 +80,17 @@ public class UserTableViewController implements Initializable {
     public void handleApprove(ActionEvent actionEvent) {
         User selectedUser = TableView.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
-            String queryDelete = "DELETE FROM users WHERE id = ?";
-            String queryInsert = "INSERT INTO approved_users (firstName, lastName, email, user_type, faculty_id, is_approved) " +
-                    "VALUES (?, ?, ?, ?, ?, ?)";
+            String queryUpdate = "UPDATE users SET is_approved = ? WHERE id = ?";
             try (Connection connection = DBConnector.getConnection();
-                 PreparedStatement deleteStatement = connection.prepareStatement(queryDelete);
-                 PreparedStatement insertStatement = connection.prepareStatement(queryInsert)) {
+                 PreparedStatement updateStatement = connection.prepareStatement(queryUpdate)) {
 
-                // Set parameters for delete statement
-                deleteStatement.setInt(1, selectedUser.getId());
-                deleteStatement.executeUpdate();
+                // Set parameters for update statement
+                updateStatement.setBoolean(1, true);
+                updateStatement.setInt(2, selectedUser.getId());
+                updateStatement.executeUpdate();
 
-                // Set parameters for insert statement
-                insertStatement.setString(1, selectedUser.getFirstName());
-                insertStatement.setString(2, selectedUser.getLastName());
-                insertStatement.setString(3, selectedUser.getEmail());
-                insertStatement.setString(4, selectedUser.getUserType());
-                insertStatement.setInt(5, 758);
-                insertStatement.setBoolean(6, true);
-                insertStatement.executeUpdate();
-
-                TableView.getItems().remove(selectedUser);
+                // Refresh the table view
+                fetchDataFromDatabase();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -104,27 +101,17 @@ public class UserTableViewController implements Initializable {
     public void handleDeny(ActionEvent actionEvent) {
         User selectedUser = TableView.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
-            String queryDelete = "DELETE FROM users WHERE id = ?";
-            String queryInsert = "INSERT INTO denied_users (firstName, lastName, email, user_type, faculty_id, is_approved) " +
-                    "VALUES (?, ?, ?, ?, ?, ?)";
+            String queryUpdate = "UPDATE users SET is_approved = ? WHERE id = ?";
             try (Connection connection = DBConnector.getConnection();
-                 PreparedStatement deleteStatement = connection.prepareStatement(queryDelete);
-                 PreparedStatement insertStatement = connection.prepareStatement(queryInsert)) {
+                 PreparedStatement updateStatement = connection.prepareStatement(queryUpdate)) {
 
-                // Set parameters for delete statement
-                deleteStatement.setInt(1, selectedUser.getId());
-                deleteStatement.executeUpdate();
+                // Set parameters for update statement
+                updateStatement.setBoolean(1, false);
+                updateStatement.setInt(2, selectedUser.getId());
+                updateStatement.executeUpdate();
 
-                // Set parameters for insert statement
-                insertStatement.setString(1, selectedUser.getFirstName());
-                insertStatement.setString(2, selectedUser.getLastName());
-                insertStatement.setString(3, selectedUser.getEmail());
-                insertStatement.setString(4, selectedUser.getUserType());
-                insertStatement.setInt(5, 758);
-                insertStatement.setBoolean(6, false); // Set is_approved to false for denied user
-                insertStatement.executeUpdate();
-
-                TableView.getItems().remove(selectedUser);
+                // Refresh the table view
+                fetchDataFromDatabase();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
