@@ -47,6 +47,8 @@ public class ProfessorController implements Initializable {
     @FXML
     private VBox resultContainer;
 
+    Navigator nav = new Navigator();
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Load the resource bundle
@@ -72,212 +74,33 @@ public class ProfessorController implements Initializable {
 
     @FXML
     private void handleMonday(ActionEvent ae) {
-        try {
-            Connection conn = DBConnector.getConnection();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT id, fakulteti_id, profesori_id, lenda_id, salla_id, time_slot_id, start_time, end_time, day_of_week, capacity FROM Orari WHERE day_of_week='Monday'");
-
-            TableView.getItems().clear(); // Clear existing items before adding new ones
-
-            while (rs.next()) {
-                OrariRecordDto recordDto = new OrariRecordDto(
-                        rs.getInt("id"),
-                        rs.getInt("fakulteti_id"),
-                        rs.getInt("profesori_id"),
-                        rs.getInt("lenda_id"),
-                        rs.getInt("salla_id"),
-                        rs.getInt("time_slot_id"),
-                        rs.getTime("start_time"),
-                        rs.getTime("end_time"),
-                        rs.getString("day_of_week"),
-                        rs.getInt("capacity")
-                );
-                System.out.println("Adding record: " + recordDto.toString()); // Add this line for debugging
-                TableView.getItems().add(recordDto);
-            }
-
-
-            rs.close();
-            stmt.close();
-            DBConnector.closeConnection(conn);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        nav.displayOrariTableView(resultContainer, Navigator.MONDAY);
     }
 
     @FXML
     private void handleTuesday(ActionEvent ae) {
-        try {
-            Connection conn = DBConnector.getConnection();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT id, fakulteti_id, profesori_id, lenda_id, salla_id, time_slot_id, start_time, end_time, day_of_week, capacity FROM Orari WHERE day_of_week='Tuesday'");
-
-            TableView.getItems().clear(); // Clear existing items before adding new ones
-
-            while (rs.next()) {
-                OrariRecordDto recordDto = new OrariRecordDto(
-                        rs.getInt("id"),
-                        rs.getInt("fakulteti_id"),
-                        rs.getInt("profesori_id"),
-                        rs.getInt("lenda_id"),
-                        rs.getInt("salla_id"),
-                        rs.getInt("time_slot_id"),
-                        rs.getTime("start_time"),
-                        rs.getTime("end_time"),
-                        rs.getString("day_of_week"),
-                        rs.getInt("capacity")
-                );
-                System.out.println("Adding record: " + recordDto.toString()); // Add this line for debugging
-                TableView.getItems().add(recordDto);
-            }
-
-
-            rs.close();
-            stmt.close();
-            DBConnector.closeConnection(conn);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        nav.displayOrariTableView(resultContainer, Navigator.TUESDAY);
     }
 
     @FXML
     private void handleWednesday(ActionEvent ae) {
-        try {
-            Connection conn = DBConnector.getConnection();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT id, fakulteti_id, profesori_id, lenda_id, salla_id, time_slot_id, start_time, end_time, day_of_week, capacity FROM Orari WHERE day_of_week='Wednesday'");
-
-            TableView.getItems().clear(); // Clear existing items before adding new ones
-
-            while (rs.next()) {
-                OrariRecordDto recordDto = new OrariRecordDto(
-                        rs.getInt("id"),
-                        rs.getInt("fakulteti_id"),
-                        rs.getInt("profesori_id"),
-                        rs.getInt("lenda_id"),
-                        rs.getInt("salla_id"),
-                        rs.getInt("time_slot_id"),
-                        rs.getTime("start_time"),
-                        rs.getTime("end_time"),
-                        rs.getString("day_of_week"),
-                        rs.getInt("capacity")
-                );
-                System.out.println("Adding record: " + recordDto.toString()); // Add this line for debugging
-                TableView.getItems().add(recordDto);
-            }
-
-
-            rs.close();
-            stmt.close();
-            DBConnector.closeConnection(conn);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        nav.displayOrariTableView(resultContainer, Navigator.WEDNESDAY);
     }
 
     @FXML
     private void handleThursday(ActionEvent ae) {
-        try {
-            Connection conn = DBConnector.getConnection();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT id, fakulteti_id, profesori_id, lenda_id, salla_id, time_slot_id, start_time, end_time, day_of_week, capacity FROM Orari WHERE day_of_week='Thursday'");
-
-            TableView.getItems().clear(); // Clear existing items before adding new ones
-
-            while (rs.next()) {
-                OrariRecordDto recordDto = new OrariRecordDto(
-                        rs.getInt("id"),
-                        rs.getInt("fakulteti_id"),
-                        rs.getInt("profesori_id"),
-                        rs.getInt("lenda_id"),
-                        rs.getInt("salla_id"),
-                        rs.getInt("time_slot_id"),
-                        rs.getTime("start_time"),
-                        rs.getTime("end_time"),
-                        rs.getString("day_of_week"),
-                        rs.getInt("capacity")
-                );
-                System.out.println("Adding record: " + recordDto.toString()); // Add this line for debugging
-                TableView.getItems().add(recordDto);
-            }
-
-
-            rs.close();
-            stmt.close();
-            DBConnector.closeConnection(conn);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        nav.displayOrariTableView(resultContainer, Navigator.THURSDAY);
     }
 
     @FXML
     private void handleFriday(ActionEvent ae) {
-        try {
-            Connection conn = DBConnector.getConnection();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT id, fakulteti_id, profesori_id, lenda_id, salla_id, time_slot_id, start_time, end_time, day_of_week, capacity FROM Orari WHERE day_of_week='Friday'");
-
-            TableView.getItems().clear(); // Clear existing items before adding new ones
-
-            while (rs.next()) {
-                OrariRecordDto recordDto = new OrariRecordDto(
-                        rs.getInt("id"),
-                        rs.getInt("fakulteti_id"),
-                        rs.getInt("profesori_id"),
-                        rs.getInt("lenda_id"),
-                        rs.getInt("salla_id"),
-                        rs.getInt("time_slot_id"),
-                        rs.getTime("start_time"),
-                        rs.getTime("end_time"),
-                        rs.getString("day_of_week"),
-                        rs.getInt("capacity")
-                );
-                System.out.println("Adding record: " + recordDto.toString()); // Add this line for debugging
-                TableView.getItems().add(recordDto);
-            }
-
-
-            rs.close();
-            stmt.close();
-            DBConnector.closeConnection(conn);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        nav.displayOrariTableView(resultContainer, Navigator.FRIDAY);
     }
+
 
     @FXML
     private void handleView(ActionEvent ae) {
-        try {
-            Connection conn = DBConnector.getConnection();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT id, fakulteti_id, profesori_id, lenda_id, salla_id, time_slot_id, start_time, end_time, day_of_week, capacity FROM Orari");
-
-            TableView.getItems().clear(); // Clear existing items before adding new ones
-
-            while (rs.next()) {
-                OrariRecordDto recordDto = new OrariRecordDto(
-                        rs.getInt("id"),
-                        rs.getInt("fakulteti_id"),
-                        rs.getInt("profesori_id"),
-                        rs.getInt("lenda_id"),
-                        rs.getInt("salla_id"),
-                        rs.getInt("time_slot_id"),
-                        rs.getTime("start_time"),
-                        rs.getTime("end_time"),
-                        rs.getString("day_of_week"),
-                        rs.getInt("capacity")
-                );
-                System.out.println("Adding record: " + recordDto.toString()); // Add this line for debugging
-                TableView.getItems().add(recordDto);
-            }
-
-
-            rs.close();
-            stmt.close();
-            DBConnector.closeConnection(conn);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        nav.displayOrariTableView(resultContainer, Navigator.ALL);
     }
 
     @FXML
