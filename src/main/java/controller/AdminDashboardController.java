@@ -55,6 +55,8 @@ public class AdminDashboardController implements Initializable {
     private double xOffset = 0;
     private double yOffset = 0;
 
+    Navigator nav = new Navigator();
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Load the resource bundle
@@ -111,112 +113,27 @@ public class AdminDashboardController implements Initializable {
 
     @FXML
     private void handleMonday(ActionEvent ae) {
-        try {
-            // Load UserTableView.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/orari_table_view.fxml"));
-            System.out.println("KA MRRI QETU");
-            Parent userTable = loader.load();
-
-            // Get the controller from the loader
-            OrariTableViewController controller = loader.getController();
-
-            // Insert UserTableView into the pane
-            resultContainer.getChildren().clear();
-            resultContainer.getChildren().add(userTable);
-
-            // Fetch data from the database (if needed)
-            controller.fetchDataFromDatabase(Navigator.MONDAY);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        nav.displayOrariTableView(resultContainer, Navigator.MONDAY);
     }
 
     @FXML
     private void handleTuesday(ActionEvent ae) {
-        try {
-            // Load UserTableView.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/orari_table_view.fxml"));
-            System.out.println("KA MRRI QETU");
-            Parent userTable = loader.load();
-
-            // Get the controller from the loader
-            OrariTableViewController controller = loader.getController();
-
-            // Insert UserTableView into the pane
-            resultContainer.getChildren().clear();
-            resultContainer.getChildren().add(userTable);
-
-            // Fetch data from the database (if needed)
-            controller.fetchDataFromDatabase(Navigator.TUESDAY);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        nav.displayOrariTableView(resultContainer, Navigator.TUESDAY);
     }
 
     @FXML
     private void handleWednesday(ActionEvent ae) {
-        try {
-            // Load UserTableView.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/orari_table_view.fxml"));
-            System.out.println("KA MRRI QETU");
-            Parent userTable = loader.load();
-
-            // Get the controller from the loader
-            OrariTableViewController controller = loader.getController();
-
-            // Insert UserTableView into the pane
-            resultContainer.getChildren().clear();
-            resultContainer.getChildren().add(userTable);
-
-            // Fetch data from the database (if needed)
-            controller.fetchDataFromDatabase(Navigator.WEDNESDAY);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        nav.displayOrariTableView(resultContainer, Navigator.WEDNESDAY);
     }
 
     @FXML
     private void handleThursday(ActionEvent ae) {
-        try {
-            // Load UserTableView.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/orari_table_view.fxml"));
-            System.out.println("KA MRRI QETU");
-            Parent userTable = loader.load();
-
-            // Get the controller from the loader
-            OrariTableViewController controller = loader.getController();
-
-            // Insert UserTableView into the pane
-            resultContainer.getChildren().clear();
-            resultContainer.getChildren().add(userTable);
-
-            // Fetch data from the database (if needed)
-            controller.fetchDataFromDatabase(Navigator.THURSDAY);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        nav.displayOrariTableView(resultContainer, Navigator.THURSDAY);
     }
 
     @FXML
     private void handleFriday(ActionEvent ae) {
-        try {
-            // Load UserTableView.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/orari_table_view.fxml"));
-            System.out.println("KA MRRI QETU");
-            Parent userTable = loader.load();
-
-            // Get the controller from the loader
-            OrariTableViewController controller = loader.getController();
-
-            // Insert UserTableView into the pane
-            resultContainer.getChildren().clear();
-            resultContainer.getChildren().add(userTable);
-
-            // Fetch data from the database (if needed)
-            controller.fetchDataFromDatabase(Navigator.FRIDAY);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        nav.displayOrariTableView(resultContainer, Navigator.FRIDAY);
     }
 
     @FXML

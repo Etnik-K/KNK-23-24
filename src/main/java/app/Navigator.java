@@ -1,11 +1,14 @@
 package app;
 
+import controller.OrariTableViewController;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -98,6 +101,26 @@ public class Navigator {
             return loader.load();
         }catch (IOException ioe){
             return null;
+        }
+    }
+    public void displayOrariTableView(VBox resultContainer, String day){
+        try {
+            // Load UserTableView.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/orari_table_view.fxml"));
+            System.out.println("KA MRRI QETU");
+            Parent userTable = loader.load();
+
+            // Get the controller from the loader
+            OrariTableViewController controller = loader.getController();
+
+            // Insert UserTableView into the pane
+            resultContainer.getChildren().clear();
+            resultContainer.getChildren().add(userTable);
+
+            // Fetch data from the database (if needed)
+            controller.fetchDataFromDatabase(day);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
