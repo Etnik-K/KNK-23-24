@@ -1,12 +1,18 @@
 package service;
 
 import app.SessionManager;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.User;
 import model.dto.CreateUserDto;
 import model.dto.LoginUserDto;
 import model.dto.UserDto;
 import repository.UserRepository;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class UserService {
@@ -46,7 +52,26 @@ public class UserService {
 
         // Check if the user is approved
         if (!user.isApproved()) {
-            // User is not approved, return false
+            try {
+                // Load the Denied.fxml file
+                FXMLLoader loader = new FXMLLoader(UserService.class.getResource("/app/denied.fxml"));
+                Parent root = loader.load();
+
+                // Create a new stage
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setResizable(false);
+                stage.setTitle("Access Denied");
+                //
+//                Nuk t'len me prek kurgjo mrena faqes login deri sa ta mshel ket popupfile
+                stage.initModality(Modality.APPLICATION_MODAL);
+
+
+                stage.showAndWait(); // Show and wait until the new stage is closed
+            } catch (IOException e) {
+                e.printStackTrace(); // Handle error loading FXML file
+            }
+
             return false;
         }
 
