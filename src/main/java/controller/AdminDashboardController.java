@@ -1,6 +1,7 @@
 package controller;
 
 import app.Navigator;
+import app.SessionManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -91,8 +92,9 @@ public class AdminDashboardController implements Initializable {
     }
 
     @FXML
-    private void handleLogOut(ActionEvent ae) {
-        // Implement logout functionality
+    private void handleLogOut(MouseEvent me) {
+        SessionManager.setUser(null);
+        Navigator.navigate(me, Navigator.LOGIN_PAGE);
     }
 
     @FXML

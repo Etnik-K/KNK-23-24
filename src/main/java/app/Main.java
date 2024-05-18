@@ -9,8 +9,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Navigator.navigate(stage, Navigator.LOGIN_PAGE);
+//        Navigator.navigate(stage, Navigator.LOGIN_PAGE);
 //        Navigator.navigate(stage, Navigator.ADMIN_DASHBOARD);
+        Navigator.navigate(stage, Navigator.PROFESSOR_PAGE);
 
     }
 }

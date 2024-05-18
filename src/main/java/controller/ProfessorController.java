@@ -1,6 +1,7 @@
 package controller;
 
 import app.Navigator;
+import app.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -63,10 +64,10 @@ public class ProfessorController implements Initializable {
     }
 
     @FXML
-    private void handleLogOut(ActionEvent ae) {
-        // Add your logout logic here
+    private void handleLogOut(MouseEvent me) {
+        SessionManager.setUser(null);
+        Navigator.navigate(me, Navigator.LOGIN_PAGE);
     }
-
     @FXML
     private void handleSearch(ActionEvent ae) {
         // Add your search logic here

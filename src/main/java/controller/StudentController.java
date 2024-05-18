@@ -1,6 +1,8 @@
 package controller;
 
+
 import app.Navigator;
+import app.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -61,9 +63,12 @@ public class StudentController implements Initializable {
     private VBox resultContainer;
 
     @FXML
-    private void handleLogOut(ActionEvent ae){
-
+    private void handleLogOut(MouseEvent me) {
+        SessionManager.setUser(null);
+        Navigator.navigate(me, Navigator.LOGIN_PAGE);
     }
+
+
     @FXML
     private void handleMonday(ActionEvent ae) {
         nav.displayOrariTableView(resultContainer, Navigator.MONDAY);

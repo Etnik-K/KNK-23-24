@@ -20,7 +20,7 @@
             <Image url="@../images/University_of_Prishtina_logo.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="749.0" layoutY="13.0" onMouseClicked="#handleLogOut" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Logout" fitHeight="26.0" fitWidth="26.0" layoutX="749.0" layoutY="13.0" onMouseClicked="#handleLogOut" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/logout.png" />
          </image>
