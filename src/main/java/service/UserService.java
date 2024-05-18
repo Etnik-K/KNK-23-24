@@ -1,6 +1,7 @@
 package service;
 
 import app.SessionManager;
+import database.DatabaseUtil;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,6 +15,9 @@ import model.dto.UserDto;
 import repository.UserRepository;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserService {
@@ -88,6 +92,19 @@ public class UserService {
             return true;
         }
         // Invalid password, return false
+        return false;
+    }
+    public static boolean emailExists(String email) throws SQLException {
+        String query = "SELECT COUNT(*) FROM users WHERE email = ?";
+        try (Connection connection = DBConnector.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, email);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt(1) > 0;
+                }
+            }
+        }
         return false;
     }
 

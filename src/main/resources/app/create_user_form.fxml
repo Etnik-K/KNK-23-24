@@ -73,16 +73,14 @@
             <Image url="@../images/University_of_Prishtina_logo.png" />
          </image>
       </ImageView>
-      <TextField fx:id="txtFirstName" layoutX="402.0" layoutY="143.0" promptText="Type your first name" />
-      <TextField fx:id="txtLastName" layoutX="402.0" layoutY="176.0" promptText="Type your last name" />
-       <TextField fx:id="txtEmail" layoutX="402.0" layoutY="212.0" promptText="Type your email" />
-      <PasswordField fx:id="pwdPassword" layoutX="402.0" layoutY="246.0" promptText="Type your password" />
-      <PasswordField fx:id="pwdConfirmPassword" layoutX="402.0" layoutY="281.0" promptText="Repeat your password" />
+      <TextField fx:id="txtFirstName" layoutX="402.0" layoutY="143.0" promptText="Type your first name" style="-fx-background-color: transparent; -fx-border-color: #84160d; -fx-border-width: 0px 0px 1px 0px;" />
+      <TextField fx:id="txtLastName" layoutX="402.0" layoutY="176.0" promptText="Type your last name" style="-fx-background-color: transparent; -fx-border-color: #84160d; -fx-border-width: 0px 0px 1px 0px;" />
+      <PasswordField fx:id="pwdPassword" layoutX="402.0" layoutY="213.0" promptText="Type your password" style="-fx-background-color: transparent; -fx-border-color: #84160d; -fx-border-width: 0px 0px 1px 0px;" />
+      <PasswordField fx:id="pwdConfirmPassword" layoutX="401.0" layoutY="245.0" promptText="Repeat your password" style="-fx-background-color: transparent; -fx-border-color: #84160d; -fx-border-width: 0px 0px 1px 0px;" />
       <Text fx:id="txtFirstNameL" layoutX="337.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%txtFirstNameL" />
       <Text fx:id="txtLastNameL" layoutX="338.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%txtLastNameL" />
-      <Text fx:id="txtEmailL" layoutX="360.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%txtEmailL" />
-      <Text fx:id="txtPasswordL" layoutX="338.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%txtPasswordL" />
-      <Text fx:id="txtConfirmPassword" layoutX="300.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%txtConfirmPassword" />
+      <Text fx:id="txtPasswordL" layoutX="338.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%txtPasswordL" />
+      <Text fx:id="txtConfirmPassword" layoutX="300.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%txtConfirmPassword" />
       <Button fx:id="btnSignup" layoutX="402.0" layoutY="341.0" mnemonicParsing="false" onAction="#handleSignUp" text="\%btnSignup" />
       <Button fx:id="btncancel" layoutX="500.0" layoutY="341.0" mnemonicParsing="false" onAction="#handleCancel" text="\%btncancel" />
       <Text fx:id="txtSingUpMeInfo" layoutX="27.0" layoutY="230.0" lineSpacing="4.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%txtSingUpMeInfo" wrappingWidth="149.60000000000014">
