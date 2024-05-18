@@ -85,7 +85,25 @@ public class SignUpController implements Initializable {
         String confirmPassword = pwdConfirmPassword.getText();
 
         if (firstName.isEmpty() || lastName.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-            System.out.println("Please fill in all the fields.");
+            try {
+                // Load the Denied.fxml file
+                FXMLLoader loader = new FXMLLoader(UserService.class.getResource("/app/fill.fxml"));
+                Parent root = loader.load();
+
+                // Create a new stage
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setResizable(false);
+                stage.setTitle("Fill all fields");
+                //
+//                Nuk t'len me prek kurgjo mrena faqes login deri sa ta mshel ket popupfile
+                stage.initModality(Modality.APPLICATION_MODAL);
+
+
+                stage.showAndWait(); // Show and wait until the new stage is closed
+            } catch (IOException e) {
+                e.printStackTrace(); // Handle error loading FXML file
+            }
             return;
         }
 
