@@ -1,15 +1,17 @@
 package app;
 
-import controller.OrariTableViewController;
+import controller.tableView.OrariTableViewController;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import service.UserService;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -34,7 +36,7 @@ public class Navigator {
     public final static String FRIDAY = "WHERE day_of_week='Friday' ";
 
 
-    public static void navigate(Stage stage, String page){
+    public static void navigate(Stage stage, String page, String tittle){
         FXMLLoader loader = new FXMLLoader(
                 Navigator.class.getResource(page)
         );
@@ -43,6 +45,10 @@ public class Navigator {
             Scene scene = new Scene(loader.load());
             stage.setScene(scene);
             stage.setResizable(false);
+            //Ja kem qit logon e UP-se cdo faqeje qe s'osht PopUp
+            Image icon = new Image(UserService.class.getResourceAsStream("/images/University_of_Prishtina_logo.png"));
+            stage.getIcons().add(icon);
+            stage.setTitle(tittle);
             stage.show();
         }catch (IOException ioe){
             ioe.printStackTrace();
@@ -50,10 +56,11 @@ public class Navigator {
 
     }
 
-    public static void navigate(Event event, String page) {
+    public static void navigate(Event event, String page, String tittle) {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
-        navigate(stage, page);
+
+        navigate(stage, page, tittle);
     }
     public static void displayResults(String query, Pane resultContainer) {
 

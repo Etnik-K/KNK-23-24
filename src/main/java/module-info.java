@@ -14,4 +14,5 @@ module com.example.knk2324 {
 
     opens controller.popups to javafx.fxml;
     exports controller.popups;
+    opens controller.tableView to javafx.fxml;
 }

@@ -133,7 +133,7 @@ public class SignUpController implements Initializable {
         System.out.println("Response: " + response);
 
 
-        Navigator.navigate(ae, Navigator.LOGIN_PAGE);
+        Navigator.navigate(ae, Navigator.LOGIN_PAGE, "Login");
     }
 
     @FXML

@@ -1,4 +1,4 @@
-package controller;
+package controller.tableView;
 
 import app.Navigator;
 import javafx.fxml.FXML;

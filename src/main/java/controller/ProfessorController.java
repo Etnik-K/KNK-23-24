@@ -66,7 +66,7 @@ public class ProfessorController implements Initializable {
     @FXML
     private void handleLogOut(MouseEvent me) {
         SessionManager.setUser(null);
-        Navigator.navigate(me, Navigator.LOGIN_PAGE);
+        Navigator.navigate(me, Navigator.LOGIN_PAGE, "Login");
     }
     @FXML
     private void handleSearch(ActionEvent ae) {

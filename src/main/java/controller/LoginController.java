@@ -76,14 +76,14 @@ public class LoginController implements Initializable {
             User user = SessionManager.getUser();
 
                 if (user.getUserType().equals("professor")) {
-                    Navigator.navigate(ae, Navigator.PROFESSOR_PAGE);
+                    Navigator.navigate(ae, Navigator.PROFESSOR_PAGE, "Login");
                     System.out.println("Logged in as Professor: " + user.getFirstName() + " " + user.getLastName());
                 } else if (user.getUserType().equals("student")) {
-                    Navigator.navigate(ae, Navigator.STUDENT_PAGE);
+                    Navigator.navigate(ae, Navigator.STUDENT_PAGE, "StudentView");
                     System.out.println("Logged in as Student: " + user.getFirstName() + " " + user.getLastName());
                 }
              else {
-                Navigator.navigate(ae, Navigator.ADMIN_DASHBOARD);
+                Navigator.navigate(ae, Navigator.ADMIN_DASHBOARD, "AdminView");
                 System.out.println("Logged in as Admin");
             }
         }
@@ -100,7 +100,7 @@ public class LoginController implements Initializable {
 
     @FXML
     public void handleCreateAccountClick(MouseEvent me){
-        Navigator.navigate(me, Navigator.CREATE_ACCOUNT_PAGE);
+        Navigator.navigate(me, Navigator.CREATE_ACCOUNT_PAGE,"SignUP");
     }
 
     @FXML
