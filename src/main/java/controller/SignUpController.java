@@ -4,17 +4,23 @@ import app.Navigator;
 import database.DatabaseUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.dto.UserDto;
 import service.DBConnector;
 import service.UserService;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.Locale;
@@ -92,7 +98,25 @@ public class SignUpController implements Initializable {
         }
 
         if (!password.equals(confirmPassword)) {
-            System.out.println("Password and confirm password do not match.");
+            try {
+                // Load the Denied.fxml file
+                FXMLLoader loader = new FXMLLoader(UserService.class.getResource("/app/NoMatch.fxml"));
+                Parent root = loader.load();
+
+                // Create a new stage
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setResizable(false);
+                stage.setTitle("Password do NOT match");
+                //
+//                Nuk t'len me prek kurgjo mrena faqes login deri sa ta mshel ket popupfile
+                stage.initModality(Modality.APPLICATION_MODAL);
+
+
+                stage.showAndWait(); // Show and wait until the new stage is closed
+            } catch (IOException e) {
+                e.printStackTrace(); // Handle error loading FXML file
+            }
             return;
         }
 

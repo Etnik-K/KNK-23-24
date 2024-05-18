@@ -20,8 +20,10 @@ public class UserService {
         String password = userData.getPassword();
         String confirmPassword = userData.getConfirmPassword();
 
-        if (!password.equals(confirmPassword))
+        if (!password.equals(confirmPassword)) {
             return false;
+        }
+
 
         String salt = PasswordHasher.generateSalt();
         String passwordHash = PasswordHasher.generateSaltedHash(password, salt);
