@@ -178,6 +178,12 @@ select * from orari;
     is_approved BOOLEAN DEFAULT FALSE
 );*/
 
+create view approved_users as
+select * from users where is_approved = 1;
+
+create view denied_users as
+select * from users where is_approved = 0;
+
 select * from approved_users;
 select * from denied_users;
 select * from users;
