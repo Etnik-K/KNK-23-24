@@ -1,31 +1,46 @@
 package app;
 
-import controller.NewClassController;
+import javafx.scene.control.SplitMenuButton;
+import javafx.scene.control.TextField;
 import service.DBConnector;
+import service.UserService;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class RoomReservationAlgorithm {
 
     public static void main(String[] args) {
-        NewClassController controller = new NewClassController();
-        int numStudents = controller.getNumStudents();
-        String dayOfWeek = controller.getDayOfWeek();
-        Time startTime = controller.getStartTime();
-        Time endTime = controller.getEndTime();
+        UserService userService = new UserService();
+
+        // Assuming you have TextFields or other UI elements to pass here
+        // Example placeholders (Replace with actual UI elements)
+        TextField txtStudentsNumber = new TextField();
+        SplitMenuButton splitMenuButton = new SplitMenuButton();
+        TextField txtStartTime = new TextField();
+        TextField txtEndTime = new TextField();
+
+//        // Simulate setting values (replace with actual values from the UI)
+//        txtStudentsNumber.setText("30");
+//        splitMenuButton.setText("Monday");
+//        txtStartTime.setText("10:00:00");
+//        txtEndTime.setText("12:00:00");
+
+        int numStudents = userService.getNumStudents(txtStudentsNumber);
+        String dayOfWeek = userService.getSelectedRole();
+        Time startTime = userService.getTime(txtStartTime);
+        Time endTime = userService.getTime(txtEndTime);
 
         try (Connection conn = DBConnector.getConnection()) {
-
             List<Room> availableRooms = queryAvailableRooms(conn, numStudents, dayOfWeek, startTime, endTime);
-
-
             Room selectedRoom = selectRoom(availableRooms, numStudents);
 
-
-            reserveRoom( numStudents, dayOfWeek, startTime, endTime);
+            if (selectedRoom != null) {
+                reserveRoom(numStudents, dayOfWeek, startTime, endTime);
+            } else {
+                System.out.println("No room available for the given criteria.");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -68,7 +83,6 @@ public class RoomReservationAlgorithm {
     }
 
     public static Room selectRoom(List<Room> availableRooms, int numStudents) {
-        // Select the most optimal room based on capacity
         Room selectedRoom = null;
         int maxCapacity = 0;
         for (Room room : availableRooms) {
@@ -105,8 +119,6 @@ public class RoomReservationAlgorithm {
         }
     }
 
-
-
     public static int getTimeSlotId(Connection conn, String dayOfWeek, Time startTime, Time endTime) throws SQLException {
         String query = "SELECT id FROM TimeSlot WHERE day_of_week = ? AND start_time = ? AND end_time = ?";
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -118,13 +130,10 @@ public class RoomReservationAlgorithm {
                 return rs.getInt("id");
             }
         } catch (SQLException e) {
-
             e.printStackTrace();
         }
-
         throw new SQLException("Time slot not found for dayOfWeek: " + dayOfWeek + ", startTime: " + startTime + ", endTime: " + endTime);
     }
-
 
     // Room class
     static class Room {

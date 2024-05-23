@@ -1,32 +1,14 @@
 package controller;
 
-import app.RoomReservationAlgorithm;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
-
-import java.sql.Time;
-import java.time.LocalDate;
+import service.UserService;
 
 public class NewClassController {
-
-    @FXML
-    private DatePicker datePicker;
-
-    @FXML
-    private Label lblEndTime;
-
-    @FXML
-    private DatePicker endDatePicker;
-
-    @FXML
-    private Label lblStartTime;
-
-    @FXML
-    private Label lblStudentsNumber;
 
     @FXML
     private TextField txtStudentsNumber;
@@ -40,133 +22,50 @@ public class NewClassController {
     @FXML
     private SplitMenuButton splitMenuButton;
 
-    private String selectedRole;
+    private final UserService userService = new UserService();
 
     @FXML
     private void updateSplitMenuButtonText() {
-        splitMenuButton.setText(selectedRole);
+        userService.updateSplitMenuButtonText(splitMenuButton);
     }
 
     @FXML
     public void handleMondayClick(ActionEvent actionEvent) {
-        System.out.println("Monday clicked");
-        selectedRole = "Monday";
-        updateSplitMenuButtonText();
+        userService.handleDayClick(actionEvent, "Monday", splitMenuButton);
     }
 
     @FXML
     public void handleTuesdayClick(ActionEvent actionEvent) {
-        System.out.println("Tuesday clicked");
-        selectedRole = "Tuesday";
-        updateSplitMenuButtonText();
+        userService.handleDayClick(actionEvent, "Tuesday", splitMenuButton);
     }
 
     @FXML
     public void handleWednesdayClick(ActionEvent actionEvent) {
-        System.out.println("Wednesday clicked");
-        selectedRole = "Wednesday";
-        updateSplitMenuButtonText();
+        userService.handleDayClick(actionEvent, "Wednesday", splitMenuButton);
     }
 
     @FXML
     public void handleThursdayClick(ActionEvent actionEvent) {
-        System.out.println("Thursday clicked");
-        selectedRole = "Thursday";
-        updateSplitMenuButtonText();
+        userService.handleDayClick(actionEvent, "Thursday", splitMenuButton);
     }
 
     @FXML
     public void handleFridayClick(ActionEvent actionEvent) {
-        System.out.println("Friday clicked");
-        selectedRole = "Friday";
-        updateSplitMenuButtonText();
+        userService.handleDayClick(actionEvent, "Friday", splitMenuButton);
     }
 
     @FXML
     public void handleSaturdayClick(ActionEvent actionEvent) {
-        System.out.println("Saturday clicked");
-        selectedRole = "Saturday";
-        updateSplitMenuButtonText();
+        userService.handleDayClick(actionEvent, "Saturday", splitMenuButton);
     }
 
     @FXML
     private void handleCancel(ActionEvent ae) {
-        selectedRole = "";
-        updateSplitMenuButtonText();
-       // datePicker.setValue(null);
-        //endDatePicker.setValue(null);
-        txtStudentsNumber.setText("");
-        txtStartTime.setText("");
-        txtEndTime.setText("");
-    }
-
-    public TextField getTxtStudentsNumber() {
-        return txtStudentsNumber;
-    }
-
-    public TextField getTxtEndTime() {
-        return txtEndTime;
-    }
-
-    public TextField getTxtStartTime() {
-        return txtStartTime;
-    }
-
-    public SplitMenuButton getSplitMenuButton() {
-        return splitMenuButton;
-    }
-
-    public String getSelectedRole() {
-        return selectedRole;
-    }
-    public int getNumStudents() {
-        try {
-            return Integer.parseInt(txtStudentsNumber.getText());
-        } catch (NumberFormatException e) {
-
-            e.printStackTrace();
-            return -1;
-        }
-    }
-
-    public String getDayOfWeek() {
-        return splitMenuButton.getText();
-    }
-
-    public Time getStartTime() {
-        try {
-            return Time.valueOf(txtStartTime.getText());
-        } catch (Exception e) {
-            // Handle the case where the input is not a valid time
-            e.printStackTrace();
-            return null; // or some default value
-        }
-    }
-
-    public Time getEndTime() {
-        try {
-            return Time.valueOf(txtEndTime.getText());
-        } catch (Exception e) {
-            // Handle the case where the input is not a valid time
-            e.printStackTrace();
-            return null; // or some default value
-        }
+        userService.handleCancel(txtStudentsNumber, txtStartTime, txtEndTime, splitMenuButton);
     }
 
     @FXML
     private void handleSave(ActionEvent ae) {
-        int numStudents = getNumStudents();
-        String dayOfWeek = getDayOfWeek();
-        Time startTime = getStartTime();
-        Time endTime = getEndTime();
-
-
-        if (numStudents > 0 && dayOfWeek != null && startTime != null && endTime != null) {
-            RoomReservationAlgorithm.reserveRoom(numStudents, dayOfWeek, startTime, endTime);
-        } else {
-            System.out.println("Invalid input. Please check your input values.");
-        }
+        userService.handleSave(txtStudentsNumber, splitMenuButton, txtStartTime, txtEndTime);
     }
-
-
 }

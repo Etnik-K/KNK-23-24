@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import model.Orari;
 import model.dto.OrariRecordDto;
 import service.DBConnector;
+import service.UserService;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -43,20 +44,13 @@ public class StudentController implements Initializable {
     private Button btnFriday;
     @FXML
     private javafx.scene.control.TableView<Orari> TableView;
+    private UserService userService = new UserService();
 
     Navigator nav = new Navigator();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Load the resource bundle
-        ResourceBundle bundle = ResourceBundle.getBundle("translations.content", new Locale(Navigator.changeLanguage("sq")));
+        userService.initializeDashboard(resultContainer, btnMonday, btnTuesday, btnWednesday, btnThursday, btnFriday);
 
-        // Set text for labels, buttons, text elements, etc.
-        // btnview.setText(bundle.getString("btnview"));
-        btnMonday.setText(bundle.getString("btnMonday"));
-        btnTuesday.setText(bundle.getString("btnTuesday"));
-        btnWednesday.setText(bundle.getString("btnWednesday"));
-        btnThursday.setText(bundle.getString("btnThursday"));
-        btnFriday.setText(bundle.getString("btnFriday"));
     }
 
     @FXML
@@ -105,28 +99,8 @@ public class StudentController implements Initializable {
 
     @FXML
     public void handleLanguageClick(MouseEvent mouseEvent) {
-        Locale newLocale;
-        if (Locale.getDefault().getLanguage().equals("en")) {
-            newLocale = new Locale("sq");
-        } else {
-            newLocale = new Locale("en", "US");
-        }
+        userService.handleLanguageClick();
+        userService.updateText(Locale.getDefault(), btnMonday, btnTuesday, btnWednesday, btnThursday, btnFriday);
 
-        // Change the language
-        Navigator.changeLanguage(newLocale.toLanguageTag());
-        Locale.setDefault(newLocale);
-
-        // Update the text of all elements
-        updateText(newLocale);
-        System.out.println("Gjuha: " + newLocale.getLanguage());
-    }
-    private void updateText(Locale locale) {
-        ResourceBundle bundle = ResourceBundle.getBundle("translations.content", locale);
-        //btnview.setText(bundle.getString("btnview"));
-        btnMonday.setText(bundle.getString("btnMonday"));
-        btnTuesday.setText(bundle.getString("btnTuesday"));
-        btnWednesday.setText(bundle.getString("btnWednesday"));
-        btnThursday.setText(bundle.getString("btnThursday"));
-        btnFriday.setText(bundle.getString("btnFriday"));
     }
 }

@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import model.Orari;
 import model.dto.OrariRecordDto;
 import service.DBConnector;
+import service.UserService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -49,18 +50,12 @@ public class ProfessorController implements Initializable {
     private VBox resultContainer;
 
     Navigator nav = new Navigator();
+    private UserService userService = new UserService();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Load the resource bundle
-        ResourceBundle bundle = ResourceBundle.getBundle("translations.content", new Locale(Navigator.changeLanguage("sq")));
+        userService.initializeDashboard(resultContainer, btnMonday, btnTuesday, btnWednesday, btnThursday, btnFriday);
 
-        // Set text for labels, buttons, text elements, etc.
-        btnMonday.setText(bundle.getString("btnMonday"));
-        btnTuesday.setText(bundle.getString("btnTuesday"));
-        btnWednesday.setText(bundle.getString("btnWednesday"));
-        btnThursday.setText(bundle.getString("btnThursday"));
-        btnFriday.setText(bundle.getString("btnFriday"));
     }
 
     @FXML
@@ -106,42 +101,13 @@ public class ProfessorController implements Initializable {
 
     @FXML
     public void handleLanguageClick(MouseEvent mouseEvent) {
-        Locale newLocale;
-        if (Locale.getDefault().getLanguage().equals("en")) {
-            newLocale = new Locale("sq");
-        } else {
-            newLocale = new Locale("en", "US");
-        }
+        userService.handleLanguageClick();
+        userService.updateText(Locale.getDefault(), btnMonday, btnTuesday, btnWednesday, btnThursday, btnFriday);
 
-        // Change the language
-        Navigator.changeLanguage(newLocale.toLanguageTag());
-        Locale.setDefault(newLocale);
-
-        // Update the text of all elements
-        updateText(newLocale);
-        System.out.println("Gjuha: " + newLocale.getLanguage());
-    }
-
-    private void updateText(Locale locale) {
-        ResourceBundle bundle = ResourceBundle.getBundle("translations.content", locale);
-        btnMonday.setText(bundle.getString("btnMonday"));
-        btnTuesday.setText(bundle.getString("btnTuesday"));
-        btnWednesday.setText(bundle.getString("btnWednesday"));
-        btnThursday.setText(bundle.getString("btnThursday"));
-        btnFriday.setText(bundle.getString("btnFriday"));
     }
 
     @FXML
-    public void handleAdd(MouseEvent mouseEvent) {
-        try {
-            // Load the first FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(Navigator.NEW_CLASS));
-            Pane firstPane = loader.load();
-
-            // Add the loaded content to the resultContainer VBox
-            resultContainer.getChildren().setAll(firstPane);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    public void handleAdd(MouseEvent mouseEvent) throws IOException {
+        userService.handleAdd(resultContainer);
+}
 }

@@ -2,16 +2,13 @@ package controller;
 
 import app.Navigator;
 import app.SessionManager;
-import controller.tableView.UserTableViewController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import service.UserService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -41,47 +38,21 @@ public class AdminDashboardController implements Initializable {
     @FXML
     private VBox resultContainer;
 
-    private UserTableViewController utvc;
-
-
-    private double xOffset = 0;
-    private double yOffset = 0;
-
-    Navigator nav = new Navigator();
-    //UserTableViewController utvc = new UserTableViewController();
+    private UserService userService = new UserService();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Load the resource bundle
-        ResourceBundle bundle = ResourceBundle.getBundle("translations.content", new Locale(Navigator.changeLanguage("sq")));
-
-        // Set text for labels, buttons, text elements, etc.
-        btnMonday.setText(bundle.getString("btnMonday"));
-        btnTuesday.setText(bundle.getString("btnTuesday"));
-        btnWednesday.setText(bundle.getString("btnWednesday"));
-        btnThursday.setText(bundle.getString("btnThursday"));
-        btnFriday.setText(bundle.getString("btnFriday"));
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/user_table_view.fxml"));
-            Parent userTableView = loader.load();
-            utvc = loader.getController(); // Get the controller instance
-            resultContainer.getChildren().add(userTableView);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        userService.initializeDashboard(resultContainer, btnMonday, btnTuesday, btnWednesday, btnThursday, btnFriday);
     }
 
     @FXML
     private void handleAdd(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(Navigator.ADMIN_ADD));
-        Pane pane = loader.load();
-        resultContainer.getChildren().clear();
-        resultContainer.getChildren().add(pane);
+        userService.handleAdd(resultContainer);
     }
 
     @FXML
     private void handleLogOut(MouseEvent me) {
-        SessionManager.setUser(null);
+        userService.handleLogOut();
         Navigator.navigate(me, Navigator.LOGIN_PAGE, "Login");
     }
 
@@ -92,37 +63,32 @@ public class AdminDashboardController implements Initializable {
 
     @FXML
     private void handleView(ActionEvent ae) {
-        // Check if the UserTableViewController is already initialized
-        if (utvc != null) {
-            // Fetch data from the database (if needed)
-            utvc.fetchDataFromDatabase();
-        }
+        userService.handleView();
     }
-
 
     @FXML
     private void handleMonday(ActionEvent ae) {
-        nav.displayOrariTableView(resultContainer, Navigator.MONDAY);
+        userService.handleDayView(resultContainer, Navigator.MONDAY);
     }
 
     @FXML
     private void handleTuesday(ActionEvent ae) {
-        nav.displayOrariTableView(resultContainer, Navigator.TUESDAY);
+        userService.handleDayView(resultContainer, Navigator.TUESDAY);
     }
 
     @FXML
     private void handleWednesday(ActionEvent ae) {
-        nav.displayOrariTableView(resultContainer, Navigator.WEDNESDAY);
+        userService.handleDayView(resultContainer, Navigator.WEDNESDAY);
     }
 
     @FXML
     private void handleThursday(ActionEvent ae) {
-        nav.displayOrariTableView(resultContainer, Navigator.THURSDAY);
+        userService.handleDayView(resultContainer, Navigator.THURSDAY);
     }
 
     @FXML
     private void handleFriday(ActionEvent ae) {
-        nav.displayOrariTableView(resultContainer, Navigator.FRIDAY);
+        userService.handleDayView(resultContainer, Navigator.FRIDAY);
     }
 
     @FXML
@@ -147,61 +113,21 @@ public class AdminDashboardController implements Initializable {
 
     @FXML
     public void handleLanguageClick(MouseEvent mouseEvent) {
-        Locale newLocale;
-        if (Locale.getDefault().getLanguage().equals("en")) {
-            newLocale = new Locale("sq");
-        } else {
-            newLocale = new Locale("en", "US");
-        }
-
-        // Change the language
-        Navigator.changeLanguage(newLocale.toLanguageTag());
-        Locale.setDefault(newLocale);
-
-        // Update the text of all elements
-        updateText(newLocale);
-        System.out.println("Gjuha: " + newLocale.getLanguage());
+        userService.handleLanguageClick();
+        userService.updateText(Locale.getDefault(), btnMonday, btnTuesday, btnWednesday, btnThursday, btnFriday);
     }
 
-    private void updateText(Locale locale) {
-        ResourceBundle bundle = ResourceBundle.getBundle("translations.content", locale);
-        btnMonday.setText(bundle.getString("btnMonday"));
-        btnTuesday.setText(bundle.getString("btnTuesday"));
-        btnWednesday.setText(bundle.getString("btnWednesday"));
-        btnThursday.setText(bundle.getString("btnThursday"));
-        btnFriday.setText(bundle.getString("btnFriday"));
-    }
-@FXML
+    @FXML
     public void handleApproved(MouseEvent mouseEvent) {
     }
 
-   /* @FXML
-    public void handleApprove(ActionEvent actionEvent, TableView<User> tableView) {
-
-    }
-
-
-
-    @FXML
-    public void handleDeny(ActionEvent actionEvent, TableView<User> tableView) {
-        // Get the selected user from the table view
-
-    }*/
-
     @FXML
     private void handleApprove(ActionEvent actionEvent) {
-        // Handle approval action using UserTableViewController
-        if (utvc != null) {
-            utvc.handleApprove(actionEvent);
-        }
+        userService.handleApprove(actionEvent);
     }
-
 
     @FXML
     private void handleDeny(ActionEvent actionEvent) {
-        // Handle denial action using UserTableViewController
-        if (utvc != null) {
-            utvc.handleDeny(actionEvent);
-        }
+        userService.handleDeny(actionEvent);
     }
 }
