@@ -3,6 +3,7 @@ package service;
 import app.Navigator;
 import app.RoomReservationAlgorithm;
 import app.SessionManager;
+import controller.popups.EmailPopupController;
 import controller.tableView.UserTableViewController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -166,6 +167,21 @@ public class UserService {
         buttons[3].setText(bundle.getString("btnThursday"));
         buttons[4].setText(bundle.getString("btnFriday"));
     }
+    public void updateText(
+            Locale locale, Text txtSingUpMeInfo,Text txtThankYou, Text txtFirstNameL, Text txtLastNameL, Text txtPasswordL, Text txtConfirmPassword, Button btnSignup, Button btncancel, Text txtSignUp){
+
+        ResourceBundle bundle = ResourceBundle.getBundle("translations.content", locale);
+        txtSingUpMeInfo.setText(bundle.getString("txtSingUpMeInfo"));
+        txtThankYou.setText(bundle.getString("txtThankYou"));
+        txtFirstNameL.setText(bundle.getString("txtFirstNameL"));
+        txtLastNameL.setText(bundle.getString("txtLastNameL"));
+        txtPasswordL.setText(bundle.getString("txtPasswordL"));
+        txtConfirmPassword.setText(bundle.getString("txtConfirmPassword"));
+        btnSignup.setText(bundle.getString("btnSignup"));
+        btncancel.setText(bundle.getString("btncancel"));
+        txtSignUp.setText(bundle.getString("txtSignUp"));
+    }
+
 
     public void handleApprove(ActionEvent actionEvent) {
         if (utvc != null) {
@@ -192,6 +208,18 @@ public class UserService {
         txtUniofPr.setText(bundle.getString("txtUniofPr"));
         txtLoginForInfo.setText(bundle.getString("txtLoginForInfo"));
         lblCreateAccount.setText(bundle.getString("lblCreateAccount"));
+    }
+
+    public void initializeSignUpLabels(ResourceBundle bundle, Text txtSingUpMeInfo, Text txtThankYou, Text txtFirstNameL, Text txtLastNameL, Text txtPasswordL, Text txtConfirmPassword, Button btnSignup, Button btnCancel, Text txtSignUp) {
+        txtSingUpMeInfo.setText(bundle.getString("txtSingUpMeInfo"));
+        txtThankYou.setText(bundle.getString("txtThankYou"));
+        txtFirstNameL.setText(bundle.getString("txtFirstNameL"));
+        txtLastNameL.setText(bundle.getString("txtLastNameL"));
+        txtPasswordL.setText(bundle.getString("txtPasswordL"));
+        txtConfirmPassword.setText(bundle.getString("txtConfirmPassword"));
+        btnSignup.setText(bundle.getString("btnSignup"));
+        btnCancel.setText(bundle.getString("btncancel"));
+        txtSignUp.setText(bundle.getString("txtSignUp"));
     }
 
     public boolean handleLogin(LoginUserDto loginUserData) throws SQLException {
@@ -266,6 +294,11 @@ public class UserService {
         splitMenuButton.setText(selectedRole);
     }
 
+    public void updateSplitMenuButtonText(SplitMenuButton splitMenuButton, String selectedRole) {
+        splitMenuButton.setText(selectedRole);
+    }
+
+
     public void handleDayClick(ActionEvent actionEvent, String day, SplitMenuButton splitMenuButton) {
         System.out.println(day + " clicked");
         selectedRole = day;
@@ -278,6 +311,12 @@ public class UserService {
         txtStudentsNumber.setText("");
         txtStartTime.setText("");
         txtEndTime.setText("");
+    }
+    public void handleCancel(TextField txtFirstName, TextField txtLastName, PasswordField pwdPassword, PasswordField pwdConfirmPassword){
+        txtFirstName.clear();
+        txtLastName.clear();
+        pwdPassword.clear();
+        pwdConfirmPassword.clear();
     }
 
     public int getNumStudents(TextField txtStudentsNumber) {
@@ -310,4 +349,107 @@ public class UserService {
             System.out.println("Invalid input. Please check your input values.");
         }
     }
+    public void handleSignUp(ActionEvent ae,TextField txtFirstName, TextField txtLastName, PasswordField pwdPassword, PasswordField pwdConfirmPassword) throws SQLException, IOException {
+        String firstName = txtFirstName.getText();
+        String lastName = txtLastName.getText();
+        String email = generateEmail(firstName, lastName);
+        String password = pwdPassword.getText();
+        String confirmPassword = pwdConfirmPassword.getText();
+
+        if (firstName.isEmpty() || lastName.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+            try {
+                // Load the Denied.fxml file
+                FXMLLoader loader = new FXMLLoader(UserService.class.getResource("/app/fill.fxml"));
+                Parent root = loader.load();
+
+                // Create a new stage
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setResizable(false);
+                stage.setTitle("Fill all fields");
+                //
+//                Nuk t'len me prek kurgjo mrena faqes login deri sa ta mshel ket popupfile
+                stage.initModality(Modality.APPLICATION_MODAL);
+
+
+                stage.showAndWait(); // Show and wait until the new stage is closed
+            } catch (IOException e) {
+                e.printStackTrace(); // Handle error loading FXML file
+            }
+            return;
+        }
+
+        if (!password.equals(confirmPassword)) {
+            try {
+                // Load the Denied.fxml file
+                FXMLLoader loader = new FXMLLoader(UserService.class.getResource("/app/NoMatch.fxml"));
+                Parent root = loader.load();
+
+                // Create a new stage
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setResizable(false);
+                stage.setTitle("Password do NOT match");
+                //
+//                Nuk t'len me prek kurgjo mrena faqes login deri sa ta mshel ket popupfile
+                stage.initModality(Modality.APPLICATION_MODAL);
+
+
+                stage.showAndWait(); // Show and wait until the new stage is closed
+            } catch (IOException e) {
+                e.printStackTrace(); // Handle error loading FXML file
+            }
+            return;
+        }
+
+        if (selectedRole == null || selectedRole.isEmpty()) {
+            System.out.println("Please select a role.");
+            return;
+        }
+
+        UserDto userSignUpData = new UserDto(firstName, lastName, email, password, confirmPassword, selectedRole);
+
+        boolean response = UserService.signUp(userSignUpData);
+        System.out.println("Response: " + response);
+
+        // Display the generated email in a popup
+        showGeneratedEmailPopup(email);
+
+        Navigator.navigate(ae, Navigator.LOGIN_PAGE, "Login");
+    }
+    private String generateEmail(String firstName, String lastName) throws SQLException {
+        String baseEmail = firstName + "." + lastName;
+        String domain = selectedRole.equals("Student") ? "@student.uni-pr.edu" : "@uni-pr.edu";
+        String email = baseEmail + domain;
+        int counter = 1;
+
+        while (UserService.emailExists(email)) {
+            email = baseEmail + counter + domain;
+            counter++;
+        }
+        return email;
+    }
+    private void showGeneratedEmailPopup(String email) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/EmailPopup.fxml"));
+        Parent root = loader.load();
+
+        EmailPopupController controller = loader.getController();
+        controller.setGeneratedEmail(email);
+
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Generated Email");
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
+    }
+    public void handleStudentClick(String selectedRole) {
+        System.out.println("Student clicked");
+        this.selectedRole = "Student";
+    }
+
+    public void handleProfessorClick(String selectedRole) {
+        System.out.println("Professor clicked");
+       this.selectedRole = "Professor";
+    }
+
 }
