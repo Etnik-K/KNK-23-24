@@ -56,7 +56,7 @@ public class UserTableViewController implements Initializable {
     }
 
     public void fetchDataFromDatabase() {
-        String query = "SELECT id, firstName, lastName, email, user_type FROM users WHERE is_approved is null";
+        String query = "SELECT id, firstName, lastName, email, user_type FROM users WHERE is_approved is false";
         try (Connection connection = DBConnector.getConnection();
              PreparedStatement statement = connection.prepareStatement(query);
              ResultSet resultSet = statement.executeQuery()) {
@@ -76,26 +76,35 @@ public class UserTableViewController implements Initializable {
         }
     }
 
-    @FXML
     public void handleApprove(ActionEvent actionEvent) {
         User selectedUser = TableView.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
-            String queryUpdate = "UPDATE users SET is_approved = ? WHERE id = ?";
-            try (Connection connection = DBConnector.getConnection();
-                 PreparedStatement updateStatement = connection.prepareStatement(queryUpdate)) {
+            String queryUpdateUser = "UPDATE users SET is_approved = ? WHERE id = ?";
+            String queryUpdateProfessor = "UPDATE profesor SET is_approved = ? WHERE id = ?";
+            try (Connection connection = DBConnector.getConnection()) {
+                // Update users table
+                try (PreparedStatement updateUserStatement = connection.prepareStatement(queryUpdateUser)) {
+                    updateUserStatement.setBoolean(1, true);
+                    updateUserStatement.setInt(2, selectedUser.getId());
+                    updateUserStatement.executeUpdate();
+                }
 
-                // Set parameters for update statement
-                updateStatement.setBoolean(1, true);
-                updateStatement.setInt(2, selectedUser.getId());
-                updateStatement.executeUpdate();
+                // Update profesor table
+                try (PreparedStatement updateProfessorStatement = connection.prepareStatement(queryUpdateProfessor)) {
+                    updateProfessorStatement.setBoolean(1, true);
+                    updateProfessorStatement.setInt(2, selectedUser.getId());
+                    updateProfessorStatement.executeUpdate();
+                }
 
                 // Refresh the table view
                 fetchDataFromDatabase();
             } catch (SQLException e) {
                 e.printStackTrace();
+                // Optionally, show a user-friendly error message
             }
         }
     }
+
 
     @FXML
     public void handleDeny(ActionEvent actionEvent) {
