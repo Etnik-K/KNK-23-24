@@ -6,7 +6,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.Orari;
 import model.dto.OrariRecordDto;
 import service.DBConnector;
 
@@ -17,81 +16,104 @@ import java.util.ResourceBundle;
 public class OrariTableViewController implements Initializable {
 
     @FXML
-    private TableView<Orari> TableView;
+    private TableView<OrariRecordDto> TableView;
 
     @FXML
-    private TableColumn<Orari, Integer> colId;
+    private TableColumn<OrariRecordDto, Integer> colId;
 
     @FXML
-    private TableColumn<Orari, Integer> colFakultetiId;
+    private TableColumn<OrariRecordDto, Integer> colFakultetiId;
 
     @FXML
-    private TableColumn<Orari, Integer> colProfesoriId;
+    private TableColumn<OrariRecordDto, String> colFacultyName;
 
     @FXML
-    private TableColumn<Orari, Integer> colLendaId;
+    private TableColumn<OrariRecordDto, Integer> colProfesoriId;
 
     @FXML
-    private TableColumn<Orari, Integer> colSallaId;
+    private TableColumn<OrariRecordDto, String> colProfessorFirstName;
 
     @FXML
-    private TableColumn<Orari, Integer> colTimeSlotId;
+    private TableColumn<OrariRecordDto, String> colProfessorLastName;
 
     @FXML
-    private TableColumn<Orari, String> colStartTime;
+    private TableColumn<OrariRecordDto, Integer> colLendaId;
 
     @FXML
-    private TableColumn<Orari, String> colEndTime;
+    private TableColumn<OrariRecordDto, String> colLendaName;
 
     @FXML
-    private TableColumn<Orari, String> colDayOfWeek;
+    private TableColumn<OrariRecordDto, Integer> colSallaId;
 
     @FXML
-    private TableColumn<Orari, Integer> colCapacity;
+    private TableColumn<OrariRecordDto, String> colSallaName;
+
+    @FXML
+    private TableColumn<OrariRecordDto, Integer> colTimeSlotId;
+
+    @FXML
+    private TableColumn<OrariRecordDto, String> colDayOfWeek;
+
+    @FXML
+    private TableColumn<OrariRecordDto, String> colStartTime;
+
+    @FXML
+    private TableColumn<OrariRecordDto, String> colEndTime;
+
+    @FXML
+    private TableColumn<OrariRecordDto, Integer> colCapacity;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Link TableColumn with Orari properties
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colFakultetiId.setCellValueFactory(new PropertyValueFactory<>("fakultetiId"));
-        colProfesoriId.setCellValueFactory(new PropertyValueFactory<>("profesoriId"));
-        colLendaId.setCellValueFactory(new PropertyValueFactory<>("lendaId"));
-        colSallaId.setCellValueFactory(new PropertyValueFactory<>("sallaId"));
-        colTimeSlotId.setCellValueFactory(new PropertyValueFactory<>("timeSlotId"));
-        colStartTime.setCellValueFactory(new PropertyValueFactory<>("startTime"));
-        colEndTime.setCellValueFactory(new PropertyValueFactory<>("endTime"));
-        colDayOfWeek.setCellValueFactory(new PropertyValueFactory<>("dayOfWeek"));
+        // Link TableColumn with OrariRecordDto properties
+        colId.setCellValueFactory(new PropertyValueFactory<>("orari_id"));
+        colFakultetiId.setCellValueFactory(new PropertyValueFactory<>("fakulteti_id"));
+        //colFacultyName.setCellValueFactory(new PropertyValueFactory<>("faculty_name"));
+        colProfesoriId.setCellValueFactory(new PropertyValueFactory<>("profesori_id"));
+       // colProfessorFirstName.setCellValueFactory(new PropertyValueFactory<>("professor_firstName"));
+        //colProfessorLastName.setCellValueFactory(new PropertyValueFactory<>("professor_lastName"));
+        colLendaId.setCellValueFactory(new PropertyValueFactory<>("lenda_id"));
+//        colLendaName.setCellValueFactory(new PropertyValueFactory<>("lenda_name"));
+        colSallaId.setCellValueFactory(new PropertyValueFactory<>("salla_id"));
+       // colSallaName.setCellValueFactory(new PropertyValueFactory<>("salla_name"));
+        colTimeSlotId.setCellValueFactory(new PropertyValueFactory<>("time_slot_id"));
+        colDayOfWeek.setCellValueFactory(new PropertyValueFactory<>("day_of_week"));
+        colStartTime.setCellValueFactory(new PropertyValueFactory<>("start_time"));
+        colEndTime.setCellValueFactory(new PropertyValueFactory<>("end_time"));
         colCapacity.setCellValueFactory(new PropertyValueFactory<>("capacity"));
 
         // Fetch data from the database
-        fetchDataFromDatabase(Navigator.ALL);
+        try {
+            fetchDataFromDatabase(Navigator.ALL);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void fetchDataFromDatabase(String day) {
         try {
             Connection conn = DBConnector.getConnection();
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT id, fakulteti_id, profesori_id, lenda_id, salla_id, time_slot_id, start_time, end_time, day_of_week, capacity FROM Orari " + day);
-
+            ResultSet rs = stmt.executeQuery(
+                    "SELECT * FROM orari_details " + day
+            );
             TableView.getItems().clear(); // Clear existing items before adding new ones
 
             while (rs.next()) {
                 OrariRecordDto recordDto = new OrariRecordDto(
-                        rs.getInt("id"),
+                        rs.getInt("orari_id"),
                         rs.getInt("fakulteti_id"),
                         rs.getInt("profesori_id"),
                         rs.getInt("lenda_id"),
                         rs.getInt("salla_id"),
                         rs.getInt("time_slot_id"),
-                        rs.getTime("start_time"),
-                        rs.getTime("end_time"),
                         rs.getString("day_of_week"),
+                        rs.getString("start_time"),
+                        rs.getString("end_time"),
                         rs.getInt("capacity")
                 );
-
                 TableView.getItems().add(recordDto);
             }
-
 
             rs.close();
             stmt.close();
@@ -99,6 +121,5 @@ public class OrariTableViewController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-}
-
+    }
 }

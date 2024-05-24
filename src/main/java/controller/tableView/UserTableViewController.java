@@ -56,7 +56,7 @@ public class UserTableViewController implements Initializable {
     }
 
     public void fetchDataFromDatabase() {
-        String query = "SELECT id, firstName, lastName, email, user_type FROM users WHERE is_approved is null";
+        String query = "SELECT id, firstName, lastName, email, user_type FROM users WHERE is_approved is false";
         try (Connection connection = DBConnector.getConnection();
              PreparedStatement statement = connection.prepareStatement(query);
              ResultSet resultSet = statement.executeQuery()) {

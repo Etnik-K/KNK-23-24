@@ -1,52 +1,67 @@
 package model.dto;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.TableView;
-import model.Orari;
-import model.User;
-import service.DBConnector;
+public class OrariRecordDto {
+    private int orari_id;
+    private int fakulteti_id;
+    private int profesori_id;
+    private int lenda_id;
+    private int salla_id;
+    private int time_slot_id;
+    private String day_of_week;
+    private String start_time;
+    private String end_time;
+    private int capacity;
 
-import java.sql.*;
-
-public class OrariRecordDto extends Orari {
-    @FXML
-    private javafx.scene.control.TableView<Orari> TableView;
-    public OrariRecordDto(int id, int fakulteti_id, int profesori_id, int lenda_id, int salla_id, int time_slot_id, Time start_time, Time end_time, String day_of_week, int capacity) {
-        super(id, fakulteti_id, profesori_id, lenda_id, salla_id, time_slot_id, start_time, end_time, day_of_week, capacity);
+    public OrariRecordDto(int orari_id, int fakulteti_id, int profesori_id, int lenda_id, int salla_id, int time_slot_id, String day_of_week, String start_time, String end_time, int capacity) {
+        this.orari_id = orari_id;
+        this.fakulteti_id = fakulteti_id;
+        this.profesori_id = profesori_id;
+        this.lenda_id = lenda_id;
+        this.salla_id = salla_id;
+        this.time_slot_id = time_slot_id;
+        this.day_of_week = day_of_week;
+        this.start_time = start_time;
+        this.end_time = end_time;
+        this.capacity = capacity;
     }
 
+    public int getOrari_id() {
+        return orari_id;
+    }
 
-    // In the ProfessorController class
-    @FXML
-    private void handleView(ActionEvent ae) {
-        try {
-            Connection conn = DBConnector.getConnection();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT id, fakulteti_id, profesori_id, lenda_id, salla_id, time_slot_id, start_time, end_time, day_of_week, capacity FROM Orari");
+    public int getFakulteti_id() {
+        return fakulteti_id;
+    }
 
-            TableView.getItems().clear(); // Clear existing items before adding new ones
+    public int getProfesori_id() {
+        return profesori_id;
+    }
 
-            while (rs.next()) {
-                // Create an instance of the OrariRecordDto class and add it to the TableView
-                TableView.getItems().add(new OrariRecordDto(
-                        rs.getInt("id"),
-                        rs.getInt("fakulteti_id"),
-                        rs.getInt("profesori_id"),
-                        rs.getInt("lenda_id"),
-                        rs.getInt("salla_id"),
-                        rs.getInt("time_slot_id"),
-                        rs.getTime("start_time"),
-                        rs.getTime("end_time"),
-                        rs.getString("day_of_week"),
-                        rs.getInt("capacity")
-                ));
-            }
+    public int getLenda_id() {
+        return lenda_id;
+    }
 
-            rs.close();
-            stmt.close();
-            DBConnector.closeConnection(conn);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }}
+    public int getSalla_id() {
+        return salla_id;
+    }
+
+    public int getTime_slot_id() {
+        return time_slot_id;
+    }
+
+    public String getDay_of_week() {
+        return day_of_week;
+    }
+
+    public String getStart_time() {
+        return start_time;
+    }
+
+    public String getEnd_time() {
+        return end_time;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+}

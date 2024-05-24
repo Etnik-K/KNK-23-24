@@ -14,10 +14,14 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ececec;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
    <children>
       <TextField fx:id="txtEmail" layoutX="391.0" layoutY="181.0" promptText="Enter your email..." style="-fx-background-color: TRANSPARENT; -fx-border-color: #84160d; -fx-border-width: 0PX 0PX 1PX 0PX;" />
-      <PasswordField fx:id="pwdPassword" layoutX="391.0" layoutY="220.0" promptText="Enter your password..." style="-fx-background-color: TRANSPARENT; -fx-border-color: #84160d; -fx-border-width: 0px 0px 1px 0px;">
+      <PasswordField fx:id="pwdPassword" layoutX="391.0" layoutY="220.0" promptText="Enter your password..."
+                     style="-fx-background-color: TRANSPARENT; -fx-border-color: #84160d; -fx-border-width: 0px 0px 1px 0px;"
+                     onKeyPressed="#loginEnter">
          <font>
             <Font name="Microsoft Sans Serif" size="12.0" />
-         </font></PasswordField>
+         </font>
+      </PasswordField>
+
       <Label fx:id="lblEmail" layoutX="352.0" layoutY="185.0" text="\%lblEmail" />
       <Label fx:id="lblPassword" layoutX="331.0" layoutY="224.0" text="\%lblPassword" />
       <Button fx:id="btnlogin" layoutX="391.0" layoutY="257.0" mnemonicParsing="false" onAction="#handleLoginClick" style="-fx-background-color: #84160d;" text="\%btnlogin" textFill="WHITE" />
