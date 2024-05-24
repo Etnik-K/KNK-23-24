@@ -29,7 +29,7 @@ public class Navigator {
     ;
 
     public final static String ALL = "";
-    public final static String MONDAY = "WHERE day_of_week='Monday' ";
+    public final static String MONDAY = "WHERE day_of_week = 'Monday'";
     public final static String TUESDAY = "WHERE day_of_week='Tuesday' ";
     public final static String WEDNESDAY = "WHERE day_of_week='Wednesday' ";
     public final static String THURSDAY = "WHERE day_of_week='Thursday' ";

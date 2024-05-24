@@ -4,10 +4,14 @@ import app.Navigator;
 import app.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import service.UserService;
 
 import java.io.IOException;
@@ -129,5 +133,25 @@ public class AdminDashboardController implements Initializable {
     @FXML
     private void handleDeny(ActionEvent actionEvent) {
         userService.handleDeny(actionEvent);
+    }
+    @FXML
+    public void handleHelp(ActionEvent actionEvent) {
+        // Load the FXML file for the help popup
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/admin_help.fxml"));
+        Parent root;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        // Create a new stage for the help popup
+        Stage helpStage = new Stage();
+        helpStage.setTitle("Help");
+        helpStage.setScene(new Scene(root));
+
+        // Show the help popup stage
+        helpStage.show();
     }
 }
