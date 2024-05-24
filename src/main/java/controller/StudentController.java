@@ -5,16 +5,21 @@ import app.Navigator;
 import app.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import model.Orari;
 import model.dto.OrariRecordDto;
 import service.DBConnector;
 import service.UserService;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -102,5 +107,26 @@ public class StudentController implements Initializable {
         userService.handleLanguageClick();
         userService.updateText(Locale.getDefault(), btnMonday, btnTuesday, btnWednesday, btnThursday, btnFriday);
 
+    }
+
+    @FXML
+    public void handleHelp(ActionEvent actionEvent) {
+        // Load the FXML file for the help popup
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/student_help.fxml"));
+        Parent root;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        // Create a new stage for the help popup
+        Stage helpStage = new Stage();
+        helpStage.setTitle("Help");
+        helpStage.setScene(new Scene(root));
+
+        // Show the help popup stage
+        helpStage.show();
     }
 }

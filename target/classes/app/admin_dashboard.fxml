@@ -72,5 +72,6 @@
       </ImageView>
       <Button fx:id="btnApprove" layoutX="15.0" layoutY="257.0" mnemonicParsing="false" onAction="#handleApprove" text="Approve" />
       <Button fx:id="btnDeny" layoutX="15.0" layoutY="302.0" mnemonicParsing="false" onAction="#handleDeny" text="Deny" />
+      <Button layoutX="519.0" layoutY="18.0" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
    </children>
 </AnchorPane>
