@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="249.0" prefWidth="416.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.popups.PFLController">
+   <children>
+      <Text fx:id="txtDrejtimiL" layoutX="80.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FakultetiName" />
+      <Text fx:id="txtLendaL" layoutX="86.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LendaName" />
+      <TextField fx:id="txtDrejtimi" layoutX="162.0" layoutY="86.0" promptText="Drejtimi" />
+      <TextField fx:id="txtLenda" layoutX="162.0" layoutY="131.0" promptText="Lenda" />
+      <Button layoutX="107.0" layoutY="182.0" mnemonicParsing="false" onAction="#handleSave" text="Save" />
+      <Button layoutX="211.0" layoutY="182.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
+   </children>
+</AnchorPane>

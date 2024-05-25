@@ -1,16 +1,25 @@
 package controller.tableView;
 
+import app.Navigator;
+import app.SessionManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.User;
 import service.DBConnector;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,7 +30,7 @@ import java.util.ResourceBundle;
 public class UserTableViewController implements Initializable {
 
     @FXML
-    private TableView<User> TableView;
+    TableView<User> TableView;
 
     @FXML
     private TableColumn<User, Integer> idColumn;
@@ -57,9 +66,10 @@ public class UserTableViewController implements Initializable {
 
     public void fetchDataFromDatabase() {
         String query = "SELECT id, firstName, lastName, email, user_type FROM users WHERE is_approved is false";
-        try (Connection connection = DBConnector.getConnection();
+        try (Connection connection = DBConnector.getConnection()){
+
              PreparedStatement statement = connection.prepareStatement(query);
-             ResultSet resultSet = statement.executeQuery()) {
+             ResultSet resultSet = statement.executeQuery();
             ObservableList<User> userList = FXCollections.observableArrayList();
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
@@ -68,34 +78,86 @@ public class UserTableViewController implements Initializable {
                 String email = resultSet.getString("email");
                 String user_type = resultSet.getString("user_type");
 
-                userList.add(new User(id, firstName, lastName, email, null, null, user_type, null));
+                userList.add(new User(id, firstName, lastName, email, null, null, user_type, false));
+                TableView.setItems(userList);
             }
-            TableView.setItems(userList);
+
         } catch (SQLException e) {
+            System.out.println("An SQL exception occurred: " + e.getMessage());
             e.printStackTrace();
         }
     }
-
-    @FXML
     public void handleApprove(ActionEvent actionEvent) {
         User selectedUser = TableView.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
-            String queryUpdate = "UPDATE users SET is_approved = ? WHERE id = ?";
-            try (Connection connection = DBConnector.getConnection();
-                 PreparedStatement updateStatement = connection.prepareStatement(queryUpdate)) {
+            String queryUpdateUser = "UPDATE users SET is_approved = ? WHERE id = ?";
+            String queryUpdateProfessor = "UPDATE profesor SET is_approved = ? WHERE id = ?";
+            try (Connection connection = DBConnector.getConnection()) {
+                // Update users table
+                try (PreparedStatement updateUserStatement = connection.prepareStatement(queryUpdateUser)) {
+                    updateUserStatement.setBoolean(1, true);
+                    updateUserStatement.setInt(2, selectedUser.getId());
+                    updateUserStatement.executeUpdate();
+                }
 
-                // Set parameters for update statement
-                updateStatement.setBoolean(1, true);
-                updateStatement.setInt(2, selectedUser.getId());
-                updateStatement.executeUpdate();
+                // Update profesor table
+                try (PreparedStatement updateProfessorStatement = connection.prepareStatement(queryUpdateProfessor)) {
+                    updateProfessorStatement.setBoolean(1, true);
+                    updateProfessorStatement.setInt(2, selectedUser.getId());
+                    updateProfessorStatement.executeUpdate();
+                }
 
-                // Refresh the table view
-                fetchDataFromDatabase();
+                SessionManager.setUser(selectedUser);
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Navigator.PFL));
+                    Parent root = fxmlLoader.load();
+                    Stage popupStage = new Stage();
+                    popupStage.initModality(Modality.APPLICATION_MODAL);
+                    popupStage.setTitle("Approval");
+
+                    Scene scene = new Scene(root);
+                    popupStage.setScene(scene);
+                    popupStage.showAndWait();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    // Optionally, show a user-friendly error message
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
+                // Optionally, show a user-friendly error message
             }
+//            fetchDataFromDatabase();
         }
     }
+    public void handleSave(TextField txtDrejtimi, TextField txtLenda) {
+        System.out.println("Hapi 1");
+        User selectedUser = SessionManager.getUser();
+        int faculty_id = Integer.parseInt(txtDrejtimi.getText());
+        int lenda_id = Integer.parseInt(txtLenda.getText());
+
+
+        String queryUpdateProfessor = "UPDATE profesor SET faculty_id = ?, lenda_id = ? WHERE id = ?";
+        System.out.println("Hapi 2");
+        try (Connection connection = DBConnector.getConnection();
+             PreparedStatement updateProfessorStatement = connection.prepareStatement(queryUpdateProfessor)) {
+
+            updateProfessorStatement.setInt(1, faculty_id);
+            updateProfessorStatement.setInt(2, lenda_id);
+            updateProfessorStatement.setInt(3, selectedUser.getId());
+            updateProfessorStatement.executeUpdate();
+
+            // Close the pop-up window
+            Stage stage = (Stage) txtDrejtimi.getScene().getWindow();
+            stage.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println(e);
+        }
+        System.out.println("Hapi 3");
+        fetchDataFromDatabase();
+    }
+
 
     @FXML
     public void handleDeny(ActionEvent actionEvent) {
@@ -106,7 +168,7 @@ public class UserTableViewController implements Initializable {
                  PreparedStatement updateStatement = connection.prepareStatement(queryUpdate)) {
 
                 // Set parameters for update statement
-                updateStatement.setBoolean(1, false);
+                updateStatement.setBoolean(1, true);
                 updateStatement.setInt(2, selectedUser.getId());
                 updateStatement.executeUpdate();
 
