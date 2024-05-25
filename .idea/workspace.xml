@@ -4,25 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="48056ede-ba49-4b85-90a7-1bf3cdf33a5f" name="Changes" comment="fix">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/popups/PFLController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/app/pfl.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/app/pfl.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/controller/popups/PFLController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/337de883-df44-42cc-8fae-3d0ac252f5c3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/337de883-df44-42cc-8fae-3d0ac252f5c3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/337de883-df44-42cc-8fae-3d0ac252f5c3/storage_v2/_src_/schema/knk2024.aCDr3Q.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/337de883-df44-42cc-8fae-3d0ac252f5c3/storage_v2/_src_/schema/knk2024.aCDr3Q.zip" afterDir="false" />
+    <list default="true" id="48056ede-ba49-4b85-90a7-1bf3cdf33a5f" name="Changes" comment="check reset">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DBforKNK.sql" beforeDir="false" afterPath="$PROJECT_DIR$/DBforKNK.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/Navigator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Navigator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/SessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/SessionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AdminDashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AdminDashboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/tableView/UserTableViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/tableView/UserTableViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/DatabaseUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/DatabaseUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/Navigator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/Navigator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/AdminDashboardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/AdminDashboardController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/tableView/UserTableViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/tableView/UserTableViewController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +21,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -76,7 +64,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Merging main",
+    "git-widget-placeholder": "master",
     "jdk.selected.JAVA_MODULE": "openjdk-21",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Adea/IdeaProjects/KNK-23-24",
@@ -103,9 +91,6 @@
       <recent name="C:\Users\Adea\IdeaProjects\KNK-23-24\src\main\resources" />
       <recent name="C:\Users\Adea\IdeaProjects\KNK-23-24\src\main\java\app\Images" />
       <recent name="C:\Users\Adea\IdeaProjects\KNK-23-24\src\main\resources\images" />
-    </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="app" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
@@ -311,7 +296,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715639589845</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="check reset">
+      <option name="closed" value="true" />
+      <created>1716646943905</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1716646943905</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -341,6 +334,7 @@
     <MESSAGE value="fixed something" />
     <MESSAGE value="add classes + fix" />
     <MESSAGE value="fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+    <MESSAGE value="check reset" />
+    <option name="LAST_COMMIT_MESSAGE" value="check reset" />
   </component>
 </project>
