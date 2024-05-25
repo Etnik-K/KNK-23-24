@@ -55,7 +55,7 @@ public class AdminDashboardController implements Initializable {
     }
 
     @FXML
-    private void handleLogOut(MouseEvent me) {
+    private void handleLogOut(MouseEvent me) throws IOException {
         userService.handleLogOut();
         Navigator.navigate(me, Navigator.LOGIN_PAGE, "Login");
     }
