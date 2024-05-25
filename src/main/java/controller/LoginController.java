@@ -4,18 +4,22 @@ import app.Navigator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import model.User;
 import model.dto.LoginUserDto;
 import service.UserService;
 import app.SessionManager;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Locale;
@@ -45,6 +49,7 @@ public class LoginController implements Initializable {
     @FXML
     private Text txtLoginForInfo;
     private final UserService userService = new UserService();
+    private Stage stage;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -53,7 +58,7 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void handleLoginClick(ActionEvent ae) throws SQLException {
+    private void handleLoginClick(ActionEvent ae) throws SQLException, IOException {
         String email = txtEmail.getText().trim();
         String password = pwdPassword.getText().trim();
         userService.handleLoginClick(ae, email, password);
@@ -66,7 +71,7 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    public void handleCreateAccountClick(MouseEvent me){
+    public void handleCreateAccountClick(MouseEvent me) throws IOException {
         UserService userService = new UserService();
         userService.handleCreateAccount(me);
     }
@@ -78,6 +83,22 @@ public class LoginController implements Initializable {
     }
 
     public void loginEnter(KeyEvent keyEvent) {
+    }
+
+    @FXML
+    public void initKeyActions(Scene scene, Stage stage) {
+        this.stage = stage;
+        scene.setOnKeyPressed(keyAction -> {
+            if (keyAction.getCode() == KeyCode.ENTER) {
+                try {
+                    handleLoginClick(null);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
     }
 }
 

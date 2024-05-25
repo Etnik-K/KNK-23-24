@@ -231,7 +231,7 @@ public class UserService {
         pwdPassword.clear();
     }
 
-    public void handleCreateAccount(MouseEvent me) {
+    public void handleCreateAccount(MouseEvent me) throws IOException {
         Navigator.navigate(me, Navigator.CREATE_ACCOUNT_PAGE, "SignUP");
     }
 
@@ -262,7 +262,7 @@ public class UserService {
         txtLoginForInfo.setText(bundle.getString("txtLoginForInfo"));
         lblCreateAccount.setText(bundle.getString("lblCreateAccount"));
     }
-    public boolean handleLoginClick(ActionEvent ae, String email, String password) throws SQLException {
+    public boolean handleLoginClick(ActionEvent ae, String email, String password) throws SQLException, IOException {
         LoginUserDto loginUserData = new LoginUserDto(email, password);
 
         boolean isLogin = login(loginUserData);

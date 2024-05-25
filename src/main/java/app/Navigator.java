@@ -1,5 +1,6 @@
 package app;
 
+import controller.LoginController;
 import controller.tableView.OrariTableViewController;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
@@ -37,31 +38,30 @@ public class Navigator {
     public final static String FRIDAY = "WHERE day_of_week='Friday' ";
 
 
-    public static void navigate(Stage stage, String page, String tittle){
-        FXMLLoader loader = new FXMLLoader(
-                Navigator.class.getResource(page)
-        );
+    public static void navigate(Stage stage, String page, String title) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Navigator.class.getResource(page));
+        Scene scene = new Scene(loader.load());
 
-        try{
-            Scene scene = new Scene(loader.load());
-            stage.setScene(scene);
-            stage.setResizable(false);
-            //Ja kem qit logon e UP-se cdo faqeje qe s'osht PopUp
-            Image icon = new Image(UserService.class.getResourceAsStream("/images/University_of_Prishtina_logo.png"));
-            stage.getIcons().add(icon);
-            stage.setTitle(tittle);
-            stage.show();
-        }catch (IOException ioe){
-            ioe.printStackTrace();
+        // Thirr funksionin initKeyActions nëse kontrolluesi është LoginController
+        Object controller = loader.getController();
+        if (controller instanceof LoginController) {
+            ((LoginController) controller).initKeyActions(scene, stage);
         }
 
+        stage.setScene(scene);
+        stage.setResizable(false);
+        // Vendosja e ikonës së Universitetit të Prishtinës
+        Image icon = new Image(UserService.class.getResourceAsStream("/images/University_of_Prishtina_logo.png"));
+        stage.getIcons().add(icon);
+        stage.setTitle(title);
+        stage.show();
     }
 
-    public static void navigate(Event event, String page, String tittle) {
+    public static void navigate(Event event, String page, String title) throws IOException {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
 
-        navigate(stage, page, tittle);
+        navigate(stage, page, title);
     }
     public static void displayResults(String query, Pane resultContainer) {
 
