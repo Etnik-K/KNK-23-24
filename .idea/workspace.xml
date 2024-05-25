@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="48056ede-ba49-4b85-90a7-1bf3cdf33a5f" name="Changes" comment="fixing errors">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/RoomReservationAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/RoomReservationAlgorithm.java" afterDir="false" />
+    <list default="true" id="48056ede-ba49-4b85-90a7-1bf3cdf33a5f" name="Changes" comment="RoomReservationAlgorithm more functionality">
+      <change beforePath="$PROJECT_DIR$/target/classes/app/RoomReservationAlgorithm$Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/RoomReservationAlgorithm$Room.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/RoomReservationAlgorithm.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/RoomReservationAlgorithm.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +153,7 @@
       <workItem from="1715638707222" duration="232000" />
       <workItem from="1715639133461" duration="477000" />
       <workItem from="1715942839764" duration="2455000" />
-      <workItem from="1716654289532" duration="4574000" />
+      <workItem from="1716654289532" duration="4910000" />
     </task>
     <task id="LOCAL-00001" summary="Add Login">
       <option name="closed" value="true" />
@@ -323,7 +323,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716651660154</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="RoomReservationAlgorithm more functionality">
+      <option name="closed" value="true" />
+      <created>1716658976985</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1716658976985</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -356,6 +364,7 @@
     <MESSAGE value="check reset" />
     <MESSAGE value="merge master me main" />
     <MESSAGE value="fixing errors" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixing errors" />
+    <MESSAGE value="RoomReservationAlgorithm more functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="RoomReservationAlgorithm more functionality" />
   </component>
 </project>
