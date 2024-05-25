@@ -15,5 +15,6 @@ public class SessionManager {
     public static void logout() {
         user = null;
     }
+
 }
 
