@@ -62,7 +62,7 @@ public class StudentController implements Initializable {
     private VBox resultContainer;
 
     @FXML
-    private void handleLogOut(MouseEvent me) throws IOException {
+    private void handleLogOut(MouseEvent me) {
         SessionManager.setUser(null);
         Navigator.navigate(me, Navigator.LOGIN_PAGE, "Login");
     }

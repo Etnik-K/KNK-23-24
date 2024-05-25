@@ -231,7 +231,7 @@ public class UserService {
         pwdPassword.clear();
     }
 
-    public void handleCreateAccount(MouseEvent me) throws IOException {
+    public void handleCreateAccount(MouseEvent me) {
         Navigator.navigate(me, Navigator.CREATE_ACCOUNT_PAGE, "SignUP");
     }
 
@@ -262,7 +262,7 @@ public class UserService {
         txtLoginForInfo.setText(bundle.getString("txtLoginForInfo"));
         lblCreateAccount.setText(bundle.getString("lblCreateAccount"));
     }
-    public boolean handleLoginClick(ActionEvent ae, String email, String password, Stage stage) throws SQLException, IOException {
+    public boolean handleLoginClick(ActionEvent ae, String email, String password) throws SQLException {
         LoginUserDto loginUserData = new LoginUserDto(email, password);
 
         boolean isLogin = login(loginUserData);
@@ -270,13 +270,13 @@ public class UserService {
             User user = SessionManager.getUser();
             if (user != null) {
                 if (user.getUserType().equals("professor")) {
-                    Navigator.navigate(stage, Navigator.PROFESSOR_PAGE, "Login");
+                    Navigator.navigate(ae, Navigator.PROFESSOR_PAGE, "Login");
                     System.out.println("Logged in as Professor: " + user.getFirstName() + " " + user.getLastName());
                 } else if (user.getUserType().equals("student")) {
-                    Navigator.navigate(stage, Navigator.STUDENT_PAGE, "StudentView");
+                    Navigator.navigate(ae, Navigator.STUDENT_PAGE, "StudentView");
                     System.out.println("Logged in as Student: " + user.getFirstName() + " " + user.getLastName());
                 } else {
-                    Navigator.navigate(stage, Navigator.ADMIN_DASHBOARD, "AdminView");
+                    Navigator.navigate(ae, Navigator.ADMIN_DASHBOARD, "AdminView");
                     System.out.println("Logged in as Admin");
                 }
                 return true;
@@ -284,18 +284,6 @@ public class UserService {
         }
         return false;
     }
-
-//    public void handleLoginClick(ActionEvent event, String email, String password) throws SQLException {
-//        if (event != null) {
-//            // Vendos kodin për event source nëse është i nevojshëm
-//        }
-//        // Kodi për login verifikimin
-//        if (email.equals("admin") && password.equals("admin")) {
-//            System.out.println("Login sukses!");
-//        } else {
-//            System.out.println("Login dështim!");
-//        }
-//    }
 
     //NewClassController:
     public String getSelectedRole() {

@@ -61,7 +61,7 @@ public class SignUpController implements Initializable {
     @FXML
     private Text txtSignUp;
 
-        UserService userService = new UserService();
+    UserService userService = new UserService();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -71,7 +71,7 @@ public class SignUpController implements Initializable {
 
     @FXML
     private void handleSignUp(ActionEvent ae) throws SQLException, IOException {
-       userService.handleSignUp(ae,txtFirstName, txtLastName, pwdPassword, pwdConfirmPassword);
+        userService.handleSignUp(ae,txtFirstName, txtLastName, pwdPassword, pwdConfirmPassword);
     }
     @FXML
     private void handleCancel(ActionEvent ae) {

@@ -12,7 +12,8 @@ import service.DBConnector;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
-
+//ndryshini i pare
+//i dyti etje etj
 public class OrariTableViewController implements Initializable {
 
     @FXML
@@ -70,12 +71,12 @@ public class OrariTableViewController implements Initializable {
         colFakultetiId.setCellValueFactory(new PropertyValueFactory<>("fakulteti_id"));
         //colFacultyName.setCellValueFactory(new PropertyValueFactory<>("faculty_name"));
         colProfesoriId.setCellValueFactory(new PropertyValueFactory<>("profesori_id"));
-       // colProfessorFirstName.setCellValueFactory(new PropertyValueFactory<>("professor_firstName"));
+        // colProfessorFirstName.setCellValueFactory(new PropertyValueFactory<>("professor_firstName"));
         //colProfessorLastName.setCellValueFactory(new PropertyValueFactory<>("professor_lastName"));
         colLendaId.setCellValueFactory(new PropertyValueFactory<>("lenda_id"));
 //        colLendaName.setCellValueFactory(new PropertyValueFactory<>("lenda_name"));
         colSallaId.setCellValueFactory(new PropertyValueFactory<>("salla_id"));
-       // colSallaName.setCellValueFactory(new PropertyValueFactory<>("salla_name"));
+        // colSallaName.setCellValueFactory(new PropertyValueFactory<>("salla_name"));
         colTimeSlotId.setCellValueFactory(new PropertyValueFactory<>("time_slot_id"));
         colDayOfWeek.setCellValueFactory(new PropertyValueFactory<>("day_of_week"));
         colStartTime.setCellValueFactory(new PropertyValueFactory<>("start_time"));

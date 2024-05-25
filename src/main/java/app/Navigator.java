@@ -1,6 +1,5 @@
 package app;
 
-import controller.LoginController;
 import controller.tableView.OrariTableViewController;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
@@ -27,6 +26,8 @@ public class Navigator {
     public final static String PROFESSOR_PAGE="professor.fxml";
     public final static String ADMIN_ADD = "/app/admin_add.fxml";
     public final static String NEW_CLASS ="/app/new_class.fxml";
+    public final static String PFL ="/app/pfl.fxml";
+
 
     public final static String ALL = "";
     public final static String MONDAY = "WHERE day_of_week = 'Monday'";
@@ -35,34 +36,49 @@ public class Navigator {
     public final static String THURSDAY = "WHERE day_of_week='Thursday' ";
     public final static String FRIDAY = "WHERE day_of_week='Friday' ";
 
-    public static void navigate(Stage stage, String page, String title) throws IOException {
-        FXMLLoader loader = new FXMLLoader(Navigator.class.getResource(page));
-        Scene scene = new Scene(loader.load());
 
-        // Thirr funksionin initKeyActions nëse kontrolluesi është LoginController
-        Object controller = loader.getController();
-        if (controller instanceof LoginController) {
-            ((LoginController) controller).initKeyActions(scene, stage);
+    public static void navigate(Stage stage, String page, String tittle){
+        FXMLLoader loader = new FXMLLoader(
+                Navigator.class.getResource(page)
+        );
+
+        try{
+            Scene scene = new Scene(loader.load());
+            stage.setScene(scene);
+            stage.setResizable(false);
+            //Ja kem qit logon e UP-se cdo faqeje qe s'osht PopUp
+            Image icon = new Image(UserService.class.getResourceAsStream("/images/University_of_Prishtina_logo.png"));
+            stage.getIcons().add(icon);
+            stage.setTitle(tittle);
+            stage.show();
+        }catch (IOException ioe){
+            ioe.printStackTrace();
         }
 
-        stage.setScene(scene);
-        stage.setResizable(false);
-        // Vendosja e ikonës së Universitetit të Prishtinës
-        Image icon = new Image(UserService.class.getResourceAsStream("/images/University_of_Prishtina_logo.png"));
-        stage.getIcons().add(icon);
-        stage.setTitle(title);
-        stage.show();
     }
 
-    public static void navigate(Event event, String page, String title) throws IOException {
+    public static void navigate(Event event, String page, String tittle) {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
 
-        navigate(stage, page, title);
+        navigate(stage, page, tittle);
     }
-
     public static void displayResults(String query, Pane resultContainer) {
-        // Kjo pjesë e kodit është për testim dhe duhet të modifikohet për përdorim real
+
+        //Keta e fusim ne funksion masi ti bojm tabelat me orare
+        // try (Connection connection = DBConnector.getConnection();
+//             PreparedStatement statement = connection.prepareStatement(query);
+//             ResultSet resultSet = statement.executeQuery()) {
+//
+//            resultContainer.getChildren().clear();
+//            while (resultSet.next()) {
+//                String resultText = resultSet.getString("PROVE PROVE"); // Replace column_name
+//                resultContainer.getChildren().add(new Label(resultText));
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+
         resultContainer.getChildren().clear();
         resultContainer.getChildren().add(new Label(query));
     }
@@ -76,13 +92,13 @@ public class Navigator {
         }
     }
 
-    public static String changeLanguage(String language) {
-        Locale locale = Locale.of(language);
+    public static String changeLanguage(String language){
+        Locale locale = Locale.of("language");
         Locale.setDefault(locale);
         return language;
     }
+    private static Pane loadPane(String form){
 
-    private static Pane loadPane(String form) {
         ResourceBundle bundle = ResourceBundle.getBundle(
                 "translations.content", Locale.getDefault()
         );
@@ -91,25 +107,29 @@ public class Navigator {
         );
         try {
             return loader.load();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
+        }catch (IOException ioe){
             return null;
         }
     }
-
-    public void displayOrariTableView(VBox resultContainer, String day) {
+    public void displayOrariTableView(VBox resultContainer, String day){
         try {
+            // Load UserTableView.fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/orari_table_view.fxml"));
+            System.out.println("KA MRRI QETU");
             Parent userTable = loader.load();
 
+            // Get the controller from the loader
             OrariTableViewController controller = loader.getController();
 
+            // Insert UserTableView into the pane
             resultContainer.getChildren().clear();
             resultContainer.getChildren().add(userTable);
 
+            // Fetch data from the database (if needed)
             controller.fetchDataFromDatabase(day);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 }
