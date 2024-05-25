@@ -99,17 +99,31 @@ public class RoomReservationAlgorithm {
             List<Room> availableRooms = queryAvailableRooms(conn, numStudents, dayOfWeek, startTime, endTime);
             Room selectedRoom = selectRoom(availableRooms, numStudents);
             if (selectedRoom != null) {
-                String insertQuery = "INSERT INTO Orari (salla_id, time_slot_id, start_time, end_time, day_of_week, capacity) " +
-                        "VALUES (?, ?, ?, ?, ?, ?)";
-                try (PreparedStatement stmt = conn.prepareStatement(insertQuery)) {
-                    stmt.setInt(1, selectedRoom.getId());
-                    stmt.setInt(2, getTimeSlotId(conn, dayOfWeek, startTime, endTime));
-                    stmt.setTime(3, startTime);
-                    stmt.setTime(4, endTime);
-                    stmt.setString(5, dayOfWeek);
-                    stmt.setInt(6, selectedRoom.getCapacity());
-                    stmt.executeUpdate();
-                    System.out.println("Room reserved: " + selectedRoom.getName());
+                int profesorId = SessionManager.getUser().getId();
+                // Fetch fakulteti_id and lenda_id using profesorId
+                String query = "SELECT faculty_id, lenda_id FROM profesor WHERE id = ?";
+                try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                    stmt.setInt(1, profesorId);
+                    ResultSet rs = stmt.executeQuery();
+                    if (rs.next()) {
+                        int fakultetiId = rs.getInt("faculty_id");
+                        int lendaId = rs.getInt("lenda_id");
+                        String insertQuery = "INSERT INTO Orari (fakulteti_id, profesori_id, lenda_id, salla_id, time_slot_id, start_time, end_time, day_of_week, capacity) " +
+                                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        try (PreparedStatement insertStmt = conn.prepareStatement(insertQuery)) {
+                            insertStmt.setInt(1, fakultetiId);
+                            insertStmt.setInt(2, profesorId);
+                            insertStmt.setInt(3, lendaId);
+                            insertStmt.setInt(4, selectedRoom.getId());
+                            insertStmt.setInt(5, getTimeSlotId(conn, dayOfWeek, startTime, endTime));
+                            insertStmt.setTime(6, startTime);
+                            insertStmt.setTime(7, endTime);
+                            insertStmt.setString(8, dayOfWeek);
+                            insertStmt.setInt(9, selectedRoom.getCapacity());
+                            insertStmt.executeUpdate();
+                            System.out.println("Room reserved: " + selectedRoom.getName());
+                        }
+                    }
                 }
             } else {
                 System.out.println("No room available for the given criteria.");
