@@ -100,16 +100,27 @@ public class UserTableViewController implements Initializable {
                     updateUserStatement.executeUpdate();
                 }
 
-                // Update profesor table
-                try (PreparedStatement updateProfessorStatement = connection.prepareStatement(queryUpdateProfessor)) {
-                    updateProfessorStatement.setBoolean(1, true);
-                    updateProfessorStatement.setInt(2, selectedUser.getId());
-                    updateProfessorStatement.executeUpdate();
+                // Update professor table if the user is a professor
+                if ("professor".equals(selectedUser.getUserType())) {
+                    try (PreparedStatement updateProfessorStatement = connection.prepareStatement(queryUpdateProfessor)) {
+                        updateProfessorStatement.setBoolean(1, true);
+                        updateProfessorStatement.setInt(2, selectedUser.getId());
+                        updateProfessorStatement.executeUpdate();
+                    }
                 }
 
                 SessionManager.setUser(selectedUser);
                 try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Navigator.PFL));
+                    FXMLLoader fxmlLoader;
+                    if ("professor".equals(selectedUser.getUserType())) {
+                        fxmlLoader = new FXMLLoader(getClass().getResource(Navigator.PFL));
+                    } else if ("student".equals(selectedUser.getUserType())) {
+                        fxmlLoader = new FXMLLoader(getClass().getResource(Navigator.STUDENT_F));
+                    } else {
+                        // Handle other user types or show a default FXML
+                        fxmlLoader = new FXMLLoader(getClass().getResource(Navigator.LOGIN_PAGE));
+                    }
+
                     Parent root = fxmlLoader.load();
                     Stage popupStage = new Stage();
                     popupStage.initModality(Modality.APPLICATION_MODAL);
@@ -120,15 +131,13 @@ public class UserTableViewController implements Initializable {
                     popupStage.showAndWait();
                 } catch (IOException e) {
                     e.printStackTrace();
-                    // Optionally, show a user-friendly error message
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
-                // Optionally, show a user-friendly error message
             }
-//            fetchDataFromDatabase();
         }
     }
+
     public void handleSave(TextField txtDrejtimi, TextField txtLenda) {
         System.out.println("Hapi 1");
         User selectedUser = SessionManager.getUser();

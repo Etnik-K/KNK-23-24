@@ -28,6 +28,7 @@ public class Navigator {
     public final static String ADMIN_ADD = "/app/admin_add.fxml";
     public final static String NEW_CLASS ="/app/new_class.fxml";
     public final static String PFL ="/app/pfl.fxml";
+    public final static String STUDENT_F = "/app/student_faculty.fxml" ;
 
 
     public final static String ALL = "";
