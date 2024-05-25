@@ -100,12 +100,15 @@ public class RoomReservationAlgorithm {
             Room selectedRoom = selectRoom(availableRooms, numStudents);
             if (selectedRoom != null) {
                 int profesorId = SessionManager.getUser().getId();
+                System.out.println(profesorId);
                 // Fetch fakulteti_id and lenda_id using profesorId
                 String query = "SELECT faculty_id, lenda_id FROM profesor WHERE id = ?";
                 try (PreparedStatement stmt = conn.prepareStatement(query)) {
                     stmt.setInt(1, profesorId);
                     ResultSet rs = stmt.executeQuery();
+                    System.out.println("ne try eshte");
                     if (rs.next()) {
+                        System.out.println("qetu ka hi");
                         int fakultetiId = rs.getInt("faculty_id");
                         int lendaId = rs.getInt("lenda_id");
                         String insertQuery = "INSERT INTO Orari (fakulteti_id, profesori_id, lenda_id, salla_id, time_slot_id, start_time, end_time, day_of_week, capacity) " +
