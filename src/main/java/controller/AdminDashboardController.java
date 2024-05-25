@@ -137,7 +137,7 @@ public class AdminDashboardController implements Initializable {
     @FXML
     public void handleHelp(ActionEvent actionEvent) {
         // Load the FXML file for the help popup
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/admin_help.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/pfl.fxml"));
         Parent root;
         try {
             root = loader.load();

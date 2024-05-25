@@ -5,13 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="48056ede-ba49-4b85-90a7-1bf3cdf33a5f" name="Changes" comment="fix">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/337de883-df44-42cc-8fae-3d0ac252f5c3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/337de883-df44-42cc-8fae-3d0ac252f5c3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/337de883-df44-42cc-8fae-3d0ac252f5c3/storage_v2/_src_/schema/knk2024.aCDr3Q.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/337de883-df44-42cc-8fae-3d0ac252f5c3/storage_v2/_src_/schema/knk2024.aCDr3Q.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/popups/PFLController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/app/pfl.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DBforKNK.sql" beforeDir="false" afterPath="$PROJECT_DIR$/DBforKNK.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/Navigator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Navigator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AdminDashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AdminDashboardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/tableView/UserTableViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/tableView/UserTableViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/DatabaseUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/DatabaseUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/service/DBConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/DBConnector.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -89,6 +89,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Etnik\Documents\GitHub\KNK-23-24\src\main\resources\app" />
       <recent name="C:\Users\Adea\IdeaProjects\KNK-23-24\src\main\resources" />
       <recent name="C:\Users\Adea\IdeaProjects\KNK-23-24\src\main\java\app\Images" />
       <recent name="C:\Users\Adea\IdeaProjects\KNK-23-24\src\main\resources\images" />

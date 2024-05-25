@@ -26,7 +26,8 @@ public class Navigator {
     public final static String PROFESSOR_PAGE="professor.fxml";
     public final static String ADMIN_ADD = "/app/admin_add.fxml";
     public final static String NEW_CLASS ="/app/new_class.fxml";
-    ;
+    public final static String PFL ="/app/pfl.fxml";
+
 
     public final static String ALL = "";
     public final static String MONDAY = "WHERE day_of_week = 'Monday'";
