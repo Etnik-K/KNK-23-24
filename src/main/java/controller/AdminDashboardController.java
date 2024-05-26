@@ -9,13 +9,19 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import service.DBConnector;
 import service.UserService;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -154,5 +160,70 @@ public class AdminDashboardController implements Initializable {
 
         // Show the help popup stage
         helpStage.show();
+    }
+
+
+
+
+
+
+
+    @FXML
+    private TextField startTimeField;
+
+    @FXML
+    private TextField endTimeField;
+
+    @FXML
+    private TextField sallaField;
+
+    @FXML
+    private TextField ditaField;
+
+    @FXML
+    private Button btnDelete;
+
+    @FXML
+    private Button btnDeletPopup;
+    @FXML
+    private AnchorPane anchor;
+
+    @FXML
+    void handleDelete(ActionEvent event) {
+        // Get the values from the text fields
+        String startTimeText = startTimeField.getText();
+        String endTimeText = endTimeField.getText();
+        String sallaText = sallaField.getText();
+        String ditaText = ditaField.getText();
+
+        // Execute the delete query
+        try (Connection connection = DBConnector.getConnection();
+             PreparedStatement statement = connection.prepareStatement(
+                     "DELETE FROM Orari WHERE start_time = ? AND end_time = ? AND salla_id = ? AND day_of_week = ?")) {
+
+            // Set parameters for the prepared statement
+            statement.setString(1, startTimeText);
+            statement.setString(2, endTimeText);
+            statement.setString(3, sallaText);
+            statement.setString(4, ditaText);
+
+            // Execute the delete statement
+            statement.executeUpdate();
+            anchor.setVisible(false);
+
+
+            // Refresh the data in your table view or UI component
+            // You may call a method in your main controller to refresh the UI
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle any SQL exception
+        }
+    }
+
+    @FXML
+    private void handleDeletePopup() {
+        // Show the AnchorPane or implement your logic here
+        anchor.setVisible(true);
+        System.out.println("Delete popup button clicked");
     }
 }

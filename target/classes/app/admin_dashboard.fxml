@@ -71,7 +71,17 @@
          </image>
       </ImageView>
       <Button fx:id="btnApprove" layoutX="15.0" layoutY="257.0" mnemonicParsing="false" onAction="#handleApprove" text="Approve" />
-      <Button fx:id="btnDeny" layoutX="15.0" layoutY="302.0" mnemonicParsing="false" onAction="#handleDeny" text="Deny" />
+      <Button fx:id="btnDeny" layoutX="15.0" layoutY="302.0" mnemonicParsing="false" onAction="#handleDeny" prefHeight="26.0" prefWidth="60.0" text="Deny" />
       <Button layoutX="519.0" layoutY="18.0" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+      <AnchorPane fx:id="anchor" layoutX="129.0" layoutY="203.0" prefHeight="236.0" prefWidth="200.0" visible="false">
+         <children>
+            <TextField fx:id="startTimeField" layoutX="25.0" layoutY="28.0" promptText="Start Time" />
+            <TextField fx:id="endTimeField" layoutX="25.0" layoutY="62.0" promptText="End Time" />
+            <TextField fx:id="sallaField" layoutX="25.0" layoutY="100.0" promptText="Salla" />
+            <TextField fx:id="ditaField" layoutX="25.0" layoutY="136.0" promptText="Dita" />
+            <Button fx:id="btnDelete" layoutX="74.0" layoutY="184.0" mnemonicParsing="false" onAction="#handleDelete" text="Delete" />
+         </children>
+      </AnchorPane>
+      <Button fx:id="btnDeletPopup" layoutX="14.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleDeletePopup" prefHeight="26.0" prefWidth="60.0" text="Delete" />
    </children>
 </AnchorPane>
