@@ -1,5 +1,7 @@
 package repository;
 
+import app.Navigator;
+import app.SessionManager;
 import model.User;
 import model.dto.CreateUserDto;
 import service.DBConnector;
@@ -71,5 +73,35 @@ public class UserRepository {
             e.printStackTrace();
             return null;
         }
+    }
+    public static int loadUserFacultyId() {
+        User currentUser = SessionManager.getUser();
+        String query;
+        if (currentUser == null) {
+            return 0;
+        }
+
+        int userId = currentUser.getId();
+        try (Connection conn = DBConnector.getConnection()) {
+            if(currentUser.getUserType().equals("student")){
+            query = "SELECT faculty_id FROM users WHERE id = ?";
+            }
+            else{
+                query = "SELECT faculty_id FROM profesor WHERE id = ?";
+            }
+            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                stmt.setInt(1, userId);
+                try (ResultSet rs = stmt.executeQuery()) {
+                    if (rs.next()) {
+                        int facultyId = rs.getInt("faculty_id");
+                        Navigator.Faculty_id = facultyId;
+                        SessionManager.setUser(currentUser); // Update user in session with facultyId
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Navigator.Faculty_id;
     }
 }

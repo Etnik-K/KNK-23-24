@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import model.User;
 import service.UserService;
 
 import java.io.IOException;
@@ -30,14 +31,25 @@ public class Navigator {
     public final static String NEW_CLASS ="/app/new_class.fxml";
     public final static String PFL ="/app/pfl.fxml";
     public final static String STUDENT_F = "/app/student_faculty.fxml" ;
+    public static int Faculty_id;
+//    public static String ALL = "Where fakulteti_id = '";
+//    public  static String MONDAY = "WHERE day_of_week = 'Monday' and fakulteti_id= '";
+//    public  static String TUESDAY = "WHERE day_of_week='Tuesday' and fakulteti_id= '";
+//    public  static String WEDNESDAY = "WHERE day_of_week='Wednesday' and fakulteti_id= '";
+//    public  static String THURSDAY = "WHERE day_of_week='Thursday' and fakulteti_id= '";
+//    public  static String FRIDAY = "WHERE day_of_week='Friday' and fakulteti_id= '";
+
+    public static String ALL = "";
+    public  static String MONDAY = "WHERE day_of_week = 'Monday'";
+    public  static String TUESDAY = "WHERE day_of_week='Tuesday'";
+    public  static String WEDNESDAY = "WHERE day_of_week='Wednesday'";
+    public  static String THURSDAY = "WHERE day_of_week='Thursday'";
+    public  static String FRIDAY = "WHERE day_of_week='Friday'";
 
 
-    public final static String ALL = "";
-    public final static String MONDAY = "WHERE day_of_week = 'Monday'";
-    public final static String TUESDAY = "WHERE day_of_week='Tuesday' ";
-    public final static String WEDNESDAY = "WHERE day_of_week='Wednesday' ";
-    public final static String THURSDAY = "WHERE day_of_week='Thursday' ";
-    public final static String FRIDAY = "WHERE day_of_week='Friday' ";
+
+
+
 
 
     public static void navigate(Stage stage, String page, String title) throws IOException {
