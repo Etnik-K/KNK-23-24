@@ -101,6 +101,7 @@ public class UserTableViewController implements Initializable {
                 }
 
                 // Update professor table if the user is a professor
+                // Update professor table if the user is a professor
                 if ("professor".equals(selectedUser.getUserType())) {
                     try (PreparedStatement updateProfessorStatement = connection.prepareStatement(queryUpdateProfessor)) {
                         updateProfessorStatement.setBoolean(1, true);
