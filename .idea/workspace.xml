@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="48056ede-ba49-4b85-90a7-1bf3cdf33a5f" name="Changes" comment="fix">
+    <list default="true" id="48056ede-ba49-4b85-90a7-1bf3cdf33a5f" name="Changes" comment="add popup to delete class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AdminDashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AdminDashboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/app/admin_dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/app/admin_dashboard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/admin_dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/admin_dashboard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/AdminDashboardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/AdminDashboardController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/Navigator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Navigator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/LoginController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -352,7 +350,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716735035014</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="add popup to delete class">
+      <option name="closed" value="true" />
+      <created>1716748441731</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1716748441731</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -386,6 +392,7 @@
     <MESSAGE value="fixing errors" />
     <MESSAGE value="RoomReservationAlgorithm more functionality" />
     <MESSAGE value="fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+    <MESSAGE value="add popup to delete class" />
+    <option name="LAST_COMMIT_MESSAGE" value="add popup to delete class" />
   </component>
 </project>

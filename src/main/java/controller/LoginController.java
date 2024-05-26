@@ -91,11 +91,10 @@ public class LoginController implements Initializable {
         scene.setOnKeyPressed(keyAction -> {
             if (keyAction.getCode() == KeyCode.ENTER) {
                 try {
-                    handleLoginClick(null);
-                } catch (SQLException e) {
+                    // Krijo një ActionEvent të ri në vend që të kaloni null
+                    handleLoginClick(new ActionEvent(btnlogin, null));
+                } catch (SQLException | IOException e) {
                     e.printStackTrace();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
                 }
             }
         });

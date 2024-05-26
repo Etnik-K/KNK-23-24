@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -62,6 +63,7 @@ public class SignUpController implements Initializable {
     private Text txtSignUp;
 
     UserService userService = new UserService();
+    private Stage stage;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -94,5 +96,20 @@ public class SignUpController implements Initializable {
     @FXML
     public void handleLanguageClick(MouseEvent mouseEvent) {
         userService.handleLanguageClickSignUpPage(mouseEvent, txtSingUpMeInfo, txtThankYou, txtFirstNameL, txtLastNameL, txtPasswordL, txtConfirmPassword, btnSignup, btncancel, txtSignUp);
+    }
+
+    @FXML
+    public void initKeyActions(Scene scene, Stage stage) {
+        this.stage = stage;
+        scene.setOnKeyPressed(keyAction -> {
+            if (keyAction.getCode() == KeyCode.ENTER) {
+                try {
+                    // Krijo një ActionEvent të ri në vend që të kaloni null
+                    handleSignUp(new ActionEvent(txtFirstName, null));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }

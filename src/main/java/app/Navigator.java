@@ -1,6 +1,7 @@
 package app;
 
 import controller.LoginController;
+import controller.SignUpController;
 import controller.tableView.OrariTableViewController;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
@@ -43,10 +44,13 @@ public class Navigator {
         FXMLLoader loader = new FXMLLoader(Navigator.class.getResource(page));
         Scene scene = new Scene(loader.load());
 
-        // Thirr funksionin initKeyActions nëse kontrolluesi është LoginController
+        // Thirr funksionin initKeyActions nëse kontrolluesi është LoginController ose CreateUserController
         Object controller = loader.getController();
         if (controller instanceof LoginController) {
             ((LoginController) controller).initKeyActions(scene, stage);
+        }
+        else if (controller instanceof SignUpController) {
+            ((SignUpController) controller).initKeyActions(scene, stage);
         }
 
         stage.setScene(scene);
@@ -58,10 +62,17 @@ public class Navigator {
         stage.show();
     }
 
-    public static void navigate(Event event, String page, String title) throws IOException {
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
 
+
+    public static void navigate(Event event, String page, String title) throws IOException {
+        Stage stage;
+        if (event != null) {
+            Node node = (Node) event.getSource();
+            stage = (Stage) node.getScene().getWindow();
+        } else {
+            // Nëse event është null, krijoni një Stage të ri ose merrni atë ekzistues
+            stage = new Stage();
+        }
         navigate(stage, page, title);
     }
     public static void displayResults(String query, Pane resultContainer) {
@@ -92,13 +103,13 @@ public class Navigator {
             pane.getChildren().add(formPane);
         }
     }
-////////////////
-public static String changeLanguage(String languageTag) {
-    Locale newLocale = Locale.forLanguageTag(languageTag);
-    Locale.setDefault(newLocale);
-    return newLocale.getLanguage();
-}
- ///////////////////
+    ////////////////
+    public static String changeLanguage(String languageTag) {
+        Locale newLocale = Locale.forLanguageTag(languageTag);
+        Locale.setDefault(newLocale);
+        return newLocale.getLanguage();
+    }
+    ///////////////////
     private static Pane loadPane(String form){
 
         ResourceBundle bundle = ResourceBundle.getBundle(
