@@ -143,23 +143,7 @@ public class AdminDashboardController implements Initializable {
     }
     @FXML
     public void handleHelp(ActionEvent actionEvent) {
-        // Load the FXML file for the help popup
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/pfl.fxml"));
-        Parent root;
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return;
-        }
-
-        // Create a new stage for the help popup
-        Stage helpStage = new Stage();
-        helpStage.setTitle("Help");
-        helpStage.setScene(new Scene(root));
-
-        // Show the help popup stage
-        helpStage.show();
+      userService.handleHelp(Navigator.ADMIN_HELP);
     }
 
 
@@ -190,34 +174,7 @@ public class AdminDashboardController implements Initializable {
 
     @FXML
     void handleDelete(ActionEvent event) {
-        // Get the values from the text fields
-        String startTimeText = startTimeField.getText();
-        String endTimeText = endTimeField.getText();
-        String sallaText = sallaField.getText();
-        String ditaText = ditaField.getText();
-
-        // Execute the delete query
-        try (Connection connection = DBConnector.getConnection();
-             PreparedStatement statement = connection.prepareStatement(
-                     "DELETE FROM Orari WHERE start_time = ? AND end_time = ? AND salla_id = ? AND day_of_week = ?")) {
-
-            // Set parameters for the prepared statement
-            statement.setString(1, startTimeText);
-            statement.setString(2, endTimeText);
-            statement.setString(3, sallaText);
-            statement.setString(4, ditaText);
-
-            // Execute the delete statement
-            statement.executeUpdate();
-            anchor.setVisible(false);
-
-
-            // Refresh the data in your table view or UI component
-            // You may call a method in your main controller to refresh the UI
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Handle any SQL exception
-        }
+       userService.handleDelete(startTimeField,endTimeField, sallaField, ditaField, anchor);
     }
 
     @FXML

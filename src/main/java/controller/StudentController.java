@@ -111,22 +111,6 @@ public class StudentController implements Initializable {
     
     @FXML
     public void handleHelp(ActionEvent actionEvent) {
-        // Load the FXML file for the help popup
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/student_help.fxml"));
-        Parent root;
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return;
-        }
-
-        // Create a new stage for the help popup
-        Stage helpStage = new Stage();
-        helpStage.setTitle("Help");
-        helpStage.setScene(new Scene(root));
-
-        // Show the help popup stage
-        helpStage.show();
+    userService.handleHelp(Navigator.STUDENT_HELP);
     }
 }

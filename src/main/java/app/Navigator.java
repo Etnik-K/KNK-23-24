@@ -30,6 +30,9 @@ public class Navigator {
     public final static String ADMIN_ADD = "/app/admin_add.fxml";
     public final static String NEW_CLASS ="/app/new_class.fxml";
     public final static String PFL ="/app/pfl.fxml";
+    public final static String STUDENT_HELP = "/app/student_help.fxml";
+    public final static String PROFESOR_HELP = "/app/profesor_help.fxml";
+    public final static String ADMIN_HELP = "/app/admin_help.fxml";
     public final static String STUDENT_F = "/app/student_faculty.fxml" ;
     public static int Faculty_id;
 //    public static String ALL = "Where fakulteti_id = '";
