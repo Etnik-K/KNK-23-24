@@ -65,8 +65,9 @@ public class UserTableViewController implements Initializable {
     }
 
     public void fetchDataFromDatabase() {
+        String query = "SELECT id, firstName, lastName, email, user_type FROM users WHERE is_approved is false";
         try (Connection connection = DBConnector.getConnection()){
-            String query = "SELECT id, firstName, lastName, email, user_type FROM users WHERE is_approved is false";
+
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
             ObservableList<User> userList = FXCollections.observableArrayList();
@@ -144,20 +145,20 @@ public class UserTableViewController implements Initializable {
         int lenda_id = Integer.parseInt(txtLenda.getText());
 
 
-
+        String queryUpdateProfessor = "UPDATE profesor SET faculty_id = ?, lenda_id = ? WHERE id = ?";
         System.out.println("Hapi 2");
-        try (Connection connection = DBConnector.getConnection()){
-            String queryUpdateProfessor = "UPDATE profesor SET faculty_id = ?, lenda_id = ? WHERE id = ?";
-             PreparedStatement updateProfessorStatement = connection.prepareStatement(queryUpdateProfessor);
+        try (Connection connection = DBConnector.getConnection();
+             PreparedStatement updateProfessorStatement = connection.prepareStatement(queryUpdateProfessor)) {
 
-                updateProfessorStatement.setInt(1, faculty_id);
-                updateProfessorStatement.setInt(2, lenda_id);
-                updateProfessorStatement.setInt(3, selectedUser.getId());
-                updateProfessorStatement.executeUpdate();
+            updateProfessorStatement.setInt(1, faculty_id);
+            updateProfessorStatement.setInt(2, lenda_id);
+            updateProfessorStatement.setInt(3, selectedUser.getId());
+            updateProfessorStatement.executeUpdate();
 
-                // Close the pop-up window
-                Stage stage = (Stage) txtDrejtimi.getScene().getWindow();
-                stage.close();
+            // Close the pop-up window
+            Stage stage = (Stage) txtDrejtimi.getScene().getWindow();
+            stage.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println(e);
@@ -165,6 +166,7 @@ public class UserTableViewController implements Initializable {
         System.out.println("Hapi 3");
         fetchDataFromDatabase();
     }
+
 
     @FXML
     public void handleDeny(ActionEvent actionEvent) {
