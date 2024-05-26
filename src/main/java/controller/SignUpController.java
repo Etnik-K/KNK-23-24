@@ -93,7 +93,6 @@ public class SignUpController implements Initializable {
 
     @FXML
     public void handleLanguageClick(MouseEvent mouseEvent) {
-        userService.handleLanguageClick();
-        userService.updateText(Locale.getDefault(),txtSingUpMeInfo, txtThankYou, txtFirstNameL, txtLastNameL, txtPasswordL, txtConfirmPassword, btnSignup, btncancel, txtSignUp);
+        userService.handleLanguageClickSignUpPage(mouseEvent, txtSingUpMeInfo, txtThankYou, txtFirstNameL, txtLastNameL, txtPasswordL, txtConfirmPassword, btnSignup, btncancel, txtSignUp);
     }
 }

@@ -105,10 +105,10 @@ public class StudentController implements Initializable {
     @FXML
     public void handleLanguageClick(MouseEvent mouseEvent) {
         userService.handleLanguageClick();
-        userService.updateText(Locale.getDefault(), btnMonday, btnTuesday, btnWednesday, btnThursday, btnFriday);
-
+        Locale defaultLocale = Locale.getDefault();
+        userService.updateText(defaultLocale, btnMonday, btnTuesday, btnWednesday, btnThursday, btnFriday);
     }
-
+    
     @FXML
     public void handleHelp(ActionEvent actionEvent) {
         // Load the FXML file for the help popup

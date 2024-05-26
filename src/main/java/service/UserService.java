@@ -149,15 +149,16 @@ public class UserService {
 
     public void handleLanguageClick() {
         Locale newLocale;
-        if (Locale.getDefault().getLanguage().equals("en")) {
+        if (SessionManager.getLocale().getLanguage().equals("en")) {
             newLocale = new Locale("sq");
         } else {
             newLocale = new Locale("en", "US");
         }
 
         Navigator.changeLanguage(newLocale.toLanguageTag());
-        Locale.setDefault(newLocale);
+        SessionManager.setLocale(newLocale);
     }
+
 
     public void updateText(Locale locale, Button... buttons) {
         ResourceBundle bundle = ResourceBundle.getBundle("translations.content", locale);
@@ -167,9 +168,7 @@ public class UserService {
         buttons[3].setText(bundle.getString("btnThursday"));
         buttons[4].setText(bundle.getString("btnFriday"));
     }
-    public void updateText(
-            Locale locale, Text txtSingUpMeInfo,Text txtThankYou, Text txtFirstNameL, Text txtLastNameL, Text txtPasswordL, Text txtConfirmPassword, Button btnSignup, Button btncancel, Text txtSignUp){
-
+    public void updateText(Locale locale, Text txtSingUpMeInfo, Text txtThankYou, Text txtFirstNameL, Text txtLastNameL, Text txtPasswordL, Text txtConfirmPassword, Button btnSignup, Button btncancel, Text txtSignUp) {
         ResourceBundle bundle = ResourceBundle.getBundle("translations.content", locale);
         txtSingUpMeInfo.setText(bundle.getString("txtSingUpMeInfo"));
         txtThankYou.setText(bundle.getString("txtThankYou"));
@@ -197,7 +196,7 @@ public class UserService {
 
     // Methods transferred from LoginController
     public void initializeLoginLabels(Label lblEmail, Label lblPassword, Button btnlogin, Button btncancel, Text txtlogin, Text txtWelcome, Text txtUniofPr, Text txtLoginForInfo, Label lblCreateAccount) {
-        ResourceBundle bundle = ResourceBundle.getBundle("translations.content", new Locale(Navigator.changeLanguage("sq")));
+        ResourceBundle bundle = getBundle();
 
         lblEmail.setText(bundle.getString("lblEmail"));
         lblPassword.setText(bundle.getString("lblPassword"));
@@ -234,20 +233,52 @@ public class UserService {
     public void handleCreateAccount(MouseEvent me) throws IOException {
         Navigator.navigate(me, Navigator.CREATE_ACCOUNT_PAGE, "SignUP");
     }
+    private ResourceBundle getBundle() {
+        Locale locale = SessionManager.getLocale();
+        return ResourceBundle.getBundle("translations.content", locale);
+    }
 
-    public void handleLanguageClickLoginPage(MouseEvent mouseEvent, Label lblEmail, Label lblPassword, Button btnlogin, Button btncancel, Text txtlogin, Text txtWelcome, Text txtUniofPr, Text txtLoginForInfo, Label lblCreateAccount) {
+    public void handleLanguageClickSignUpPage(MouseEvent mouseEvent, Text txtSingUpMeInfo, Text txtThankYou, Text txtFirstNameL, Text txtLastNameL, Text txtPasswordL, Text txtConfirmPassword, Button btnSignup, Button btnCancel, Text txtSignUp) {
         Locale newLocale;
-        if (Locale.getDefault().getLanguage().equals("en")) {
+        if (SessionManager.getLocale().getLanguage().equals("en")) {
             newLocale = new Locale("sq");
         } else {
             newLocale = new Locale("en", "US");
         }
 
         Navigator.changeLanguage(newLocale.toLanguageTag());
-        Locale.setDefault(newLocale);
+        SessionManager.setLocale(newLocale);
+
+        updateSignUpPageText(newLocale, txtSingUpMeInfo, txtThankYou, txtFirstNameL, txtLastNameL, txtPasswordL, txtConfirmPassword, btnSignup, btnCancel, txtSignUp);
+        System.out.println("Language: " + newLocale.getLanguage());
+    }
+
+    public void updateSignUpPageText(Locale locale, Text txtSingUpMeInfo, Text txtThankYou, Text txtFirstNameL, Text txtLastNameL, Text txtPasswordL, Text txtConfirmPassword, Button btnSignup, Button btnCancel, Text txtSignUp) {
+        ResourceBundle bundle = ResourceBundle.getBundle("translations.content", locale);
+        txtSingUpMeInfo.setText(bundle.getString("txtSingUpMeInfo"));
+        txtThankYou.setText(bundle.getString("txtThankYou"));
+        txtFirstNameL.setText(bundle.getString("txtFirstNameL"));
+        txtLastNameL.setText(bundle.getString("txtLastNameL"));
+        txtPasswordL.setText(bundle.getString("txtPasswordL"));
+        txtConfirmPassword.setText(bundle.getString("txtConfirmPassword"));
+        btnSignup.setText(bundle.getString("btnSignup"));
+        btnCancel.setText(bundle.getString("btncancel"));
+        txtSignUp.setText(bundle.getString("txtSignUp"));
+    }
+
+    public void handleLanguageClickLoginPage(MouseEvent mouseEvent, Label lblEmail, Label lblPassword, Button btnlogin, Button btncancel, Text txtlogin, Text txtWelcome, Text txtUniofPr, Text txtLoginForInfo, Label lblCreateAccount) {
+        Locale newLocale;
+        if (SessionManager.getLocale().getLanguage().equals("en")) {
+            newLocale = new Locale("sq");
+        } else {
+            newLocale = new Locale("en", "US");
+        }
+
+        Navigator.changeLanguage(newLocale.toLanguageTag());
+        SessionManager.setLocale(newLocale);
 
         updateLoginPageText(newLocale, lblEmail, lblPassword, btnlogin, btncancel, txtlogin, txtWelcome, txtUniofPr, txtLoginForInfo, lblCreateAccount);
-        System.out.println("Gjuha: " + newLocale.getLanguage());
+        System.out.println("Language: " + newLocale.getLanguage());
     }
 
     public void updateLoginPageText(Locale locale, Label lblEmail, Label lblPassword, Button btnlogin, Button btncancel, Text txtlogin, Text txtWelcome, Text txtUniofPr, Text txtLoginForInfo, Label lblCreateAccount) {

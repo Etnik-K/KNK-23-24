@@ -92,12 +92,13 @@ public class Navigator {
             pane.getChildren().add(formPane);
         }
     }
-
-    public static String changeLanguage(String language){
-        Locale locale = Locale.of("language");
-        Locale.setDefault(locale);
-        return language;
-    }
+////////////////
+public static String changeLanguage(String languageTag) {
+    Locale newLocale = Locale.forLanguageTag(languageTag);
+    Locale.setDefault(newLocale);
+    return newLocale.getLanguage();
+}
+ ///////////////////
     private static Pane loadPane(String form){
 
         ResourceBundle bundle = ResourceBundle.getBundle(

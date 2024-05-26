@@ -118,7 +118,8 @@ public class AdminDashboardController implements Initializable {
     @FXML
     public void handleLanguageClick(MouseEvent mouseEvent) {
         userService.handleLanguageClick();
-        userService.updateText(Locale.getDefault(), btnMonday, btnTuesday, btnWednesday, btnThursday, btnFriday);
+        Locale locale = SessionManager.getLocale();
+        userService.updateText(locale, btnMonday, btnTuesday, btnWednesday, btnThursday, btnFriday);
     }
 
     @FXML
