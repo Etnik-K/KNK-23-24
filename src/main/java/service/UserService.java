@@ -195,21 +195,6 @@ public class UserService {
         }
     }
 
-    // Methods transferred from LoginController
-    public void initializeLoginLabels(Label lblEmail, Label lblPassword, Button btnlogin, Button btncancel, Text txtlogin, Text txtWelcome, Text txtUniofPr, Text txtLoginForInfo, Label lblCreateAccount) {
-        ResourceBundle bundle = getBundle();
-
-        lblEmail.setText(bundle.getString("lblEmail"));
-        lblPassword.setText(bundle.getString("lblPassword"));
-        btnlogin.setText(bundle.getString("btnlogin"));
-        btncancel.setText(bundle.getString("btncancel"));
-        txtlogin.setText(bundle.getString("txtLogin"));
-        txtWelcome.setText(bundle.getString("txtWelcome"));
-        txtUniofPr.setText(bundle.getString("txtUniofPr"));
-        txtLoginForInfo.setText(bundle.getString("txtLoginForInfo"));
-        lblCreateAccount.setText(bundle.getString("lblCreateAccount"));
-    }
-
     public void initializeSignUpLabels(ResourceBundle bundle, Text txtSingUpMeInfo, Text txtThankYou, Text txtFirstNameL, Text txtLastNameL, Text txtPasswordL, Text txtConfirmPassword, Button btnSignup, Button btnCancel, Text txtSignUp) {
         txtSingUpMeInfo.setText(bundle.getString("txtSingUpMeInfo"));
         txtThankYou.setText(bundle.getString("txtThankYou"));
@@ -226,15 +211,7 @@ public class UserService {
         return login(loginUserData);
     }
 
-    public void handleCancel(TextField txtEmail, PasswordField pwdPassword) {
-        txtEmail.clear();
-        pwdPassword.clear();
-    }
-
-    public void handleCreateAccount(MouseEvent me) throws IOException {
-        Navigator.navigate(me, Navigator.CREATE_ACCOUNT_PAGE, "SignUP");
-    }
-    private ResourceBundle getBundle() {
+    public ResourceBundle getBundle() {
         Locale locale = SessionManager.getLocale();
         return ResourceBundle.getBundle("translations.content", locale);
     }
@@ -267,56 +244,6 @@ public class UserService {
         txtSignUp.setText(bundle.getString("txtSignUp"));
     }
 
-    public void handleLanguageClickLoginPage(MouseEvent mouseEvent, Label lblEmail, Label lblPassword, Button btnlogin, Button btncancel, Text txtlogin, Text txtWelcome, Text txtUniofPr, Text txtLoginForInfo, Label lblCreateAccount) {
-        Locale newLocale;
-        if (SessionManager.getLocale().getLanguage().equals("en")) {
-            newLocale = new Locale("sq");
-        } else {
-            newLocale = new Locale("en", "US");
-        }
-
-        Navigator.changeLanguage(newLocale.toLanguageTag());
-        SessionManager.setLocale(newLocale);
-
-        updateLoginPageText(newLocale, lblEmail, lblPassword, btnlogin, btncancel, txtlogin, txtWelcome, txtUniofPr, txtLoginForInfo, lblCreateAccount);
-        System.out.println("Language: " + newLocale.getLanguage());
-    }
-
-    public void updateLoginPageText(Locale locale, Label lblEmail, Label lblPassword, Button btnlogin, Button btncancel, Text txtlogin, Text txtWelcome, Text txtUniofPr, Text txtLoginForInfo, Label lblCreateAccount) {
-        ResourceBundle bundle = ResourceBundle.getBundle("translations.content", locale);
-        lblEmail.setText(bundle.getString("lblEmail"));
-        lblPassword.setText(bundle.getString("lblPassword"));
-        btnlogin.setText(bundle.getString("btnlogin"));
-        btncancel.setText(bundle.getString("btncancel"));
-        txtlogin.setText(bundle.getString("txtLogin"));
-        txtWelcome.setText(bundle.getString("txtWelcome"));
-        txtUniofPr.setText(bundle.getString("txtUniofPr"));
-        txtLoginForInfo.setText(bundle.getString("txtLoginForInfo"));
-        lblCreateAccount.setText(bundle.getString("lblCreateAccount"));
-    }
-    public boolean handleLoginClick(ActionEvent ae, String email, String password) throws SQLException, IOException {
-        LoginUserDto loginUserData = new LoginUserDto(email, password);
-
-        boolean isLogin = login(loginUserData);
-        if (isLogin) {
-            User user = SessionManager.getUser();
-            if (user != null) {
-                if (user.getUserType().equals("professor")) {
-                    Navigator.navigate(ae, Navigator.PROFESSOR_PAGE, "Login");
-                    System.out.println("Logged in as Professor: " + user.getFirstName() + " " + user.getLastName());
-                } else if (user.getUserType().equals("student")) {
-                    Navigator.navigate(ae, Navigator.STUDENT_PAGE, "StudentView");
-                    System.out.println("Logged in as Student: " + user.getFirstName() + " " + user.getLastName());
-                } else {
-                    Navigator.navigate(ae, Navigator.ADMIN_DASHBOARD, "AdminView");
-                    System.out.println("Logged in as Admin");
-                }
-                return true;
-            }
-        }
-        return false;
-    }
-
     //NewClassController:
     public String getSelectedRole() {
         return selectedRole;
@@ -336,6 +263,10 @@ public class UserService {
         selectedRole = day;
         updateSplitMenuButtonText(splitMenuButton);
     }
+    public void handleCancel(TextField txtEmail, PasswordField pwdPassword) {
+        txtEmail.clear();
+        pwdPassword.clear();
+    }
 
     public void handleCancel(TextField txtStudentsNumber, TextField txtStartTime, TextField txtEndTime, SplitMenuButton splitMenuButton) {
         selectedRole = "";
@@ -344,6 +275,7 @@ public class UserService {
         txtStartTime.setText("");
         txtEndTime.setText("");
     }
+
     public void handleCancel(TextField txtFirstName, TextField txtLastName, PasswordField pwdPassword, PasswordField pwdConfirmPassword){
         txtFirstName.clear();
         txtLastName.clear();

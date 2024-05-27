@@ -13,7 +13,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import model.User;
 import service.UserService;
 
 import java.io.IOException;
@@ -143,7 +142,7 @@ public class Navigator {
         try {
             // Load UserTableView.fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/orari_table_view.fxml"));
-            System.out.println("KA MRRI QETU");
+//            System.out.println("KA MRRI QETU");
             Parent userTable = loader.load();
 
             // Get the controller from the loader
@@ -156,7 +155,8 @@ public class Navigator {
             // Fetch data from the database (if needed)
             controller.fetchDataFromDatabase(day);
         } catch (IOException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
     }
 

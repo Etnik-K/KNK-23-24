@@ -16,6 +16,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.User;
 import model.dto.LoginUserDto;
+import service.LoginService;
 import service.UserService;
 import app.SessionManager;
 
@@ -49,55 +50,45 @@ public class LoginController implements Initializable {
     @FXML
     private Text txtLoginForInfo;
     private final UserService userService = new UserService();
+    private final LoginService loginService = new LoginService();
     private Stage stage;
-
+    private static String password;
+    private static String email;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        UserService userService = new UserService();
-        userService.initializeLoginLabels(lblEmail, lblPassword, btnlogin, btncancel, txtlogin, txtWelcome, txtUniofPr, txtLoginForInfo, lblCreateAccount);
+        loginService.initializeLoginLabels(lblEmail, lblPassword, btnlogin, btncancel, txtlogin, txtWelcome, txtUniofPr, txtLoginForInfo, lblCreateAccount, userService);
     }
 
     @FXML
     private void handleLoginClick(ActionEvent ae) throws SQLException, IOException {
-        String email = txtEmail.getText().trim();
-        String password = pwdPassword.getText().trim();
-        userService.handleLoginClick(ae, email, password);
+        email = txtEmail.getText().trim();
+        password = pwdPassword.getText().trim();
+        loginService.handleLoginClick(ae, email, password);
     }
 
     @FXML
     private void handleCancelClick(ActionEvent ae){
-        UserService userService = new UserService();
-        userService.handleCancel(txtEmail, pwdPassword);
+        LoginService.handleCancel(txtEmail, pwdPassword);
     }
 
     @FXML
     public void handleCreateAccountClick(MouseEvent me) throws IOException {
-        UserService userService = new UserService();
-        userService.handleCreateAccount(me);
+        LoginService.handleCreateAccount(me);
     }
 
     @FXML
     public void handleLanguageClick(MouseEvent mouseEvent) {
-        UserService userService = new UserService();
-        userService.handleLanguageClickLoginPage(mouseEvent, lblEmail, lblPassword, btnlogin, btncancel, txtlogin, txtWelcome, txtUniofPr, txtLoginForInfo, lblCreateAccount);
+        LoginService.handleLanguageClickLoginPage(mouseEvent, lblEmail, lblPassword, btnlogin, btncancel, txtlogin, txtWelcome, txtUniofPr, txtLoginForInfo, lblCreateAccount);
     }
 
     public void loginEnter(KeyEvent keyEvent) {
+        // kur e prek enter mu bo login
+        // kena me perfundu tu e thirr navigae ose najsen qitu.
     }
 
     @FXML
     public void initKeyActions(Scene scene, Stage stage) {
-        this.stage = stage;
-        scene.setOnKeyPressed(keyAction -> {
-            if (keyAction.getCode() == KeyCode.ENTER) {
-                try {
-                    // Krijo një ActionEvent të ri në vend që të kaloni null
-                    handleLoginClick(new ActionEvent(btnlogin, null));
-                } catch (SQLException | IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        loginService.initKeyActions(scene, stage, btnlogin, email, password);
     }
 }
 
