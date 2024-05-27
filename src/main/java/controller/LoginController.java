@@ -1,6 +1,5 @@
 package controller;
 
-import app.Navigator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,21 +8,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.User;
-import model.dto.LoginUserDto;
-import service.LoginService;
+import service.LogInSignInService;
 import service.UserService;
-import app.SessionManager;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
@@ -50,35 +44,35 @@ public class LoginController implements Initializable {
     @FXML
     private Text txtLoginForInfo;
     private final UserService userService = new UserService();
-    private final LoginService loginService = new LoginService();
+    private final LogInSignInService logInSignInService = new LogInSignInService();
     private Stage stage;
     private static String password;
     private static String email;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        loginService.initializeLoginLabels(lblEmail, lblPassword, btnlogin, btncancel, txtlogin, txtWelcome, txtUniofPr, txtLoginForInfo, lblCreateAccount, userService);
+        logInSignInService.initializeLoginLabels(lblEmail, lblPassword, btnlogin, btncancel, txtlogin, txtWelcome, txtUniofPr, txtLoginForInfo, lblCreateAccount, userService);
     }
 
     @FXML
     private void handleLoginClick(ActionEvent ae) throws SQLException, IOException {
         email = txtEmail.getText().trim();
         password = pwdPassword.getText().trim();
-        loginService.handleLoginClick(ae, email, password);
+        logInSignInService.handleLoginClick(ae, email, password);
     }
 
     @FXML
     private void handleCancelClick(ActionEvent ae){
-        LoginService.handleCancel(txtEmail, pwdPassword);
+        LogInSignInService.handleCancel(txtEmail, pwdPassword);
     }
 
     @FXML
     public void handleCreateAccountClick(MouseEvent me) throws IOException {
-        LoginService.handleCreateAccount(me);
+        LogInSignInService.handleCreateAccount(me);
     }
 
     @FXML
     public void handleLanguageClick(MouseEvent mouseEvent) {
-        LoginService.handleLanguageClickLoginPage(mouseEvent, lblEmail, lblPassword, btnlogin, btncancel, txtlogin, txtWelcome, txtUniofPr, txtLoginForInfo, lblCreateAccount);
+        LogInSignInService.handleLanguageClickLoginPage(mouseEvent, lblEmail, lblPassword, btnlogin, btncancel, txtlogin, txtWelcome, txtUniofPr, txtLoginForInfo, lblCreateAccount);
     }
 
     public void loginEnter(KeyEvent keyEvent) {
@@ -88,7 +82,7 @@ public class LoginController implements Initializable {
 
     @FXML
     public void initKeyActions(Scene scene, Stage stage) {
-        loginService.initKeyActions(scene, stage, btnlogin, email, password);
+        logInSignInService.initKeyActions(scene, stage, btnlogin, email, password);
     }
 }
 

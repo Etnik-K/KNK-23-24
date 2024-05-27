@@ -2,29 +2,17 @@ package controller;
 
 
 import app.Navigator;
-import app.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import model.Orari;
-import model.dto.OrariRecordDto;
-import service.DBConnector;
 import service.UserService;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -55,7 +43,6 @@ public class StudentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         userService.initializeDashboard(resultContainer, btnMonday, btnTuesday, btnWednesday, btnThursday, btnFriday);
-
     }
 
     @FXML
@@ -63,7 +50,7 @@ public class StudentController implements Initializable {
 
     @FXML
     private void handleLogOut(MouseEvent me) throws IOException {
-        SessionManager.setUser(null);
+        userService.handleLogOut();
         Navigator.navigate(me, Navigator.LOGIN_PAGE, "Login");
     }
 
@@ -94,9 +81,7 @@ public class StudentController implements Initializable {
     }
 
     @FXML
-    private void handleSearch(ActionEvent ae){
-
-    }
+    private void handleSearch(ActionEvent ae){}
     @FXML
     private void handleView(ActionEvent ae) {
         nav.displayOrariTableView(resultContainer, Navigator.ALL);

@@ -2,13 +2,9 @@
 package controller;
 
 import app.Navigator;
-import controller.popups.EmailPopupController;
-import database.DatabaseUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -17,12 +13,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.dto.UserDto;
-import service.DBConnector;
-import service.LoginService;
-import service.UserService;
+import service.LogInSignInService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -65,40 +57,40 @@ public class SignUpController implements Initializable {
     private Text txtSignUp;
 
     // UserService userService = new UserService();
-    LoginService loginService = new LoginService();
+    LogInSignInService logInSignInService = new LogInSignInService();
     private Stage stage;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ResourceBundle bundle = ResourceBundle.getBundle("translations.content", new Locale(Navigator.changeLanguage("sq")));
-        loginService.initializeSignUpLabels(bundle, txtSingUpMeInfo, txtThankYou, txtFirstNameL, txtLastNameL, txtPasswordL, txtConfirmPassword, btnSignup, btncancel, txtSignUp);
+        logInSignInService.initializeSignUpLabels(bundle, txtSingUpMeInfo, txtThankYou, txtFirstNameL, txtLastNameL, txtPasswordL, txtConfirmPassword, btnSignup, btncancel, txtSignUp);
     }
 
     @FXML
     private void handleSignUp(ActionEvent ae) throws SQLException, IOException {
-        loginService.handleSignUp(ae,txtFirstName, txtLastName, pwdPassword, pwdConfirmPassword);
+        logInSignInService.handleSignUp(ae,txtFirstName, txtLastName, pwdPassword, pwdConfirmPassword);
     }
     @FXML
     private void handleCancel(ActionEvent ae) {
-        loginService.handleCancel(txtFirstName, txtLastName, pwdPassword, pwdConfirmPassword);
+        logInSignInService.handleCancel(txtFirstName, txtLastName, pwdPassword, pwdConfirmPassword);
     }
 
     @FXML
     private void handleStudentClick(ActionEvent ae) {
-        loginService.handleStudentClick(selectedRole);
-        loginService.updateSplitMenuButtonText(splitMenuButton, loginService.getSelectedRole());
+        logInSignInService.handleStudentClick(selectedRole);
+        logInSignInService.updateSplitMenuButtonText(splitMenuButton, logInSignInService.getSelectedRole());
     }
 
     @FXML
     private void handleProfessorClick(ActionEvent ae) {
-        loginService.handleProfessorClick(selectedRole);
-        loginService.updateSplitMenuButtonText(splitMenuButton, loginService.getSelectedRole());
+        logInSignInService.handleProfessorClick(selectedRole);
+        logInSignInService.updateSplitMenuButtonText(splitMenuButton, logInSignInService.getSelectedRole());
     }
 
 
     @FXML
     public void handleLanguageClick(MouseEvent mouseEvent) {
-        loginService.handleLanguageClickSignUpPage(mouseEvent, txtSingUpMeInfo, txtThankYou, txtFirstNameL, txtLastNameL, txtPasswordL, txtConfirmPassword, btnSignup, btncancel, txtSignUp);
+        logInSignInService.handleLanguageClickSignUpPage(mouseEvent, txtSingUpMeInfo, txtThankYou, txtFirstNameL, txtLastNameL, txtPasswordL, txtConfirmPassword, btnSignup, btncancel, txtSignUp);
     }
 
     @FXML

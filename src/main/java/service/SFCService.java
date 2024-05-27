@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.User;
+import repository.SFCRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,23 +19,8 @@ public class SFCService {
         User selectedUser = SessionManager.getUser();
         int faculty_id = Integer.parseInt(txtFaculty.getText());
 
-        String queryUpdateUser = "UPDATE users SET faculty_id = ? WHERE id = ?";
-        System.out.println("Step 2");
-        try (Connection connection = DBConnector.getConnection();
-             PreparedStatement updateUserStatement = connection.prepareStatement(queryUpdateUser)) {
+        SFCRepository.handleSaveRepo(faculty_id, selectedUser, txtFaculty);
 
-            updateUserStatement.setInt(1, faculty_id);
-            updateUserStatement.setInt(2, selectedUser.getId());
-            updateUserStatement.executeUpdate();
-
-            // Close the pop-up window
-            Stage stage = (Stage) txtFaculty.getScene().getWindow();
-            stage.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println(e);
-        }
         System.out.println("Step 3");
         utvc.fetchDataFromDatabase();
     }

@@ -63,7 +63,7 @@ public class ProfessorController implements Initializable {
 
     @FXML
     private void handleLogOut(MouseEvent me) throws IOException {
-        SessionManager.setUser(null);
+        userService.handleLogOut();
         Navigator.navigate(me, Navigator.LOGIN_PAGE, "Login");
     }
     @FXML

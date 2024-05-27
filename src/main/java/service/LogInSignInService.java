@@ -17,13 +17,14 @@ import javafx.stage.Stage;
 import model.User;
 import model.dto.LoginUserDto;
 import model.dto.UserDto;
+import repository.UserRepository;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class LoginService {
+public class LogInSignInService {
     private Stage stage;
     private String selectedRole;
     public void initializeLoginLabels(Label lblEmail, Label lblPassword, Button btnlogin, Button btncancel, Text txtlogin, Text txtWelcome, Text txtUniofPr, Text txtLoginForInfo, Label lblCreateAccount, UserService userService) {
@@ -43,10 +44,16 @@ public class LoginService {
     public boolean handleLoginClick(ActionEvent ae, String email, String password) throws SQLException, IOException {
         LoginUserDto loginUserData = new LoginUserDto(email, password);
 
-        boolean isLogin = UserService.login(loginUserData);
-        if (isLogin) {
+        if (UserService.login(loginUserData)) {
+            System.out.println("Imella: " + email);
+            SessionManager.setUser(UserRepository.getByEmail(email));
+            System.out.println("U bo set sessioni");
             User user = SessionManager.getUser();
             if (user != null) {
+//                User user123 = SessionManager.getUser();
+//                System.out.println("USER TYPE: " + user123.getUserType());
+//                System.out.println("USER name: " + user123.getFirstName() + " " + user123.getLastName());
+
                 if (user.getUserType().equals("professor")) {
                     Navigator.navigate(ae, Navigator.PROFESSOR_PAGE, "Login");
                     System.out.println("Logged in as Professor: " + user.getFirstName() + " " + user.getLastName());
@@ -83,7 +90,7 @@ public class LoginService {
         Navigator.changeLanguage(newLocale.toLanguageTag());
         SessionManager.setLocale(newLocale);
 
-        LoginService.updateLoginPageText(newLocale, lblEmail, lblPassword, btnlogin, btncancel, txtlogin, txtWelcome, txtUniofPr, txtLoginForInfo, lblCreateAccount);
+        LogInSignInService.updateLoginPageText(newLocale, lblEmail, lblPassword, btnlogin, btncancel, txtlogin, txtWelcome, txtUniofPr, txtLoginForInfo, lblCreateAccount);
         System.out.println("Language: " + newLocale.getLanguage());
     }
 

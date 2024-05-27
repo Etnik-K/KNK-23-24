@@ -15,6 +15,6 @@ public class PieChartPerSallaController implements Initializable {
     private PieChart PieChartPerSalla;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        PieChartService.retrievePieChartData(this.PieChartPerSalla);
+        PieChartService.retrievePieChart(this.PieChartPerSalla);
     }
 }

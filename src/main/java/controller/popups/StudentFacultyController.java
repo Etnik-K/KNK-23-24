@@ -17,18 +17,13 @@ import java.sql.SQLException;
 public class StudentFacultyController {
     @FXML
     private TextField txtFaculty;
-
     public TextField getTxtFaculty() {
         return txtFaculty;
     }
-
-        UserTableViewController utvc = new UserTableViewController();
-        SFCService sfc = new SFCService();
-
+    UserTableViewController utvc = new UserTableViewController();
+    SFCService sfc = new SFCService();
     public void handleSave(ActionEvent actionEvent) {
         sfc.handleSave(actionEvent, txtFaculty);
     }
-
-    public void handleCancel(ActionEvent actionEvent) {
-    }
+    public void handleCancel(ActionEvent actionEvent) {}
 }
