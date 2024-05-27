@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import service.DBConnector;
 import service.UserService;
@@ -146,12 +147,6 @@ public class AdminDashboardController implements Initializable {
       userService.handleHelp(Navigator.ADMIN_HELP);
     }
 
-
-
-
-
-
-
     @FXML
     private TextField startTimeField;
 
@@ -182,5 +177,28 @@ public class AdminDashboardController implements Initializable {
         // Show the AnchorPane or implement your logic here
         anchor.setVisible(true);
         System.out.println("Delete popup button clicked");
+    }
+
+    public void handleStats(ActionEvent actionEvent) {
+            Parent root;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(Navigator.PIE_CHART_STATS));
+            root = loader.load();
+        } catch (IOException e) {
+//            e.printStackTrace();
+            System.err.println("IOException nigga");
+            System.err.println(e.getMessage());
+            System.err.println("~~~~~~~~~~~~~");
+            System.err.println(e.getCause());
+            return;
+        }
+
+        // Create a new stage for the help popup
+        Stage helpStage = new Stage();
+        helpStage.setTitle("Help");
+        helpStage.setScene(new Scene(root));
+
+        // Show the help popup stage
+        helpStage.show();
     }
 }

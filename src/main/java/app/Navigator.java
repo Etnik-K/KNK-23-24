@@ -33,6 +33,7 @@ public class Navigator {
     public final static String PROFESOR_HELP = "/app/profesor_help.fxml";
     public final static String ADMIN_HELP = "/app/admin_help.fxml";
     public final static String STUDENT_F = "/app/student_faculty.fxml" ;
+    public final static String PIE_CHART_STATS = "/app/PieChartPerSalla.fxml" ;
     public static int Faculty_id;
 //    public static String ALL = "Where fakulteti_id = '";
 //    public  static String MONDAY = "WHERE day_of_week = 'Monday' and fakulteti_id= '";
