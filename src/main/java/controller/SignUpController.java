@@ -1,3 +1,4 @@
+//SignUpController
 package controller;
 
 import app.Navigator;
@@ -20,6 +21,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.dto.UserDto;
 import service.DBConnector;
+import service.LoginService;
 import service.UserService;
 
 import java.io.IOException;
@@ -62,43 +64,45 @@ public class SignUpController implements Initializable {
     @FXML
     private Text txtSignUp;
 
-    UserService userService = new UserService();
+    // UserService userService = new UserService();
+    LoginService loginService = new LoginService();
     private Stage stage;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ResourceBundle bundle = ResourceBundle.getBundle("translations.content", new Locale(Navigator.changeLanguage("sq")));
-        userService.initializeSignUpLabels(bundle, txtSingUpMeInfo, txtThankYou, txtFirstNameL, txtLastNameL, txtPasswordL, txtConfirmPassword, btnSignup, btncancel, txtSignUp);
+        loginService.initializeSignUpLabels(bundle, txtSingUpMeInfo, txtThankYou, txtFirstNameL, txtLastNameL, txtPasswordL, txtConfirmPassword, btnSignup, btncancel, txtSignUp);
     }
 
     @FXML
     private void handleSignUp(ActionEvent ae) throws SQLException, IOException {
-        userService.handleSignUp(ae,txtFirstName, txtLastName, pwdPassword, pwdConfirmPassword);
+        loginService.handleSignUp(ae,txtFirstName, txtLastName, pwdPassword, pwdConfirmPassword);
     }
     @FXML
     private void handleCancel(ActionEvent ae) {
-        userService.handleCancel(txtFirstName, txtLastName, pwdPassword, pwdConfirmPassword);
+        loginService.handleCancel(txtFirstName, txtLastName, pwdPassword, pwdConfirmPassword);
     }
 
     @FXML
     private void handleStudentClick(ActionEvent ae) {
-        userService.handleStudentClick(selectedRole);
-        userService.updateSplitMenuButtonText(splitMenuButton, userService.getSelectedRole());
+        loginService.handleStudentClick(selectedRole);
+        loginService.updateSplitMenuButtonText(splitMenuButton, loginService.getSelectedRole());
     }
 
     @FXML
     private void handleProfessorClick(ActionEvent ae) {
-        userService.handleProfessorClick(selectedRole);
-        userService.updateSplitMenuButtonText(splitMenuButton, userService.getSelectedRole());
+        loginService.handleProfessorClick(selectedRole);
+        loginService.updateSplitMenuButtonText(splitMenuButton, loginService.getSelectedRole());
     }
 
 
     @FXML
     public void handleLanguageClick(MouseEvent mouseEvent) {
-        userService.handleLanguageClickSignUpPage(mouseEvent, txtSingUpMeInfo, txtThankYou, txtFirstNameL, txtLastNameL, txtPasswordL, txtConfirmPassword, btnSignup, btncancel, txtSignUp);
+        loginService.handleLanguageClickSignUpPage(mouseEvent, txtSingUpMeInfo, txtThankYou, txtFirstNameL, txtLastNameL, txtPasswordL, txtConfirmPassword, btnSignup, btncancel, txtSignUp);
     }
 
     @FXML
+    //Gent ki nderin dhe kenaqesine me ndreq qeta
     public void initKeyActions(Scene scene, Stage stage) {
         this.stage = stage;
         scene.setOnKeyPressed(keyAction -> {
