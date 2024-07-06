@@ -60,6 +60,13 @@ public class LoginController implements Initializable {
         logInSignInService.handleLoginClick(ae, email, password);
     }
 
+//    @FXML
+//    private void handleLoginClick(@FXML TextField txtEmail, @FXML PasswordField pwdPassword) throws SQLException, IOException {
+//        email = txtEmail.getText().trim();
+//        password = pwdPassword.getText().trim();
+//        logInSignInService.handleLoginClick(ae, email, password);
+//    }
+
     @FXML
     private void handleCancelClick(ActionEvent ae){
         LogInSignInService.handleCancel(txtEmail, pwdPassword);

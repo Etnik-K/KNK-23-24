@@ -5,8 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="48056ede-ba49-4b85-90a7-1bf3cdf33a5f" name="Changes" comment="add popup to delete class">
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/dto/PieChartDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/app/admin_dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/app/admin_dashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/Navigator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Navigator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/SessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/SessionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/SignUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/SignUpController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/tableView/OrariTableViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/tableView/OrariTableViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/database/DatabaseUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/DatabaseUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/PieChartRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/PieChartRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/DBConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/DBConnector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/LogInSignInService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/LogInSignInService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/PieChartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/PieChartService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/Navigator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/Navigator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/professor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/professor.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/student.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/student.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controller/tableView/OrariTableViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/tableView/OrariTableViewController.class" afterDir="false" />
     </list>
     <list id="ff49b3be-4ae0-4467-9fbf-1445236dd98e" name="Changes by Etnik" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -56,6 +73,7 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
+    <option name="flattenPackages" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>

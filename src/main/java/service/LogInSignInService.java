@@ -41,7 +41,7 @@ public class LogInSignInService {
         lblCreateAccount.setText(bundle.getString("lblCreateAccount"));
     }
 
-    public boolean handleLoginClick(ActionEvent ae, String email, String password) throws SQLException, IOException {
+    public void handleLoginClick(ActionEvent ae, String email, String password) throws SQLException, IOException {
         LoginUserDto loginUserData = new LoginUserDto(email, password);
 
         if (UserService.login(loginUserData)) {
@@ -64,10 +64,8 @@ public class LogInSignInService {
                     Navigator.navigate(ae, Navigator.ADMIN_DASHBOARD, "AdminView");
                     System.out.println("Logged in as the Administrator");
                 }
-                return true;
             }
         }
-        return false;
     }
 
     public static void handleCancel(TextField txtEmail, PasswordField pwdPassword) {
@@ -82,9 +80,9 @@ public class LogInSignInService {
     public static void handleLanguageClickLoginPage(MouseEvent mouseEvent, Label lblEmail, Label lblPassword, Button btnlogin, Button btncancel, Text txtlogin, Text txtWelcome, Text txtUniofPr, Text txtLoginForInfo, Label lblCreateAccount) {
         Locale newLocale;
         if (SessionManager.getLocale().getLanguage().equals("en")) {
-            newLocale = new Locale("sq");
+            newLocale = Locale.of("sq");
         } else {
-            newLocale = new Locale("en", "US");
+            newLocale = Locale.of("en", "US");
         }
 
         Navigator.changeLanguage(newLocale.toLanguageTag());
@@ -260,12 +258,7 @@ public class LogInSignInService {
         this.selectedRole = "Professor";
     }
     public void handleLanguageClickSignUpPage(MouseEvent mouseEvent, Text txtSingUpMeInfo, Text txtThankYou, Text txtFirstNameL, Text txtLastNameL, Text txtPasswordL, Text txtConfirmPassword, Button btnSignup, Button btnCancel, Text txtSignUp) {
-        Locale newLocale;
-        if (SessionManager.getLocale().getLanguage().equals("en")) {
-            newLocale = new Locale("sq");
-        } else {
-            newLocale = new Locale("en", "US");
-        }
+        Locale newLocale = SessionManager.getNewLocale();
 
         Navigator.changeLanguage(newLocale.toLanguageTag());
         SessionManager.setLocale(newLocale);

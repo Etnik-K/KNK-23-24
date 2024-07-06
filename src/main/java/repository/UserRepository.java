@@ -2,6 +2,7 @@ package repository;
 
 import app.Navigator;
 import app.SessionManager;
+import database.DatabaseUtil;
 import model.User;
 import model.dto.CreateUserDto;
 import service.DBConnector;
@@ -15,6 +16,7 @@ public class UserRepository {
 
     public static boolean create(CreateUserDto userData) throws SQLException {
         Connection conn = DBConnector.getConnection();
+
         String query = """
                 INSERT INTO users (firstName, lastName, email, salt, passwordHash, user_type)
                 VALUE (?, ?, ?, ?, ?, ?)
@@ -36,7 +38,6 @@ public class UserRepository {
             e.printStackTrace();
             return false;
         }
-
     }
 
     public static User getByEmail(String email) throws SQLException {
@@ -74,22 +75,24 @@ public class UserRepository {
             return null;
         }
     }
+
     public static int loadUserFacultyId() {
         User currentUser = SessionManager.getUser();
-        String query;
         if (currentUser == null) {
             return 0;
         }
 
         int userId = currentUser.getId();
         try (Connection conn = DBConnector.getConnection()) {
-            if(currentUser.getUserType().equals("student")){
-            query = "SELECT faculty_id FROM users WHERE id = ?";
-            }
-            else{
+            String query;
+            if (currentUser.getUserType().equals("student")){
+                query = "SELECT faculty_id FROM users WHERE id = ?";
+            } else {
                 query = "SELECT faculty_id FROM profesor WHERE id = ?";
             }
-            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1, userId);
+//            try (PreparedStatement stmt = conn.prepareStatement(query)) {
                 stmt.setInt(1, userId);
                 try (ResultSet rs = stmt.executeQuery()) {
                     if (rs.next()) {
@@ -98,7 +101,7 @@ public class UserRepository {
                         SessionManager.setUser(currentUser); // Update user in session with facultyId
                     }
                 }
-            }
+           // }
         } catch (SQLException e) {
             e.printStackTrace();
         }

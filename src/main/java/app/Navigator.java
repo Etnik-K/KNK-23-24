@@ -55,6 +55,10 @@ public class Navigator {
 
 
 
+
+
+
+
     public static void navigate(Stage stage, String page, String title) throws IOException {
         FXMLLoader loader = new FXMLLoader(Navigator.class.getResource(page));
         Scene scene = new Scene(loader.load());
@@ -139,10 +143,11 @@ public class Navigator {
             return null;
         }
     }
+
     public void displayOrariTableView(VBox resultContainer, String day){
         try {
             // Load UserTableView.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/orari_table_view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("orari_table_view.fxml"));
 //            System.out.println("KA MRRI QETU");
             Parent userTable = loader.load();
 
@@ -157,6 +162,7 @@ public class Navigator {
             controller.fetchDataFromDatabase(day);
         } catch (IOException e) {
 //            e.printStackTrace();
+            System.out.println("Ketu nje gabim");
             System.err.println(e.getMessage());
         }
     }

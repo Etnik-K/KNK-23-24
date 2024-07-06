@@ -106,6 +106,7 @@ public class OrariTableViewController implements Initializable {
                 Navigator.THURSDAY = "WHERE day_of_week='Thursday'";
                 Navigator.FRIDAY = "WHERE day_of_week='Friday'";*/
                 query = "SELECT * FROM orari_details " + day;
+//                query = "SELECT ";
             }else{
                 Navigator.ALL = "Where fakulteti_id = '";
                 Navigator.MONDAY = "WHERE day_of_week = 'Monday' and fakulteti_id= '";

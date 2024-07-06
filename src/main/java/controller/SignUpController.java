@@ -62,8 +62,10 @@ public class SignUpController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ResourceBundle bundle = ResourceBundle.getBundle("translations.content", new Locale(Navigator.changeLanguage("sq")));
-        logInSignInService.initializeSignUpLabels(bundle, txtSingUpMeInfo, txtThankYou, txtFirstNameL, txtLastNameL, txtPasswordL, txtConfirmPassword, btnSignup, btncancel, txtSignUp);
+        ResourceBundle bundle = ResourceBundle.getBundle("translations.content",
+                new Locale(Navigator.changeLanguage("sq")));
+        logInSignInService.initializeSignUpLabels(bundle, txtSingUpMeInfo, txtThankYou, txtFirstNameL, txtLastNameL,
+                txtPasswordL, txtConfirmPassword, btnSignup, btncancel, txtSignUp);
     }
 
     @FXML
@@ -90,7 +92,8 @@ public class SignUpController implements Initializable {
 
     @FXML
     public void handleLanguageClick(MouseEvent mouseEvent) {
-        logInSignInService.handleLanguageClickSignUpPage(mouseEvent, txtSingUpMeInfo, txtThankYou, txtFirstNameL, txtLastNameL, txtPasswordL, txtConfirmPassword, btnSignup, btncancel, txtSignUp);
+        logInSignInService.handleLanguageClickSignUpPage(mouseEvent, txtSingUpMeInfo, txtThankYou, txtFirstNameL,
+                txtLastNameL, txtPasswordL, txtConfirmPassword, btnSignup, btncancel, txtSignUp);
     }
 
     @FXML

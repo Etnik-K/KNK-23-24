@@ -27,4 +27,12 @@ public class SessionManager {
     public static Locale getLocale() {
         return currentLocale;
     }
+
+    public static Locale getNewLocale() {
+        if (getLocale().getLanguage().equals("en")) {
+            return new Locale("sq");
+        }
+
+        return new Locale("en", "US");
+    }
 }
